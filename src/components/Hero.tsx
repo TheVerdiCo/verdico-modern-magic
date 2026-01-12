@@ -16,7 +16,7 @@ const Hero = () => {
           <blockquote className="opacity-0 animate-fade-up animation-delay-100">
             <p className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-balance mb-6">
               «Право — это разум,
-              <span className="text-accent"> свободный от страсти</span>»
+              <span className="text-gradient-brand"> свободный от страсти</span>»
             </p>
             <cite className="text-muted-foreground text-lg font-normal not-italic">
               — Аристотель

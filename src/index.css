@@ -24,15 +24,20 @@
     --muted: 40 10% 92%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 38 75% 55%;
-    --accent-foreground: 220 20% 15%;
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 195 100% 50%;
+    --accent-dark: 225 80% 45%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 40 15% 88%;
     --input: 40 15% 88%;
-    --ring: 38 75% 55%;
+    --ring: 210 100% 50%;
+    
+    /* Brand gradient */
+    --gradient-brand: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(210 100% 50%) 50%, hsl(225 80% 45%) 100%);
 
     --radius: 0.5rem;
 
@@ -73,15 +78,20 @@
     --muted: 220 15% 20%;
     --muted-foreground: 40 10% 60%;
 
-    --accent: 38 75% 55%;
-    --accent-foreground: 220 20% 8%;
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 195 100% 50%;
+    --accent-dark: 225 80% 45%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 220 15% 22%;
     --input: 220 15% 22%;
-    --ring: 38 75% 55%;
+    --ring: 210 100% 50%;
+    
+    /* Brand gradient */
+    --gradient-brand: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(210 100% 50%) 50%, hsl(225 80% 45%) 100%);
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -125,6 +135,28 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .text-gradient-brand {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+  
+  .hover-gradient-brand {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-gradient-brand:hover {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .shadow-soft {

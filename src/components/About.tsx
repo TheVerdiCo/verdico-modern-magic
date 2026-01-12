@@ -30,7 +30,7 @@ const About = () => {
           <div>
             <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">О компании</span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mt-4 mb-6">
-              Джамал Джаналиевич
+              Джамал Джалильевич
             </h2>
             <p className="text-muted-foreground text-lg mb-2">
               Основатель компании
@@ -40,7 +40,7 @@ const About = () => {
             </p>
 
             <p className="text-foreground leading-relaxed mb-8">
-              Verdi & Co. — это глобальная команда профессиональных юристов и адвокатов, 
+              Верди и Ко. — это глобальная команда профессиональных юристов и адвокатов, 
               успешно решающая разнообразные задачи клиентов с 2010 года. Мы предоставляем 
               комплексные юридические услуги как в России, так и по всему миру.
             </p>

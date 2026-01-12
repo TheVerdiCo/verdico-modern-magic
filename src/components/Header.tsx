@@ -31,7 +31,7 @@ const Header = () => {
             className="w-10 h-10 rounded-lg transition-transform group-hover:scale-105"
           />
           <span className="font-serif text-xl font-medium tracking-tight">
-            Verdi & Co.
+            Верди и Ко.
           </span>
         </a>
 

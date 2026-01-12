@@ -23,12 +23,12 @@ const About = () => {
               />
             </div>
             {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-2xl -z-10"></div>
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-brand opacity-10 rounded-2xl -z-10"></div>
           </div>
 
           {/* Content */}
           <div>
-            <span className="text-sm text-accent font-medium uppercase tracking-wider">О компании</span>
+            <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">О компании</span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mt-4 mb-6">
               Джамал Джаналиевич
             </h2>
@@ -48,8 +48,8 @@ const About = () => {
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
               {highlights.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3.5 h-3.5 text-accent" />
+                  <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-sm font-medium">{item}</span>
                 </div>
@@ -57,8 +57,8 @@ const About = () => {
             </div>
 
             <blockquote className="border-l-2 border-accent pl-6 italic text-muted-foreground">
-              "Мы готовы взять на себя ответственность за ваши дела и обеспечить 
-              наилучший результат."
+              <span className="text-gradient-brand not-italic">"</span>Мы готовы взять на себя ответственность за ваши дела и обеспечить 
+              наилучший результат.<span className="text-gradient-brand not-italic">"</span>
             </blockquote>
           </div>
         </div>

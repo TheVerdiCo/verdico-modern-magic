@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,9 +25,11 @@ const Header = () => {
     >
       <div className="container flex items-center justify-between">
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-            <span className="text-primary-foreground font-serif text-xl font-semibold">V</span>
-          </div>
+          <img 
+            src={logo} 
+            alt="Verdi & Co. Logo" 
+            className="w-10 h-10 rounded-lg transition-transform group-hover:scale-105"
+          />
           <span className="font-serif text-xl font-medium tracking-tight">
             Verdi & Co.
           </span>
@@ -34,13 +37,13 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#services" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Услуги
           </a>
-          <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#about" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             О нас
           </a>
-          <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#contact" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Контакты
           </a>
           <Button size="sm" className="ml-4">

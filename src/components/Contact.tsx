@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mail, MessageCircle, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -26,7 +26,7 @@ const Contact = () => {
               <span className="font-medium group-hover:text-gradient-brand">ceo@theverdico.com</span>
             </a>
             <a
-              href="https://t.me/verdico"
+              href="https://t.me/DjamalG"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-6 py-4 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
@@ -36,23 +36,14 @@ const Contact = () => {
               </div>
               <span className="font-medium group-hover:text-gradient-brand">Telegram</span>
             </a>
-            <a
-              href="https://wa.me/message"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-6 py-4 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
-            >
-              <div className="w-5 h-5 bg-gradient-brand rounded-full flex items-center justify-center">
-                <MessageCircle className="w-3 h-3 text-white" />
-              </div>
-              <span className="font-medium group-hover:text-gradient-brand">WhatsApp</span>
-            </a>
           </div>
 
           {/* CTA Button */}
-          <Button size="lg" className="px-10">
-            Напишите Нам
-          </Button>
+          <a href="https://t.me/DjamalG" target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="px-10">
+              Напишите Нам
+            </Button>
+          </a>
         </div>
       </div>
     </section>

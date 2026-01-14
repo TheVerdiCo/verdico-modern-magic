@@ -1,3 +1,4 @@
+import { FileText } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -23,6 +24,15 @@ const Footer = () => {
             </a>
             <a href="#contact" className="hover:text-foreground transition-colors">
               Контакты
+            </a>
+            <a 
+              href="/privacy-policy.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Политика Конфиденциальности И Cookie Policy
             </a>
           </nav>
 

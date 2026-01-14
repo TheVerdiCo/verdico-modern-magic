@@ -42,7 +42,7 @@ const About = () => {
             <p className="text-foreground leading-relaxed mb-8">
               Верди и Ко. — это глобальная команда профессиональных юристов и адвокатов, 
               успешно решающая разнообразные задачи клиентов с 2010 года. Мы предоставляем 
-              комплексные юридические услуги как в России, так и по всему миру.
+              комплексные юридические услуги как в России, так и за рубежом.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
@@ -57,8 +57,7 @@ const About = () => {
             </div>
 
             <blockquote className="border-l-2 border-accent pl-6 italic text-muted-foreground">
-              <span className="text-gradient-brand not-italic">"</span>Мы готовы взять на себя ответственность за ваши дела и обеспечить 
-              наилучший результат.<span className="text-gradient-brand not-italic">"</span>
+              <span className="text-gradient-brand not-italic">"</span>Мы сопровождаем вашу задачу с учётом правовых, коммерческих и процессуальных аспектов.<span className="text-gradient-brand not-italic">"</span>
             </blockquote>
           </div>
         </div>

@@ -31,27 +31,31 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-up animation-delay-300">
-            <Button size="lg" className="group">
-              Получить консультацию
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button variant="outline" size="lg">
-              Наши услуги
-            </Button>
+            <a href="https://t.me/DjamalG" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="group">
+                Получить консультацию
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </a>
+            <a href="#services">
+              <Button variant="outline" size="lg">
+                Наши услуги
+              </Button>
+            </a>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-border opacity-0 animate-fade-up animation-delay-400">
             <div>
-              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">14+</p>
+              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">10+</p>
               <p className="text-sm text-muted-foreground mt-2">лет опыта</p>
             </div>
             <div>
-              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">500+</p>
+              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">50+</p>
               <p className="text-sm text-muted-foreground mt-2">успешных дел</p>
             </div>
             <div>
-              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">15+</p>
+              <p className="font-serif text-4xl md:text-5xl font-medium text-foreground">10+</p>
               <p className="text-sm text-muted-foreground mt-2">стран мира</p>
             </div>
           </div>

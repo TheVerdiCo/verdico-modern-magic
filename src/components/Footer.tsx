@@ -26,9 +26,7 @@ const Footer = () => {
               Контакты
             </a>
             <a 
-              href="/privacy-policy.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="/policy"
               className="hover:text-foreground transition-colors inline-flex items-center gap-1.5"
             >
               <FileText className="w-3.5 h-3.5" />

@@ -15,22 +15,23 @@ const Footer = () => {
           </div>
 
           {/* Links */}
-          <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="/#services" className="hover:text-foreground transition-colors">
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <a href="/#services" className="hover:text-foreground transition-colors whitespace-nowrap">
               Услуги
             </a>
-            <a href="/#about" className="hover:text-foreground transition-colors">
+            <a href="/#about" className="hover:text-foreground transition-colors whitespace-nowrap">
               О нас
             </a>
-            <a href="/#contact" className="hover:text-foreground transition-colors">
+            <a href="/#contact" className="hover:text-foreground transition-colors whitespace-nowrap">
               Контакты
             </a>
             <a 
               href="/policy"
-              className="hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+              className="hover:text-foreground transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
             >
-              <FileText className="w-3.5 h-3.5" />
-              Политика Конфиденциальности И Cookie Policy
+              <FileText className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="hidden sm:inline">Политика Конфиденциальности</span>
+              <span className="sm:hidden">Политика</span>
             </a>
           </nav>
 

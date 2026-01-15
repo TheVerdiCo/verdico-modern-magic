@@ -16,13 +16,13 @@ const Footer = () => {
 
           {/* Links */}
           <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-foreground transition-colors">
+            <a href="/#services" className="hover:text-foreground transition-colors">
               Услуги
             </a>
-            <a href="#about" className="hover:text-foreground transition-colors">
+            <a href="/#about" className="hover:text-foreground transition-colors">
               О нас
             </a>
-            <a href="#contact" className="hover:text-foreground transition-colors">
+            <a href="/#contact" className="hover:text-foreground transition-colors">
               Контакты
             </a>
             <a 

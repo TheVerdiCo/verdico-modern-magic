@@ -37,18 +37,20 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <a href="/#services" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Услуги
           </a>
-          <a href="#about" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <a href="/#about" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             О нас
           </a>
-          <a href="#contact" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <a href="/#contact" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Контакты
           </a>
-          <Button size="sm" className="ml-4">
-            Связаться
-          </Button>
+          <a href="/#contact">
+            <Button size="sm" className="ml-4">
+              Связаться
+            </Button>
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -65,27 +67,29 @@ const Header = () => {
         <nav className="md:hidden absolute top-full left-0 right-0 bg-background shadow-card p-6 animate-fade-in">
           <div className="flex flex-col gap-4">
             <a
-              href="#services"
+              href="/#services"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Услуги
             </a>
             <a
-              href="#about"
+              href="/#about"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               О нас
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Контакты
             </a>
-            <Button className="mt-2 w-full">Связаться</Button>
+            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="mt-2 w-full">Связаться</Button>
+            </a>
           </div>
         </nav>
       )}

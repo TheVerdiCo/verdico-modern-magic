@@ -2,17 +2,18 @@ name: Deploy to Yandex Object Storage
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -23,14 +24,17 @@ jobs:
       - name: Build project
         run: npm run build
 
-      -       - name: Upload to Yandex Object Storage
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --delete
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Upload to Yandex Object Storage
         env:
-          AWS_S3_BUCKET: ${{ secrets.YC_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
-          AWS_REGION: ru-central1
-          AWS_S3_ENDPOINT: https://storage.yandexcloud.net
-          SOURCE_DIR: dist
+          AWS_DEFAULT_REGION: ru-central1
+          YC_BUCKET: ${{ secrets.YC_BUCKET }}
+        run: |
+          aws --endpoint-url=https://storage.yandexcloud.net \
+            s3 sync dist s3://$YC_BUCKET --delete

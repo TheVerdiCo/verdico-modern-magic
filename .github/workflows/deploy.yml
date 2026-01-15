@@ -24,17 +24,38 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Install AWS CLI
+      - name: Ensure AWS CLI is available
+        shell: bash
         run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
+          set -e
+          if command -v aws >/dev/null 2>&1; then
+            echo "AWS CLI already present:"
+            aws --version
+            exit 0
+          fi
+
+          echo "AWS CLI not found. Installing via pip (avoids apt-get exit 100)..."
+          python3 --version
+          python3 -m pip --version || true
+
+          # Install pip if missing (try apt-get, but only for pip)
+          if ! python3 -m pip --version >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y python3-pip
+          fi
+
+          python3 -m pip install --user awscli
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          aws --version
 
       - name: Upload to Yandex Object Storage
+        shell: bash
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ru-central1
           YC_BUCKET: ${{ secrets.YC_BUCKET }}
         run: |
+          set -e
           aws --endpoint-url=https://storage.yandexcloud.net \
             s3 sync dist s3://$YC_BUCKET --delete

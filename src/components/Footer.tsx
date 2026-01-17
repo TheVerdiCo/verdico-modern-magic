@@ -1,4 +1,5 @@
 import { FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -25,14 +26,14 @@ const Footer = () => {
             <a href="/#contact" className="hover:text-foreground transition-colors whitespace-nowrap">
               Контакты
             </a>
-            <a 
-              href="/policy"
+            <Link 
+              to="/policy"
               className="hover:text-foreground transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
             >
               <FileText className="w-3.5 h-3.5 flex-shrink-0" />
               <span className="hidden sm:inline">Политика Конфиденциальности</span>
               <span className="sm:hidden">Политика</span>
-            </a>
+            </Link>
           </nav>
 
           {/* Copyright */}

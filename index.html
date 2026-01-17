@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Verdico</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Verdico — advisory, legal and investment services." />
-  <script>
-    if (location.hostname === "verdico.ru") {
-      location.replace("https://www.verdico.ru" + location.pathname);
-    }
-  </script>
-  <style>
-    body {
-      margin: 0;
-      background: #0f0f0f;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .box {
-      text-align: center;
-    }
-    h1 { font-size: 42px; margin-bottom: 12px; }
-    p { opacity: 0.8; }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>Verdico</h1>
-    <p>Advisory · Legal · Investment</p>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Верди и Ко — Консалтинг, Юридические и Инвестиционные Услуги</title>
+    <meta name="description" content="Верди и Ко — консалтинговые, юридические и инвестиционные услуги. Закрытые сделки. Конфиденциально. Институционально." />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.вердико.рф" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.вердико.рф" />
+    <meta property="og:title" content="Верди и Ко — Консалтинг, Юридические и Инвестиционные Услуги" />
+    <meta property="og:description" content="Консалтинговые, юридические и инвестиционные услуги. Закрытые сделки. Конфиденциально. Институционально." />
+    <meta property="og:image" content="https://verdico-modern-magic.lovable.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Верди и Ко" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Верди и Ко — Консалтинг, Юридические и Инвестиционные Услуги" />
+    <meta name="twitter:description" content="Консалтинговые, юридические и инвестиционные услуги. Закрытые сделки. Конфиденциально." />
+    <meta name="twitter:image" content="https://verdico-modern-magic.lovable.app/og-image.png" />
+    
+    <!-- www redirect -->
+    <script>
+      if (location.hostname === "verdico.ru") {
+        location.replace("https://www.verdico.ru" + location.pathname);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

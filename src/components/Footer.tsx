@@ -17,15 +17,15 @@ const Footer = () => {
 
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <a href="/#services" className="hover:text-foreground transition-colors whitespace-nowrap">
+            <Link to="/#services" className="hover:text-foreground transition-colors whitespace-nowrap">
               Услуги
-            </a>
-            <a href="/#about" className="hover:text-foreground transition-colors whitespace-nowrap">
+            </Link>
+            <Link to="/#about" className="hover:text-foreground transition-colors whitespace-nowrap">
               О нас
-            </a>
-            <a href="/#contact" className="hover:text-foreground transition-colors whitespace-nowrap">
+            </Link>
+            <Link to="/#contact" className="hover:text-foreground transition-colors whitespace-nowrap">
               Контакты
-            </a>
+            </Link>
             <Link 
               to="/policy"
               className="hover:text-foreground transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"

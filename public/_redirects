@@ -1,0 +1,13 @@
+/* Cloudflare Pages / Netlify-style SPA fallback */
+/* This ensures routes like /policy work on direct load (including mobile in-app browsers). */
+/* https://developers.cloudflare.com/pages/platform/redirects/ */
+/* eslint-disable */
+/* prettier-ignore */
+/*
+  Single Page App routing:
+  Serve index.html for any path.
+*/
+/*
+  Note: The leading slash is required.
+*/
+/* /index.html 200

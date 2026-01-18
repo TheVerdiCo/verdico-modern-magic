@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Верди и Ко</title>
+    <script>
+      // SPA fallback for static hosts that serve 404.html on unknown routes.
+      // Keeps the original path and lets react-router render the right page.
+      (function () {
+        var l = window.location;
+        // If we landed here, the server didn't know the route.
+        // Rewrite to root and keep the original path+query as a query param.
+        var newUrl = '/?redirect=' + encodeURIComponent(l.pathname + l.search + l.hash);
+        l.replace(newUrl);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

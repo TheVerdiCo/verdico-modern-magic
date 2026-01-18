@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
@@ -24,33 +25,33 @@ const Header = () => {
       }`}
     >
       <div className="container flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group" aria-label="На главную">
           <img 
             src={logo} 
-            alt="Verdi & Co. Logo" 
+            alt="Логотип Верди и Ко" 
             className="w-10 h-10 rounded-lg transition-transform group-hover:scale-105"
           />
           <span className="font-serif text-xl font-medium tracking-tight">
             Верди и Ко.
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/#services" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <Link to="/#services" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Услуги
-          </a>
-          <a href="/#about" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          </Link>
+          <Link to="/#about" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             О нас
-          </a>
-          <a href="/#contact" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          </Link>
+          <Link to="/#contact" className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
             Контакты
-          </a>
-          <a href="/#contact">
+          </Link>
+          <Link to="/#contact">
             <Button size="sm" className="ml-4">
               Связаться
             </Button>
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -66,30 +67,30 @@ const Header = () => {
       {isMobileMenuOpen && (
         <nav className="md:hidden absolute top-full left-0 right-0 bg-background shadow-card p-6 animate-fade-in">
           <div className="flex flex-col gap-4">
-            <a
-              href="/#services"
+            <Link
+              to="/#services"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Услуги
-            </a>
-            <a
-              href="/#about"
+            </Link>
+            <Link
+              to="/#about"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               О нас
-            </a>
-            <a
-              href="/#contact"
+            </Link>
+            <Link
+              to="/#contact"
               className="text-sm font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Контакты
-            </a>
-            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
+            </Link>
+            <Link to="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="mt-2 w-full">Связаться</Button>
-            </a>
+            </Link>
           </div>
         </nav>
       )}

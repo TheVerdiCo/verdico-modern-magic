@@ -8,19 +8,16 @@ const placeholderArticles = [
     title: "Что проверять при due diligence в M&A сделках",
     description: "Ключевые области проверки, типичные риски и как структурировать процесс due diligence для минимизации сюрпризов после закрытия сделки.",
     category: "M&A",
-    date: "2024",
   },
   {
     title: "Структурирование инвестиций: основные модели",
     description: "Обзор базовых структур для привлечения инвестиций в российские компании: прямые инвестиции, конвертируемые займы, опционы.",
     category: "Инвестиции",
-    date: "2024",
   },
   {
     title: "Арбитражная оговорка: на что обратить внимание",
     description: "Как правильно составить арбитражную оговорку в коммерческом договоре, чтобы избежать проблем при возникновении спора.",
     category: "Арбитраж",
-    date: "2024",
   },
 ];
 
@@ -42,7 +39,7 @@ const InsightsRu = () => {
             </h1>
             <p className="text-lg text-muted-foreground">
               Практические заметки от нашей команды: структуры сделок, типичные риски, 
-              процессуальные нюансы. Без общих слов — только конкретика.
+              процессуальные нюансы.
             </p>
           </div>
 
@@ -56,7 +53,6 @@ const InsightsRu = () => {
                   <span className="text-xs font-medium px-2 py-1 bg-secondary rounded-full">
                     {article.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">{article.date}</span>
                 </div>
                 <h2 className="font-serif text-lg font-medium mb-3 group-hover:text-gradient-brand">
                   {article.title}

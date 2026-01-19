@@ -8,19 +8,16 @@ const placeholderArticles = [
     title: "Due Diligence Checklist for M&A Transactions",
     description: "Key areas to review, typical risks, and how to structure the due diligence process to minimize post-closing surprises.",
     category: "M&A",
-    date: "2024",
   },
   {
     title: "Investment Structuring: Basic Models",
     description: "Overview of fundamental structures for raising investments in Russian companies: direct investments, convertible loans, options.",
     category: "Investments",
-    date: "2024",
   },
   {
     title: "Arbitration Clauses: What to Watch For",
     description: "How to properly draft an arbitration clause in a commercial contract to avoid problems when disputes arise.",
     category: "Arbitration",
-    date: "2024",
   },
 ];
 
@@ -42,7 +39,7 @@ const InsightsEn = () => {
             </h1>
             <p className="text-lg text-muted-foreground">
               Practical notes from our team: deal structures, typical risks, 
-              procedural nuances. No generalities — just specifics.
+              and procedural nuances.
             </p>
           </div>
 
@@ -56,7 +53,6 @@ const InsightsEn = () => {
                   <span className="text-xs font-medium px-2 py-1 bg-secondary rounded-full">
                     {article.category}
                   </span>
-                  <span className="text-xs text-muted-foreground">{article.date}</span>
                 </div>
                 <h2 className="font-serif text-lg font-medium mb-3 group-hover:text-gradient-brand">
                   {article.title}

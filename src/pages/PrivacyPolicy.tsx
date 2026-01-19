@@ -38,8 +38,6 @@ const PrivacyPolicy = () => {
                 <div className="mt-4 p-3 sm:p-4 bg-muted/30 rounded-lg space-y-1.5 text-sm">
                   <p><span className="font-medium text-foreground">Оператор:</span> ИП Гахвердиев Джамал Джалилович</p>
                   <p><span className="font-medium text-foreground">ИНН:</span> 110213503960</p>
-                  <p><span className="font-medium text-foreground">Юридический адрес:</span> 125284, г. Москва, Ленинградский пр-кт, д. 29, к. 1</p>
-                  <p><span className="font-medium text-foreground">Почтовый адрес:</span> 125284, г. Москва, Ленинградский пр-кт, д. 29, к. 1</p>
                   <p><span className="font-medium text-foreground">Контактный e-mail:</span> ceo@theverdico.com</p>
                 </div>
                 <div className="mt-4 p-3 sm:p-4 bg-muted/30 rounded-lg text-sm">
@@ -191,7 +189,6 @@ const PrivacyPolicy = () => {
               </h2>
               <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
                 <p><span className="font-medium text-foreground">E-mail:</span> ceo@theverdico.com</p>
-                <p><span className="font-medium text-foreground">Адрес:</span> 125284, г. Москва, Ленинградский пр-кт, д. 29, к. 1</p>
               </div>
             </section>
           </div>

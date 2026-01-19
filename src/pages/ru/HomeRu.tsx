@@ -9,7 +9,7 @@ import founderImage from "@/assets/founder.jpg";
 
 const stats = [
   { value: "14+", label: "лет практики" },
-  { value: "200+", label: "успешных проектов" },
+  { value: "60+", label: "успешных дел" },
   { value: "15+", label: "стран и юрисдикций" },
 ];
 

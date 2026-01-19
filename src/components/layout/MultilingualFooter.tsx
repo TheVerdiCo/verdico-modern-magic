@@ -18,6 +18,7 @@ const MultilingualFooter = () => {
       contactCta: "Обсудить задачу",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME}. Все права защищены.`,
       privacy: "Политика конфиденциальности",
+      disclaimer: "Данный сайт носит информационный характер и не собирает, не хранит и не обрабатывает персональные данные посетителей.",
     },
     en: {
       trust: "Russia / International Projects",
@@ -27,6 +28,7 @@ const MultilingualFooter = () => {
       contactCta: "Discuss Your Case",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME}. All rights reserved.`,
       privacy: "Privacy Policy",
+      disclaimer: "This website is for informational purposes only and does not collect, store, or process personal data of its visitors.",
     },
   };
 
@@ -172,9 +174,14 @@ const MultilingualFooter = () => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center text-sm text-primary-foreground/50">
-          {t.copyright}
+        {/* Disclaimer & Copyright */}
+        <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center space-y-3">
+          <p className="text-xs text-primary-foreground/40">
+            {t.disclaimer}
+          </p>
+          <p className="text-sm text-primary-foreground/50">
+            {t.copyright}
+          </p>
         </div>
       </div>
     </footer>

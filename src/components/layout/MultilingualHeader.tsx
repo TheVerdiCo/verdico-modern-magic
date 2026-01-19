@@ -124,19 +124,20 @@ const MultilingualHeader = () => {
                   key={item.path}
                   to={item.path}
                   className="block text-sm font-medium py-2 hover:text-accent transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
 
-            <Link to={nav.about.path} className="text-sm font-medium py-2">
+            <Link to={nav.about.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
               {nav.about.label}
             </Link>
-            <Link to={nav.insights.path} className="text-sm font-medium py-2">
+            <Link to={nav.insights.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
               {nav.insights.label}
             </Link>
-            <Link to={nav.contacts.path} className="text-sm font-medium py-2">
+            <Link to={nav.contacts.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
               {nav.contacts.label}
             </Link>
 

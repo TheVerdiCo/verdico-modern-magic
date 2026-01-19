@@ -9,7 +9,7 @@ import founderImage from "@/assets/founder.jpg";
 
 const stats = [
   { value: "14+", label: "years of practice" },
-  { value: "200+", label: "successful projects" },
+  { value: "60+", label: "successful cases" },
   { value: "15+", label: "countries served" },
 ];
 
@@ -34,9 +34,9 @@ const HomeEn = () => {
               Legal services for business and investors in Russia
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
-              VerdiCo is a team of international lawyers specializing in investment support, 
-              M&A transactions, cross-border projects, and commercial disputes. We operate in 
-              Russia and internationally for businesses, investors, and private clients.
+              We are a team of international lawyers with expertise in investment structuring, 
+              M&A transactions, cross-border deals, and commercial dispute resolution. Our practice 
+              spans Russia and key global markets, serving businesses, investors, and private clients.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to="/en/contacts">

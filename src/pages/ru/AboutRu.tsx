@@ -35,8 +35,8 @@ const AboutRu = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="О компании Верди и Ко — юридическая практика с 2010 года | VerdiCo"
-        description="Верди и Ко — команда юристов-международников. Работаем с 2010 года. Специализация: инвестиции, M&A, международные сделки, арбитраж. Россия и международные проекты."
+        title="О компании Верди и Ко. — юридическая практика с 2010 года"
+        description="Верди и Ко. — команда юристов-международников. Работаем с 2010 года. Специализация: инвестиции, M&A, международные сделки, арбитраж. Россия и международные проекты."
         path="/ru/o-nas"
       />
 
@@ -46,7 +46,7 @@ const AboutRu = () => {
           <div className="max-w-3xl">
             <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">О компании</span>
             <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
-              Верди и Ко — юридическая практика с 2010 года
+              Верди и Ко. — юридическая практика с 2010 года
             </h1>
             <p className="text-lg text-muted-foreground mb-4">
               Мы — команда юристов-международников, работающих с российскими и зарубежными 
@@ -70,7 +70,7 @@ const AboutRu = () => {
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Джамал Джалильевич — основатель Верди и Ко"
+                  alt="Джамал Джалильевич — основатель Верди и Ко."
                   className="w-full h-full object-cover"
                 />
               </div>

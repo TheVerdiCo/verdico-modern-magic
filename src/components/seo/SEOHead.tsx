@@ -35,7 +35,7 @@ const SEOHead = ({ title, description, path, noIndex = false }: SEOHeadProps) =>
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
       <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "en_US"} />
-      <meta property="og:site_name" content="VerdiCo" />
+      <meta property="og:site_name" content={lang === "ru" ? "Верди и Ко." : "Verdi & Co."} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

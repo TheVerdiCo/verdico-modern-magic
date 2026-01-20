@@ -6,7 +6,7 @@ const OrganizationSchema = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: BRAND_NAME,
-    alternateName: "VerdiCo",
+    alternateName: "Verdi & Co.",
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.png`,
     email: EMAIL,

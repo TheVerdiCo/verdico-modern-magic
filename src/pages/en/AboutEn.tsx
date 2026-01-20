@@ -35,8 +35,8 @@ const AboutEn = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="About VerdiCo — Legal Practice Since 2010"
-        description="VerdiCo is a team of international lawyers. Operating since 2010. Specialization: investments, M&A, international transactions, arbitration. Russia and international projects."
+        title="About Verdi & Co. — Legal Practice Since 2010"
+        description="Verdi & Co. is a team of international lawyers. Operating since 2010. Specialization: investments, M&A, international transactions, arbitration. Russia and international projects."
         path="/en/about"
       />
 
@@ -46,7 +46,7 @@ const AboutEn = () => {
           <div className="max-w-3xl">
             <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">About</span>
             <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
-              VerdiCo — Legal practice since 2010
+              Verdi & Co. — Legal practice since 2010
             </h1>
             <p className="text-lg text-muted-foreground mb-4">
               We are a team of international lawyers working with Russian and foreign 
@@ -70,7 +70,7 @@ const AboutEn = () => {
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Jamal Jalilievich — Founder of VerdiCo"
+                  alt="Jamal Jalilievich — Founder of Verdi & Co."
                   className="w-full h-full object-cover"
                 />
               </div>

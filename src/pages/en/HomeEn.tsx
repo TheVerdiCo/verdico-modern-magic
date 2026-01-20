@@ -17,8 +17,8 @@ const HomeEn = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="Legal Services for Business in Russia | VerdiCo"
-        description="VerdiCo provides legal support for investments, M&A, cross-border transactions, and arbitration. Operating since 2010. Russia and international projects."
+        title="Legal Services for Business in Russia | Verdi&Co."
+        description="Verdi & Co. provides legal support for investments, M&A, cross-border transactions, and arbitration. Operating since 2010. Russia and international projects."
         path="/en"
       />
       <OrganizationSchema />
@@ -135,7 +135,7 @@ const HomeEn = () => {
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Jamal Jalilievich — Founder of VerdiCo"
+                  alt="Jamal Jalilievich — Founder of Verdi & Co."
                   className="w-full h-full object-cover"
                 />
               </div>

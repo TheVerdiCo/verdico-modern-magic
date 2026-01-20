@@ -1,7 +1,9 @@
 // SEO configuration and route mapping for RU/EN site
 
 export const SITE_URL = "https://www.verdico.ru";
-export const BRAND_NAME = "Верди и Ко. (VerdiCo)";
+export const BRAND_NAME_RU = "Верди и Ко.";
+export const BRAND_NAME_EN = "Verdi & Co.";
+export const BRAND_NAME = "Верди и Ко. (Verdi & Co.)";
 export const EMAIL = "ceo@theverdico.com";
 
 export type Language = "ru" | "en";
@@ -47,7 +49,7 @@ export const routeAlternates: Record<string, string> = {
 export const ruServices: ServicePage[] = [
   {
     path: "/ru/privlechenie-investitsiy",
-    title: "Привлечение инвестиций в России — юрист | VerdiCo",
+    title: "Привлечение инвестиций в России — юрист | Verdi&Co.",
     h1: "Юридическое сопровождение привлечения инвестиций",
     description: "Юридическое сопровождение привлечения инвестиций: структура сделки, документы, переговоры, защита интересов инвестора и бизнеса в России.",
     alternatePath: "/en/investment-raising",
@@ -56,7 +58,7 @@ export const ruServices: ServicePage[] = [
   },
   {
     path: "/ru/sdelki-m-a",
-    title: "Сделки M&A — сопровождение слияний и поглощений | VerdiCo",
+    title: "Сделки M&A — сопровождение слияний и поглощений | Verdi&Co.",
     h1: "Юридическое сопровождение сделок M&A",
     description: "Сопровождение сделок M&A: due diligence, SPA/SHA, структурирование, переговоры и закрытие сделки. Россия и трансграничные проекты.",
     alternatePath: "/en/m-a-legal-advisory",
@@ -65,7 +67,7 @@ export const ruServices: ServicePage[] = [
   },
   {
     path: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
-    title: "Юридическое сопровождение инвестиций в России | VerdiCo",
+    title: "Юридическое сопровождение инвестиций в России | Verdi&Co.",
     h1: "Юридическое сопровождение инвестиционных проектов",
     description: "Договоры, структура, корпоративные документы, комплаенс и защита прав инвестора. Полный юридический цикл инвестиционного проекта.",
     alternatePath: "/en/investment-legal-support",
@@ -74,7 +76,7 @@ export const ruServices: ServicePage[] = [
   },
   {
     path: "/ru/mezhdunarodnyy-yurist-rossiya",
-    title: "Международный юрист в России — трансграничные сделки | VerdiCo",
+    title: "Международный юрист в России — трансграничные сделки | Verdi&Co.",
     h1: "Международный юрист в России",
     description: "Трансграничные сделки и инвестиции: структура, договоры, риски, взаимодействие с иностранными контрагентами и юрисдикциями.",
     alternatePath: "/en/international-lawyer-russia",
@@ -83,7 +85,7 @@ export const ruServices: ServicePage[] = [
   },
   {
     path: "/ru/arbitrazhnye-spory",
-    title: "Арбитражные споры — представитель в арбитраже | VerdiCo",
+    title: "Арбитражные споры — представитель в арбитраже | Verdi&Co.",
     h1: "Юрист по арбитражным спорам",
     description: "Представительство в арбитражных судах по коммерческим спорам: стратегия, доказательства, процесс, взыскание задолженности и убытков.",
     alternatePath: "/en/arbitration-disputes",
@@ -96,7 +98,7 @@ export const ruServices: ServicePage[] = [
 export const enServices: ServicePage[] = [
   {
     path: "/en/investment-raising",
-    title: "Investment Raising Legal Support in Russia | VerdiCo",
+    title: "Investment Raising Legal Support in Russia | Verdi&Co.",
     h1: "Legal support for investment raising",
     description: "Legal support for investment raising: structuring, term sheets, documentation, negotiations, and risk control for investors and businesses in Russia.",
     alternatePath: "/ru/privlechenie-investitsiy",
@@ -105,7 +107,7 @@ export const enServices: ServicePage[] = [
   },
   {
     path: "/en/m-a-legal-advisory",
-    title: "M&A Legal Advisory (Russia & Cross-border) | VerdiCo",
+    title: "M&A Legal Advisory (Russia & Cross-border) | Verdi&Co.",
     h1: "M&A legal advisory",
     description: "M&A legal advisory: due diligence, transaction documents, structuring, negotiation support, and closing coordination for Russia and cross-border deals.",
     alternatePath: "/ru/sdelki-m-a",
@@ -114,7 +116,7 @@ export const enServices: ServicePage[] = [
   },
   {
     path: "/en/investment-legal-support",
-    title: "Legal Support for Investments in Russia | VerdiCo",
+    title: "Legal Support for Investments in Russia | Verdi&Co.",
     h1: "Legal support for investment projects",
     description: "Legal support across the investment lifecycle: contracts, corporate structuring, compliance, and investor protection for projects in Russia.",
     alternatePath: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
@@ -123,7 +125,7 @@ export const enServices: ServicePage[] = [
   },
   {
     path: "/en/international-lawyer-russia",
-    title: "International Lawyer in Russia | VerdiCo",
+    title: "International Lawyer in Russia | Verdi&Co.",
     h1: "International legal support in Russia",
     description: "International legal support in Russia for cross-border investments and transactions: structuring, documentation, and counterpart coordination.",
     alternatePath: "/ru/mezhdunarodnyy-yurist-rossiya",
@@ -132,7 +134,7 @@ export const enServices: ServicePage[] = [
   },
   {
     path: "/en/arbitration-disputes",
-    title: "Arbitration and Commercial Disputes | VerdiCo",
+    title: "Arbitration and Commercial Disputes | Verdi&Co.",
     h1: "Arbitration and commercial disputes",
     description: "Representation in arbitration and commercial disputes: case strategy, evidence, procedure management, and enforcement support.",
     alternatePath: "/ru/arbitrazhnye-spory",

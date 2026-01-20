@@ -25,8 +25,8 @@ const InsightsEn = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="Insights — Legal Resources | VerdiCo"
-        description="Practical legal resources from the VerdiCo team: M&A, investments, arbitration, international transactions. No generalities — just specifics."
+        title="Insights — Legal Resources | Verdi&Co."
+        description="Practical legal resources from the Verdi & Co. team: M&A, investments, arbitration, international transactions."
         path="/en/insights"
       />
 

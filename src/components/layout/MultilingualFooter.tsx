@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail, Send } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { getNavItems, getLangFromPath, BRAND_NAME, EMAIL } from "@/lib/seo";
+import { getNavItems, getLangFromPath, BRAND_NAME_RU, BRAND_NAME_EN, EMAIL } from "@/lib/seo";
 
 const MultilingualFooter = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const MultilingualFooter = () => {
       companyTitle: "Компания",
       contactTitle: "Контакты",
       contactCta: "Обсудить задачу",
-      copyright: `© ${new Date().getFullYear()} ${BRAND_NAME}. Все права защищены.`,
+      copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_RU} Все права защищены.`,
       privacy: "Политика конфиденциальности",
       disclaimer: "Данный сайт носит информационный характер и не собирает, не хранит и не обрабатывает персональные данные посетителей.",
     },
@@ -26,7 +26,7 @@ const MultilingualFooter = () => {
       companyTitle: "Company",
       contactTitle: "Contact",
       contactCta: "Discuss Your Case",
-      copyright: `© ${new Date().getFullYear()} ${BRAND_NAME}. All rights reserved.`,
+      copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_EN}. All rights reserved.`,
       privacy: "Privacy Policy",
       disclaimer: "This website is for informational purposes only and does not collect, store, or process personal data of its visitors.",
     },
@@ -41,9 +41,9 @@ const MultilingualFooter = () => {
         <div className="container py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <img src={logo} alt="VerdiCo" className="w-12 h-12 rounded-lg" />
+              <img src={logo} alt="Verdi & Co." className="w-12 h-12 rounded-lg" />
               <div>
-                <p className="font-serif text-xl font-medium">{BRAND_NAME}</p>
+                <p className="font-serif text-xl font-medium">{lang === "ru" ? BRAND_NAME_RU : BRAND_NAME_EN}</p>
                 <p className="text-sm text-primary-foreground/70">{t.trust}</p>
               </div>
             </div>

@@ -39,10 +39,11 @@ const MultilingualHeader = () => {
         <Link to={nav.home.path} className="flex items-center gap-3 group" aria-label={lang === "ru" ? "На главную" : "Home"}>
           <img 
             src={logo} 
-            alt="VerdiCo Logo" 
+            alt="Verdi & Co. Logo" 
             className="w-10 h-10 rounded-lg transition-transform group-hover:scale-105"
           />
           <span className="font-serif text-xl font-medium tracking-tight">
+            {lang === "ru" ? "Верди и Ко." : "Verdi & Co."}
             Верди и Ко.
           </span>
         </Link>

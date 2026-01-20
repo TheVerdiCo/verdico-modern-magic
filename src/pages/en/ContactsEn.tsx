@@ -8,8 +8,8 @@ const ContactsEn = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="Contact VerdiCo — Get in Touch with Our Legal Team"
-        description="Contact VerdiCo to discuss your legal matter. Email, Telegram. Initial consultation available. NDA on request."
+        title="Contact Verdi & Co. — Get in Touch with Our Legal Team"
+        description="Contact Verdi & Co. to discuss your legal matter. Email, Telegram. Initial consultation available. NDA on request."
         path="/en/contacts"
       />
 

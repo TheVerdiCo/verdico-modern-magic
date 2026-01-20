@@ -25,8 +25,8 @@ const InsightsRu = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="Insights — юридические материалы | VerdiCo"
-        description="Практические материалы от команды Верди и Ко: M&A, инвестиции, арбитраж, международные сделки. Без общих слов — только конкретика."
+        title="Insights — юридические материалы | Verdi&Co."
+        description="Практические материалы от команды Верди и Ко.: M&A, инвестиции, арбитраж, международные сделки."
         path="/ru/insights"
       />
 

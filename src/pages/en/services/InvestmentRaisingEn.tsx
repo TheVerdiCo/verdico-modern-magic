@@ -7,7 +7,7 @@ const InvestmentRaisingEn = () => (
   <ServicePageTemplate
     service={service}
     content={{
-      intro: "VerdiCo provides legal support for investment raising for Russian companies and projects. We work with businesses, startups, and investors — structuring deals, preparing documents, conducting negotiations, and protecting parties' interests.",
+      intro: "Verdi & Co. provides legal support for investment raising for Russian companies and projects. We work with businesses, startups, and investors — structuring deals, preparing documents, conducting negotiations, and protecting parties' interests.",
       features: [
         "Structure analysis and optimal investment model selection",
         "Term sheet and investment documentation preparation",

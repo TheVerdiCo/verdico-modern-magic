@@ -132,11 +132,11 @@ const HomeEn = () => {
               </Link>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
                   alt="Jamal Jalilievich — Founder of Verdi & Co."
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top scale-90"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-brand opacity-10 rounded-2xl -z-10" />

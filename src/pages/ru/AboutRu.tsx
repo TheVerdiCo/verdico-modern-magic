@@ -67,11 +67,11 @@ const AboutRu = () => {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 lg:order-1">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
                   alt="Джамал Джалильевич — основатель Верди и Ко."
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top scale-90"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-brand opacity-10 rounded-2xl -z-10" />

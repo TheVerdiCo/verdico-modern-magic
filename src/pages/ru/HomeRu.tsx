@@ -35,8 +35,8 @@ const HomeRu = () => {
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
               Верди и Ко. — команда юристов-международников, сопровождающая инвестиции, 
-              сделки M&A, трансграничные проекты и коммерческие споры. Работаем в России 
-              и за рубежом для бизнеса, инвесторов и частных клиентов.
+              сделки M&A, трансграничные проекты и коммерческие споры. Работаем с бизнесом, 
+              инвесторами и частными клиентами в России и за рубежом.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to="/ru/kontakty">
@@ -132,11 +132,11 @@ const HomeRu = () => {
               </Link>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-card">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
                   alt="Джамал Джалильевич — основатель Верди и Ко."
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top scale-90"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-brand opacity-10 rounded-2xl -z-10" />

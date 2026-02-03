@@ -44,7 +44,6 @@ const MultilingualHeader = () => {
           />
           <span className="font-serif text-xl font-medium tracking-tight">
             {lang === "ru" ? "Верди и Ко." : "Verdi & Co."}
-            Верди и Ко.
           </span>
         </Link>
 

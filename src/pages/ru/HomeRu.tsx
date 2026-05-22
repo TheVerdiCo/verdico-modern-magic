@@ -34,9 +34,8 @@ const HomeRu = () => {
               Юридические услуги для бизнеса и инвесторов в России
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
-              Верди и Ко. — команда юристов-международников, сопровождающая инвестиции, 
-              сделки M&A, трансграничные проекты и коммерческие споры. Работаем с бизнесом, 
-              инвесторами и частными клиентами в России и за рубежом.
+              Коммерческие споры, имущественные вопросы, договоры и переговоры — там, 
+              где юридическая позиция должна быть связана с экономическим результатом.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to="/ru/kontakty">
@@ -108,14 +107,15 @@ const HomeRu = () => {
             <div>
               <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">О компании</span>
               <h2 className="font-serif text-3xl md:text-4xl mt-4 mb-6">
-                Джамал Джалильевич — основатель
+                Джамал Гахвердиев — основатель практики
               </h2>
               <p className="text-muted-foreground mb-6">
-                Юрист-международник с практикой более 14 лет. Специализация: 
-                инвестиционные проекты, корпоративные сделки, международный арбитраж.
+                Юрист с международным образованием (Университет Лозанны, BPP Law School, 
+                Лондон) и опытом работы в российской правовой среде с 2009 года. 
+                Самостоятельная практика — с 2018 года.
               </p>
               <ul className="space-y-3 mb-8">
-                {["Работаем с 2010 года", "Международная практика", "Конфиденциальность и результат"].map((item) => (
+                {["Правовая позиция, доказательства, экономический смысл", "Российская и международная практика", "Конфиденциальность и дисциплина процесса"].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 text-white" />
@@ -135,7 +135,7 @@ const HomeRu = () => {
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Джамал Джалильевич — основатель Верди и Ко."
+                  alt="Джамал Гахвердиев — основатель Verdi & Co."
                   className="w-full h-full object-cover object-top scale-90"
                 />
               </div>

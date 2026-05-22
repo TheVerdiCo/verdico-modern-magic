@@ -135,7 +135,7 @@ const HomeRu = () => {
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Джамал Джалильевич — основатель Верди и Ко."
+                  alt="Джамал Гахвердиев — основатель Verdi & Co."
                   className="w-full h-full object-cover object-top scale-90"
                 />
               </div>

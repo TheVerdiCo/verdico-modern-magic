@@ -28,8 +28,8 @@ const InsightsRu = () => {
               Юридические материалы
             </h1>
             <p className="text-lg text-muted-foreground">
-              Практические заметки от нашей команды: структуры сделок, типичные риски, 
-              процессуальные нюансы.
+              Заметки по практическим вопросам: коммерческие споры, доказательства, 
+              договорная работа, исполнительное производство.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ const InsightsRu = () => {
                   {article.description}
                 </p>
                 <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
-                  Скоро
+                  Материал
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </article>
@@ -60,7 +60,7 @@ const InsightsRu = () => {
 
           <div className="text-center mt-12">
             <p className="text-muted-foreground">
-              Раздел в разработке. Подпишитесь на обновления через{" "}
+              Новые материалы публикуются по мере накопления практики. Обновления —{" "}
               <a 
                 href="https://t.me/DjamalG" 
                 target="_blank" 

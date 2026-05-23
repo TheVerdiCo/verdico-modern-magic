@@ -512,19 +512,34 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: 0.86;
-    filter: saturate(1.08) contrast(1.04) brightness(1.02);
-    transform: translate3d(0, 0, 0) scale(1.7);
+    opacity: 0.92;
+    filter: saturate(1.08) contrast(1.06) brightness(1.04);
     transform-origin: center center;
     will-change: transform;
+    /* Premium Ken Burns: slow zoom + pan, scroll-independent, visible without DevTools. */
+    animation: insights-hero-pan 24s ease-in-out infinite alternate;
+  }
+  @keyframes insights-hero-pan {
+    0% {
+      transform: scale(1.15) translate3d(-2%, -1.5%, 0);
+    }
+    100% {
+      transform: scale(1.30) translate3d(2%, 1.5%, 0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .insights-hero-media img {
+      animation: none;
+      transform: scale(1.18);
+    }
   }
   .insights-hero-media::after {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(4, 14, 36, 0.22), rgba(4, 14, 36, 0.45)),
-      linear-gradient(90deg, rgba(4, 20, 52, 0.42), rgba(7, 47, 111, 0.22) 52%, rgba(14, 67, 145, 0.06)),
+      linear-gradient(180deg, rgba(4, 14, 36, 0.10), rgba(4, 14, 36, 0.26)),
+      linear-gradient(90deg, rgba(4, 20, 52, 0.22), rgba(7, 47, 111, 0.10) 52%, rgba(14, 67, 145, 0.02)),
       radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.10), transparent 34%);
     pointer-events: none;
   }

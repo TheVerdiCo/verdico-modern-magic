@@ -1,4 +1,3 @@
-import { useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
@@ -13,48 +12,6 @@ const placeholderArticles = [
 ];
 
 const InsightsRu = () => {
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let rafId = 0;
-    const FACTOR = 0.55; // Aggressive parallax so the motion is unmistakable.
-    const SCALE = 1.7; // Buffer: 35% per side so translateY never exposes the container edge.
-
-    const update = () => {
-      rafId = 0;
-      const hero = document.querySelector<HTMLElement>('[data-parallax="insights-hero"]');
-      const img = hero?.querySelector<HTMLImageElement>("img");
-      if (!hero || !img) return;
-      const rect = hero.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const sectionCenter = rect.top + rect.height / 2;
-      const delta = vh / 2 - sectionCenter;
-      // Clamp translateY so it never exceeds the available buffer.
-      const maxOffset = (rect.height * (SCALE - 1)) / 2 - 4;
-      const raw = delta * FACTOR;
-      const ty = Math.max(-maxOffset, Math.min(maxOffset, raw));
-      img.style.transform = `translate3d(0, ${ty}px, 0) scale(${SCALE})`;
-    };
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(update);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    // Mark the section so the user can confirm the listener attached.
-    document
-      .querySelector<HTMLElement>('[data-parallax="insights-hero"]')
-      ?.setAttribute("data-parallax-active", "true");
-    update();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (rafId) window.cancelAnimationFrame(rafId);
-    };
-  }, []);
-
   return (
     <MultilingualLayout>
       <SEOHead
@@ -63,9 +20,8 @@ const InsightsRu = () => {
         path="/ru/insights"
       />
 
-      {/* Hero — chess/strategy image with Verdico overlay + parallax */}
+      {/* Hero — chess/strategy image with Verdico overlay + slow Ken Burns pan */}
       <section
-        data-parallax="insights-hero"
         className="relative -mt-24 min-h-[64vh] flex items-center overflow-hidden bg-verdico-hero text-white"
       >
         <div className="insights-hero-media" aria-hidden="true">

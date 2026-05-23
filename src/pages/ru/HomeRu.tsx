@@ -5,7 +5,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import { ruServices } from "@/lib/seo";
-import founderImage from "@/assets/founder.jpg";
+import founderImage from "@/assets/founder-image.avif";
 
 const stats = [
   { value: "14+", label: "лет практики" },
@@ -23,43 +23,58 @@ const HomeRu = () => {
       />
       <OrganizationSchema />
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4">
-        <div className="container">
+      {/* Hero Section — Verdico cinematic video hero */}
+      <section className="relative -mt-24 min-h-[92vh] flex items-center overflow-hidden bg-verdico-hero text-white">
+        <div className="verdico-hero-media" aria-hidden="true">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster=""
+            disablePictureInPicture
+          >
+            <source src="/media/home-world.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="container relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 bg-secondary text-sm font-medium rounded-full mb-6 animate-fade-up">
+            <span className="eyebrow mb-6 animate-fade-up">
               Юридическая практика с 2010 года
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 animate-fade-up animation-delay-100">
-              Юридические услуги для бизнеса и инвесторов в России
+            <h1 className="h1-hero-home text-white mt-6 mb-6 animate-fade-up animation-delay-100">
+              Юридические услуги для бизнеса и инвесторов в России и зарубежом.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
-              Коммерческие споры, имущественные вопросы, договоры и переговоры — там, 
+            <p className="text-lg md:text-xl text-white/85 mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
+              Коммерческие споры, имущественные вопросы, договоры и переговоры — там,
               где юридическая позиция должна быть связана с экономическим результатом.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to="/ru/kontakty">
-                <Button size="lg" className="gap-2">
+                <Button size="lg" variant="secondary" className="gap-2 rounded-full">
                   Обсудить задачу
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/ru/o-nas">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="rounded-full bg-white/8 border-white/40 text-white hover:bg-white/15 hover:text-white">
                   О компании
                 </Button>
               </Link>
             </div>
-          </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mt-16 animate-fade-up animation-delay-400">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="font-serif text-3xl md:text-4xl text-gradient-brand font-medium">{stat.value}</p>
-                <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
-              </div>
-            ))}
+            {/* Stat rail — gold values + uppercase micro-labels (Verdico family) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mt-12 pt-6 border-t border-verdico-gold/25 animate-fade-up animation-delay-400">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="font-serif text-3xl md:text-4xl font-medium text-verdico-gold">
+                    {stat.value}
+                  </p>
+                  <p className="eyebrow !text-white/70 mt-2 justify-center">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -68,8 +83,8 @@ const HomeRu = () => {
       <section className="py-16 md:py-24 px-4 bg-secondary/50">
         <div className="container">
           <div className="text-center mb-12">
-            <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">Услуги</span>
-            <h2 className="font-serif text-3xl md:text-4xl mt-4 mb-4">
+            <span className="eyebrow justify-center">Услуги</span>
+            <h2 className="h2-section mt-5 mb-4">
               Ключевые направления практики
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -82,7 +97,7 @@ const HomeRu = () => {
               <Link
                 key={service.path}
                 to={service.path}
-                className="group p-6 bg-card rounded-xl border border-border hover:shadow-card hover:border-accent/30 transition-all"
+                className="group verdico-card p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <h3 className="font-serif text-xl font-medium mb-3 group-hover:text-gradient-brand">
                   {service.h1}
@@ -105,14 +120,14 @@ const HomeRu = () => {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">О компании</span>
-              <h2 className="font-serif text-3xl md:text-4xl mt-4 mb-6">
+              <span className="eyebrow">О компании</span>
+              <h2 className="h2-section mt-5 mb-6">
                 Джамал Гахвердиев — основатель практики
               </h2>
               <p className="text-muted-foreground mb-6">
-                Юрист с международным образованием (Университет Лозанны, BPP Law School, 
-                Лондон) и опытом работы в российской правовой среде с 2009 года. 
-                Самостоятельная практика — с 2018 года.
+                Юрист с международным образованием (Университет Лозанны, BPP Law School,
+                Лондон) и опытом работы в российской правовой среде.
+                Самостоятельная практика — с 2010 года.
               </p>
               <ul className="space-y-3 mb-8">
                 {["Правовая позиция, доказательства, экономический смысл", "Российская и международная практика", "Конфиденциальность и дисциплина процесса"].map((item) => (
@@ -131,31 +146,33 @@ const HomeRu = () => {
                 </Button>
               </Link>
             </div>
-            <div className="relative">
+            <div className="relative mx-auto lg:mx-0 max-w-[70%] lg:max-w-none lg:w-[70%] lg:justify-self-end">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
-                  alt="Джамал Гахвердиев — основатель Verdi & Co."
-                  className="w-full h-full object-cover object-top scale-90"
+                  alt="Джамал Гахвердиев — основатель Верди и Ко."
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-brand opacity-10 rounded-2xl -z-10" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-brand opacity-10 rounded-2xl -z-10" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 px-4 bg-primary text-primary-foreground">
+      {/* CTA Section — navy transition into footer */}
+      <section className="py-16 md:py-24 px-4 bg-verdico-cta">
         <div className="container text-center">
-          <h2 className="font-serif text-3xl md:text-4xl mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl mb-4 text-white">
             Готовы обсудить вашу задачу?
           </h2>
-          <p className="text-primary-foreground/70 mb-8 max-w-xl mx-auto">
+          <p className="text-white/75 mb-8 max-w-xl mx-auto">
             Опишите ситуацию — мы свяжемся с вами и предложим варианты решения.
           </p>
           <Link to="/ru/kontakty">
-            <Button variant="secondary" size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 btn-navy-glass rounded-full">
               Связаться с нами
               <ArrowRight className="w-4 h-4" />
             </Button>

@@ -33,8 +33,8 @@ const InsightsEn = () => {
       <section className="py-16 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">Insights</span>
-            <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
+            <span className="eyebrow justify-center">Insights</span>
+            <h1 className="h1-hero mt-5 mb-6">
               Legal Resources
             </h1>
             <p className="text-lg text-muted-foreground">
@@ -47,7 +47,7 @@ const InsightsEn = () => {
             {placeholderArticles.map((article) => (
               <article
                 key={article.title}
-                className="group p-6 bg-card rounded-xl border border-border hover:shadow-card hover:border-accent/30 transition-all"
+                className="group p-7 bg-card verdico-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-xs font-medium px-2 py-1 bg-secondary rounded-full">

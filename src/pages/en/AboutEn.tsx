@@ -44,8 +44,8 @@ const AboutEn = () => {
       <section className="py-16 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl">
-            <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">About</span>
-            <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
+            <span className="eyebrow">About</span>
+            <h1 className="h1-hero mt-5 mb-6">
               Verdi & Co. — Legal practice since 2010
             </h1>
             <p className="text-lg text-muted-foreground mb-4">
@@ -102,12 +102,12 @@ const AboutEn = () => {
       <section className="py-16 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl mb-8 text-center">
+            <h2 className="h2-section mb-8 text-center">
               Key Focus Areas
             </h2>
             <div className="space-y-4">
               {focusAreas.map((area) => (
-                <div key={area} className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border">
+                <div key={area} className="flex items-center gap-4 p-5 bg-card verdico-card border border-border">
                   <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0">
                     <Check className="w-4 h-4 text-white" />
                   </div>
@@ -123,7 +123,8 @@ const AboutEn = () => {
       <section className="py-16 md:py-24 px-4 bg-secondary/50">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">Our Approach</h2>
+            <span className="eyebrow justify-center">Approach</span>
+            <h2 className="h2-section mt-5 mb-4">Our Approach</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Three principles that define our work with every client.
             </p>
@@ -131,7 +132,7 @@ const AboutEn = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {approach.map((item) => (
-              <div key={item.title} className="p-6 bg-card rounded-xl border border-border text-center">
+              <div key={item.title} className="p-7 bg-card verdico-card border border-border text-center">
                 <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-6 h-6 text-white" />
                 </div>

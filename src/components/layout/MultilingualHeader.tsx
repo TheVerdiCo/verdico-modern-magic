@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "@/assets/logo.png";
-import LanguageSwitcher from "./LanguageSwitcher";
+import LogoMark from "@/components/LogoMark";
+// English is temporarily disabled publicly. Do not delete EN pages/content; restore by re-importing and re-rendering LanguageSwitcher here.
+// import LanguageSwitcher from "./LanguageSwitcher";
 import { getNavItems, getLangFromPath } from "@/lib/seo";
 
 const MultilingualHeader = () => {
@@ -29,47 +30,56 @@ const MultilingualHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-soft py-4"
-          : "bg-transparent py-6"
+      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[min(1120px,calc(100%-24px))] lg:w-[min(1120px,calc(100%-120px))] ${
+        isScrolled ? "top-3 lg:top-4" : "top-3 lg:top-6"
       }`}
     >
-      <div className="container flex items-center justify-between">
-        <Link to={nav.home.path} className="flex items-center gap-3 group" aria-label={lang === "ru" ? "На главную" : "Home"}>
-          <img 
-            src={logo} 
-            alt="Verdi & Co. Logo" 
-            className="w-10 h-10 rounded-lg transition-transform group-hover:scale-105"
-          />
-          <span className="font-serif text-xl font-medium tracking-tight">
+      <div
+        className={`glass-pill rounded-2xl flex items-center justify-between gap-4 px-4 lg:px-5 transition-[padding] duration-300 ${
+          isScrolled ? "py-2" : "py-2.5"
+        }`}
+      >
+        <Link
+          to={nav.home.path}
+          className="flex items-center gap-3 group shrink-0"
+          aria-label={lang === "ru" ? "На главную" : "Home"}
+        >
+          <LogoMark size="md" />
+          <span className="font-serif text-base lg:text-lg font-medium tracking-tight">
             {lang === "ru" ? "Верди и Ко." : "Verdi & Co."}
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6">
+        {/* Desktop Navigation — links spread evenly across the bar, CTA pinned right */}
+        <nav className="hidden lg:flex flex-1 items-center justify-around gap-6 px-6">
+          <Link
+            to={nav.about.path}
+            className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
+          >
+            {nav.about.label}
+          </Link>
+
           {/* Services Dropdown */}
           <div className="relative">
             <button
-              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors"
+              className="nav-link-underline flex items-center gap-1 text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
               onClick={() => setIsServicesOpen(!isServicesOpen)}
               onMouseEnter={() => setIsServicesOpen(true)}
             >
               {nav.services.label}
               <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
             </button>
-            
+
             {isServicesOpen && (
-              <div 
-                className="absolute top-full left-0 mt-2 w-80 bg-card border border-border rounded-xl shadow-card p-2 animate-fade-in"
+              <div
+                className="absolute top-full left-0 mt-2 w-80 glass-pill rounded-xl p-2 animate-fade-in"
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 {nav.services.items.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block px-4 py-3 text-sm rounded-lg hover:bg-secondary transition-colors"
+                    className="block px-4 py-3 text-sm rounded-lg hover:bg-secondary/60 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -78,28 +88,31 @@ const MultilingualHeader = () => {
             )}
           </div>
 
-          <Link to={nav.about.path} className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
-            {nav.about.label}
-          </Link>
-          <Link to={nav.insights.path} className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <Link
+            to={nav.insights.path}
+            className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
+          >
             {nav.insights.label}
           </Link>
-          <Link to={nav.contacts.path} className="text-sm font-medium text-muted-foreground hover-gradient-brand transition-colors">
+          <Link
+            to={nav.contacts.path}
+            className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
+          >
             {nav.contacts.label}
-          </Link>
-
-          <LanguageSwitcher />
-
-          <Link to={nav.contacts.path}>
-            <Button size="sm">
-              {lang === "ru" ? "Связаться" : "Contact Us"}
-            </Button>
           </Link>
         </nav>
 
+        {/* LanguageSwitcher temporarily removed — English is publicly disabled. */}
+
+        <Link to={nav.contacts.path} className="hidden lg:inline-flex shrink-0">
+          <Button size="sm" className="rounded-full btn-navy-glass">
+            {lang === "ru" ? "Связаться" : "Contact Us"}
+          </Button>
+        </Link>
+
         {/* Mobile Menu Button */}
         <div className="flex lg:hidden items-center gap-3">
-          <LanguageSwitcher />
+          {/* LanguageSwitcher temporarily removed — English is publicly disabled. */}
           <button
             className="p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -112,7 +125,7 @@ const MultilingualHeader = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <nav className="lg:hidden absolute top-full left-0 right-0 bg-background shadow-card p-6 animate-fade-in max-h-[80vh] overflow-y-auto">
+        <nav className="lg:hidden absolute top-[calc(100%+8px)] left-0 right-0 glass-pill rounded-2xl p-6 animate-fade-in max-h-[80vh] overflow-y-auto">
           <div className="flex flex-col gap-2">
             {/* Services Section */}
             <div className="border-b border-border pb-4 mb-2">

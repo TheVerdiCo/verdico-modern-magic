@@ -56,16 +56,16 @@ const App = () => (
             <Route path="/ru/kontakty" element={<ContactsRu />} />
             <Route path="/ru/insights" element={<InsightsRu />} />
 
-            {/* EN Routes */}
-            <Route path="/en" element={<HomeEn />} />
-            <Route path="/en/investment-raising" element={<InvestmentRaisingEn />} />
-            <Route path="/en/m-a-legal-advisory" element={<MAEn />} />
-            <Route path="/en/investment-legal-support" element={<InvestmentSupportEn />} />
-            <Route path="/en/international-lawyer-russia" element={<InternationalLawyerEn />} />
-            <Route path="/en/arbitration-disputes" element={<ArbitrationEn />} />
-            <Route path="/en/about" element={<AboutEn />} />
-            <Route path="/en/contacts" element={<ContactsEn />} />
-            <Route path="/en/insights" element={<InsightsEn />} />
+            {/* EN Routes — English is temporarily disabled publicly. Do not delete EN pages/content; restore by re-enabling these routes and the LanguageSwitcher in MultilingualHeader. */}
+            <Route path="/en" element={<Navigate to="/ru" replace />} />
+            <Route path="/en/investment-raising" element={<Navigate to="/ru/privlechenie-investitsiy" replace />} />
+            <Route path="/en/m-a-legal-advisory" element={<Navigate to="/ru/sdelki-m-a" replace />} />
+            <Route path="/en/investment-legal-support" element={<Navigate to="/ru/yuridicheskoe-soprovozhdenie-investitsiy" replace />} />
+            <Route path="/en/international-lawyer-russia" element={<Navigate to="/ru/mezhdunarodnyy-yurist-rossiya" replace />} />
+            <Route path="/en/arbitration-disputes" element={<Navigate to="/ru/arbitrazhnye-spory" replace />} />
+            <Route path="/en/about" element={<Navigate to="/ru/o-nas" replace />} />
+            <Route path="/en/contacts" element={<Navigate to="/ru/kontakty" replace />} />
+            <Route path="/en/insights" element={<Navigate to="/ru/insights" replace />} />
 
             {/* Legacy routes */}
             <Route path="/policy" element={<PrivacyPolicy />} />

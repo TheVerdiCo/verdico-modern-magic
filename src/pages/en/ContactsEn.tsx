@@ -17,8 +17,8 @@ const ContactsEn = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">Contact</span>
-              <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
+              <span className="eyebrow justify-center">Contact</span>
+              <h1 className="h1-hero mt-5 mb-6">
                 Get in Touch
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -31,7 +31,7 @@ const ContactsEn = () => {
             <div className="grid sm:grid-cols-2 gap-4 mb-12">
               <a
                 href={`mailto:${EMAIL}`}
-                className="group flex items-start gap-4 p-6 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
+                className="group flex items-start gap-4 p-7 bg-card border border-border verdico-card hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
                   <Mail className="w-6 h-6 text-white" />
@@ -46,7 +46,7 @@ const ContactsEn = () => {
                 href="https://t.me/DjamalG"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-6 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
+                className="group flex items-start gap-4 p-7 bg-card border border-border verdico-card hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
                   <Send className="w-6 h-6 text-white" />
@@ -99,7 +99,7 @@ const ContactsEn = () => {
             </div>
 
             {/* NDA Notice */}
-            <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-xl mb-12">
+            <div className="flex items-start gap-4 p-7 bg-card border border-border verdico-card mb-12">
               <Shield className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-medium mb-2">Confidentiality</h3>

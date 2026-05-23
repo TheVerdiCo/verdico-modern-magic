@@ -76,7 +76,7 @@ const PrivacyPolicy = () => {
                 5. Права пользователей
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Поскольку сбор данных на Сайте не ведется, запросы об уточнении или удалении данных с Сайта не применимы. По вопросам взаимодействия вне Сайта пользователь может обратиться по адресу: ceo@theverdico.com.
+                Поскольку сбор данных на Сайте не ведется, запросы об уточнении или удалении данных с Сайта не применимы. По вопросам взаимодействия вне Сайта пользователь может обратиться по адресу: admin@verdico.ru.
               </p>
             </section>
 
@@ -86,7 +86,7 @@ const PrivacyPolicy = () => {
                 Контактная информация
               </h2>
               <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
-                <p><span className="font-medium text-foreground">E-mail:</span> ceo@theverdico.com</p>
+                <p><span className="font-medium text-foreground">E-mail:</span> admin@verdico.ru</p>
               </div>
             </section>
           </div>

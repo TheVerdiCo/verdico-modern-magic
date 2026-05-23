@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" role="img" aria-label="V — Verdi &amp; Co.">
+  <defs>
+    <radialGradient id="logo-v-medallion" cx="40%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#6a98e8"/>
+      <stop offset="55%" stop-color="#2356c4"/>
+      <stop offset="100%" stop-color="#0e3691"/>
+    </radialGradient>
+    <linearGradient id="logo-v-ring-sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.78"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer pearl ring -->
+  <circle cx="30" cy="30" r="22" fill="url(#logo-v-ring-sheen)"/>
+  <!-- Inner navy medallion -->
+  <circle cx="30" cy="30" r="18.5" fill="url(#logo-v-medallion)"/>
+  <!-- Subtle inner highlight -->
+  <circle cx="30" cy="30" r="18.5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.35"/>
+  <!-- V mark -->
+  <path d="M 20 20 L 30 41 L 40 20 L 35.6 20 L 30 33 L 24.4 20 Z" fill="#ffffff"/>
+</svg>

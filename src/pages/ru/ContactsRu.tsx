@@ -17,8 +17,8 @@ const ContactsRu = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">Контакты</span>
-              <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">
+              <span className="eyebrow justify-center">Контакты</span>
+              <h1 className="h1-hero mt-5 mb-6">
                 Свяжитесь с нами
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -31,7 +31,7 @@ const ContactsRu = () => {
             <div className="grid sm:grid-cols-2 gap-4 mb-12">
               <a
                 href={`mailto:${EMAIL}`}
-                className="group flex items-start gap-4 p-6 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
+                className="group flex items-start gap-4 p-7 bg-card border border-border verdico-card hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
                   <Mail className="w-6 h-6 text-white" />
@@ -46,7 +46,7 @@ const ContactsRu = () => {
                 href="https://t.me/DjamalG"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-6 bg-card border border-border rounded-xl hover:shadow-card hover:border-accent/30 transition-all"
+                className="group flex items-start gap-4 p-7 bg-card border border-border verdico-card hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
                   <Send className="w-6 h-6 text-white" />
@@ -61,23 +61,19 @@ const ContactsRu = () => {
             {/* Process */}
             <div className="bg-secondary/50 rounded-2xl p-8 mb-12">
               <h2 className="font-serif text-2xl mb-6 text-center">Как проходит первый контакт</h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0 text-white font-medium">
-                    1
-                  </div>
+              <div className="space-y-6">
+                <div className="flex items-start gap-5">
+                  <span className="numeral-navy flex-shrink-0" aria-hidden="true">01</span>
                   <div>
                     <h3 className="font-medium mb-1">Опишите задачу</h3>
                     <p className="text-sm text-muted-foreground">
-                      Первичная оценка ситуации проводится по документам: предмет вопроса, 
+                      Первичная оценка ситуации проводится по документам: предмет вопроса,
                       правовая позиция, риски и возможный порядок действий.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0 text-white font-medium">
-                    2
-                  </div>
+                <div className="flex items-start gap-5">
+                  <span className="numeral-navy flex-shrink-0" aria-hidden="true">02</span>
                   <div>
                     <h3 className="font-medium mb-1">Первичная консультация</h3>
                     <p className="text-sm text-muted-foreground">
@@ -85,10 +81,8 @@ const ContactsRu = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0 text-white font-medium">
-                    3
-                  </div>
+                <div className="flex items-start gap-5">
+                  <span className="numeral-navy flex-shrink-0" aria-hidden="true">03</span>
                   <div>
                     <h3 className="font-medium mb-1">Коммерческое предложение</h3>
                     <p className="text-sm text-muted-foreground">
@@ -100,7 +94,7 @@ const ContactsRu = () => {
             </div>
 
             {/* NDA Notice */}
-            <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-xl mb-12">
+            <div className="flex items-start gap-4 p-7 bg-card border border-border verdico-card mb-12">
               <Shield className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-medium mb-2">Конфиденциальность</h3>
@@ -118,7 +112,7 @@ const ContactsRu = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" className="gap-2">
+                <Button size="lg" className="gap-2 btn-navy-glass rounded-full">
                   <MessageCircle className="w-5 h-5" />
                   Написать в Telegram
                 </Button>

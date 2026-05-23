@@ -61,6 +61,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        verdico: {
+          ink: "hsl(var(--verdico-ink))",
+          "blue-top": "hsl(var(--verdico-blue-top))",
+          "blue-mid": "hsl(var(--verdico-blue-mid))",
+          "blue-deep": "hsl(var(--verdico-blue-deep))",
+          "blue-night": "hsl(var(--verdico-blue-night))",
+          gold: "hsl(var(--verdico-gold))",
+          "gold-soft": "hsl(var(--verdico-gold-soft))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,6 +80,9 @@ export default {
         soft: "var(--shadow-soft)",
         card: "var(--shadow-card)",
         hover: "var(--shadow-hover)",
+        glass: "var(--shadow-glass)",
+        hero: "var(--shadow-hero)",
+        "card-verdico": "var(--shadow-card-verdico)",
       },
       keyframes: {
         "accordion-down": {

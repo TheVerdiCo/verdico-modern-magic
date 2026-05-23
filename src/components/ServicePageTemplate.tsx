@@ -41,11 +41,11 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
       <section className="py-16 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl">
-            <span className="text-sm text-gradient-brand font-medium uppercase tracking-wider">
+            <span className="eyebrow">
               {lang === "ru" ? "Услуга" : "Service"}
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl mt-4 mb-6">{service.h1}</h1>
-            <p className="text-lg text-muted-foreground">{content.intro}</p>
+            <h1 className="h1-hero mt-5 mb-6">{service.h1}</h1>
+            <p className="text-lg text-muted-foreground whitespace-pre-line">{content.intro}</p>
           </div>
         </div>
       </section>
@@ -59,11 +59,11 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
             </h2>
             <ul className="space-y-4">
               {content.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0 text-white text-sm font-medium">
-                    {i + 1}
-                  </div>
-                  <span>{feature}</span>
+                <li key={i} className="flex items-start gap-5 p-5 bg-card rounded-xl border border-border">
+                  <span className="numeral-navy flex-shrink-0 leading-none pt-0.5" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="pt-1">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -83,7 +83,7 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
                 <Link
                   key={s.path}
                   to={s.path}
-                  className="group p-6 bg-card rounded-xl border border-border hover:shadow-card hover:border-accent/30 transition-all"
+                  className="group verdico-card p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
                 >
                   <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-gradient-brand">
                     {s.h1}
@@ -99,14 +99,14 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground">
+      {/* CTA — navy transition into footer */}
+      <section className="py-16 px-4 bg-verdico-cta">
         <div className="container text-center">
-          <h2 className="font-serif text-3xl mb-4">
+          <h2 className="font-serif text-3xl mb-4 text-white">
             {lang === "ru" ? "Обсудить вашу задачу?" : "Discuss your case?"}
           </h2>
           <Link to={contactPath}>
-            <Button variant="secondary" size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 btn-navy-glass rounded-full">
               {lang === "ru" ? "Связаться" : "Contact Us"}
               <ArrowRight className="w-4 h-4" />
             </Button>

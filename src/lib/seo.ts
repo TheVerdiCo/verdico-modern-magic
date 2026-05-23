@@ -4,7 +4,7 @@ export const SITE_URL = "https://www.verdico.ru";
 export const BRAND_NAME_RU = "Верди и Ко.";
 export const BRAND_NAME_EN = "Verdi & Co.";
 export const BRAND_NAME = "Верди и Ко. (Verdi & Co.)";
-export const EMAIL = "ceo@theverdico.com";
+export const EMAIL = "admin@verdico.ru";
 
 export type Language = "ru" | "en";
 
@@ -49,7 +49,7 @@ export const routeAlternates: Record<string, string> = {
 export const ruServices: ServicePage[] = [
   {
     path: "/ru/privlechenie-investitsiy",
-    title: "Привлечение инвестиций в России — юрист | Verdi&Co.",
+    title: "Привлечение инвестиций в России и зарубежом — юрист международник | Верди и Ко.",
     h1: "Юридическое сопровождение привлечения инвестиций",
     description: "Юридическое сопровождение привлечения инвестиций: структура сделки, документы, переговоры, защита интересов инвестора и бизнеса в России.",
     alternatePath: "/en/investment-raising",
@@ -69,7 +69,7 @@ export const ruServices: ServicePage[] = [
     path: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
     title: "Юридическое сопровождение инвестиций в России | Verdi&Co.",
     h1: "Юридическое сопровождение инвестиционных проектов",
-    description: "Договоры, структура, корпоративные документы, комплаенс и защита прав инвестора. Полный юридический цикл инвестиционного проекта.",
+    description: "От структуры сделки и договорной документации до корпоративных решений, соблюдения закона (compliance) и защиты прав инвестора. Полный юридический цикл инвестиционного проекта.",
     alternatePath: "/en/investment-legal-support",
     relatedServices: ["/ru/privlechenie-investitsiy", "/ru/sdelki-m-a", "/ru/mezhdunarodnyy-yurist-rossiya"],
     serviceType: "Investment Project Support",
@@ -163,7 +163,7 @@ export const getNavItems = (lang: Language) => {
       },
       about: { path: "/ru/o-nas", label: "О нас" },
       contacts: { path: "/ru/kontakty", label: "Контакты" },
-      insights: { path: "/ru/insights", label: "Insights" },
+      insights: { path: "/ru/insights", label: "Аналитика" },
       home: { path: "/ru", label: "Главная" },
     };
   }

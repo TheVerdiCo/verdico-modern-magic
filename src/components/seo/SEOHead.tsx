@@ -11,8 +11,11 @@ interface SEOHeadProps {
 const SEOHead = ({ title, description, path, noIndex = false }: SEOHeadProps) => {
   const lang = getLangFromPath(path);
   const alternatePath = routeAlternates[path];
-  const canonicalUrl = `${SITE_URL}${path}`;
-  const alternateUrl = alternatePath ? `${SITE_URL}${alternatePath}` : null;
+  const toAbsoluteUrl = (targetPath: string) =>
+    targetPath === "/" ? `${SITE_URL}/` : `${SITE_URL}${targetPath}`;
+  const canonicalPath = path === "/ru" ? "/" : path;
+  const canonicalUrl = toAbsoluteUrl(canonicalPath);
+  const alternateUrl = alternatePath ? toAbsoluteUrl(alternatePath) : null;
 
   return (
     <Helmet>
@@ -26,7 +29,7 @@ const SEOHead = ({ title, description, path, noIndex = false }: SEOHeadProps) =>
       {alternateUrl && (
         <link rel="alternate" hrefLang={lang === "ru" ? "en" : "ru"} href={alternateUrl} />
       )}
-      <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/ru`} />
+      <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/`} />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />

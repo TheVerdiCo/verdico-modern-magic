@@ -229,6 +229,21 @@ function Assert-FileExists {
   }
 }
 
+function Test-LighthouseCleanupEperm {
+  param([string]$Path)
+
+  if (-not (Test-Path -LiteralPath $Path)) {
+    return $false
+  }
+
+  $ErrorText = Get-Content -LiteralPath $Path -Raw -Encoding UTF8
+  $HasWindowsEperm = $ErrorText -match "EPERM,\s*Permission denied"
+  $HasLighthouseTempDir = $ErrorText -match "Temp\\lighthouse\.\d+"
+  $HasChromeLauncherCleanup = $ErrorText -match "Launcher\.destroyTmp" -and $ErrorText -match "chrome-launcher"
+
+  return ($HasWindowsEperm -and $HasLighthouseTempDir -and $HasChromeLauncherCleanup)
+}
+
 if ($Url -notmatch '^https?://') {
   throw "URL_MUST_START_WITH_HTTP_OR_HTTPS"
 }
@@ -253,6 +268,10 @@ $Summary = [ordered]@{
   repoRoot = $Root
   url = $Base
   reportDir = $OutDir
+  stderr = $ErrFile
+  lighthouseExitCode = $null
+  lighthouseExitCodeIgnored = $false
+  lighthouseExitCodeIgnoredReason = $null
   thresholds = [ordered]@{
     seo = 95
   }
@@ -283,13 +302,14 @@ try {
   $LighthouseExitCode = $LASTEXITCODE
   $ErrorActionPreference = $OldPreference
 
+  $Summary.lighthouseExitCode = $LighthouseExitCode
+
   $Summary.checks["lighthouseExitCode"] = [ordered]@{
     ok = ($LighthouseExitCode -eq 0)
     exitCode = $LighthouseExitCode
-  }
-
-  if ($LighthouseExitCode -ne 0) {
-    Add-Failure -Code "LIGHTHOUSE_EXIT_CODE_NON_ZERO" -Message "Lighthouse exited with code $LighthouseExitCode"
+    lighthouseExitCodeIgnored = $false
+    lighthouseExitCodeIgnoredReason = $null
+    stderr = $ErrFile
   }
 
   [void](Find-ReportFile -Candidates @(
@@ -307,9 +327,23 @@ try {
   Assert-NonEmptyFile -Code "LIGHTHOUSE_JSON_NOT_CREATED" -Path $LighthouseJson
   Assert-NonEmptyFile -Code "LIGHTHOUSE_HTML_NOT_CREATED" -Path $LighthouseHtml
 
+  $LighthouseJsonReady = $false
+  $LighthouseHtmlReady = $false
+  $LighthouseParsedSuccessfully = $false
+  $LighthouseScoresExtractedSuccessfully = $false
+
+  if (Test-Path -LiteralPath $LighthouseJson) {
+    $LighthouseJsonReady = ((Get-Item -LiteralPath $LighthouseJson).Length -gt 0)
+  }
+
+  if (Test-Path -LiteralPath $LighthouseHtml) {
+    $LighthouseHtmlReady = ((Get-Item -LiteralPath $LighthouseHtml).Length -gt 0)
+  }
+
   if (Test-Path -LiteralPath $LighthouseJson) {
     try {
       $Lighthouse = Get-Content -LiteralPath $LighthouseJson -Raw -Encoding UTF8 | ConvertFrom-Json
+      $LighthouseParsedSuccessfully = $true
       $PerformanceScore = Get-LighthouseCategoryScore -Json $Lighthouse -CategoryId "performance"
       $AccessibilityScore = Get-LighthouseCategoryScore -Json $Lighthouse -CategoryId "accessibility"
       $BestPracticesScore = Get-LighthouseCategoryScore -Json $Lighthouse -CategoryId "best-practices"
@@ -331,6 +365,13 @@ try {
         }
       }
 
+      $LighthouseScoresExtractedSuccessfully = (
+        $null -ne $PerformanceScore -and
+        $null -ne $AccessibilityScore -and
+        $null -ne $BestPracticesScore -and
+        $null -ne $SeoScore
+      )
+
       $AuditRows = Write-CriticalAuditsCsv -Json $Lighthouse -Path $CriticalAuditsCsv
       $Summary.criticalAudits = @($AuditRows)
 
@@ -346,6 +387,19 @@ try {
 
   Assert-NonEmptyFile -Code "CRITICAL_AUDITS_CSV_NOT_CREATED" -Path $CriticalAuditsCsv
   Assert-FileExists -Code "STDERR_TXT_NOT_CREATED" -Path $ErrFile
+
+  if ($LighthouseExitCode -ne 0) {
+    if ($LighthouseJsonReady -and $LighthouseHtmlReady -and $LighthouseParsedSuccessfully -and $LighthouseScoresExtractedSuccessfully -and (Test-LighthouseCleanupEperm -Path $ErrFile)) {
+      $IgnoredReason = "LIGHTHOUSE_EXIT_CODE_NON_ZERO_CLEANUP_EPERM_IGNORED"
+      $Summary.lighthouseExitCodeIgnored = $true
+      $Summary.lighthouseExitCodeIgnoredReason = $IgnoredReason
+      $Summary.checks["lighthouseExitCode"].ok = $true
+      $Summary.checks["lighthouseExitCode"].lighthouseExitCodeIgnored = $true
+      $Summary.checks["lighthouseExitCode"].lighthouseExitCodeIgnoredReason = $IgnoredReason
+    } else {
+      Add-Failure -Code "LIGHTHOUSE_EXIT_CODE_NON_ZERO" -Message "Lighthouse exited with code $LighthouseExitCode"
+    }
+  }
 } finally {
   Pop-Location
 }

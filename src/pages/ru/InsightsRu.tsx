@@ -22,7 +22,7 @@ const InsightsRu = () => {
 
       {/* Hero — chess/strategy image with Verdico overlay + slow Ken Burns pan */}
       <section
-        className="relative -mt-24 min-h-[64vh] flex items-center overflow-hidden bg-verdico-hero text-white"
+        className="relative -mt-24 md:min-h-[64vh] md:flex md:items-center overflow-hidden bg-verdico-hero text-white"
       >
         <div className="insights-hero-media" aria-hidden="true">
           <img
@@ -32,13 +32,13 @@ const InsightsRu = () => {
             decoding="async"
           />
         </div>
-        <div className="container relative z-10 pt-32 pb-16 md:pt-40 md:pb-20 px-4">
+        <div className="container relative z-10 pt-[clamp(252px,46vh,372px)] pb-12 md:pt-40 md:pb-20 px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="eyebrow justify-center mb-6 animate-fade-up">Аналитика</span>
-            <h1 className="h1-hero text-white mt-5 mb-6 animate-fade-up animation-delay-100">
+            <span className="eyebrow justify-center mb-5 animate-fade-up">Аналитика</span>
+            <h1 className="h1-hero text-white mt-4 mb-5 md:mt-5 md:mb-6 animate-fade-up animation-delay-100">
               Юридические материалы
             </h1>
-            <p className="text-lg text-white/85 animate-fade-up animation-delay-200">
+            <p className="text-[16px] leading-[1.55] md:text-lg md:leading-normal text-white/85 animate-fade-up animation-delay-200">
               Заметки по практическим вопросам: коммерческие споры, доказательства,
               договорная работа, исполнительное производство.
             </p>
@@ -46,27 +46,27 @@ const InsightsRu = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 px-4">
+      <section className="py-14 md:py-24 px-4">
         <div className="container">
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
             {placeholderArticles.map((article) => (
               <article
                 key={article.title}
-                className="group p-7 bg-card verdico-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
+                className="group p-5 md:p-7 bg-card verdico-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-xs font-medium px-2 py-1 bg-secondary rounded-full">
+                  <span className="text-[11px] md:text-xs font-medium px-2.5 py-1 bg-secondary rounded-full">
                     {article.category}
                   </span>
                 </div>
-                <h2 className="font-serif text-lg font-medium mb-3 group-hover:text-gradient-brand">
+                <h2 className="font-serif text-[19px] md:text-lg font-medium mb-3 group-hover:text-gradient-brand">
                   {article.title}
                 </h2>
-                <p className="text-sm text-muted-foreground mb-4 whitespace-pre-line">
+                <p className="text-[15.5px] leading-[1.6] md:text-sm md:leading-normal text-muted-foreground mb-4 whitespace-pre-line text-left">
                   {article.description}
                 </p>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
+                <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
                   Материал
                   <ArrowRight className="w-4 h-4" />
                 </span>
@@ -74,12 +74,12 @@ const InsightsRu = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground">
+          <div className="text-center mt-10 md:mt-12">
+            <p className="text-[15px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground">
               Новые материалы публикуются по мере накопления практики. Обновления —{" "}
-              <a 
-                href="https://t.me/DjamalG" 
-                target="_blank" 
+              <a
+                href="https://t.me/DjamalG"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent hover:underline"
               >

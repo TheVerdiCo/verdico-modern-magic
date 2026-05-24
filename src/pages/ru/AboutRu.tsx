@@ -41,7 +41,7 @@ const AboutRu = () => {
       />
 
       {/* Hero — Verdico cinematic watch video */}
-      <section className="relative -mt-24 min-h-[78vh] flex items-center overflow-hidden bg-verdico-hero text-white">
+      <section className="relative -mt-24 md:min-h-[78vh] md:flex md:items-center overflow-hidden bg-verdico-hero text-white">
         <div className="verdico-hero-media" aria-hidden="true">
           <video
             autoPlay
@@ -55,19 +55,19 @@ const AboutRu = () => {
             <source src="/media/home-watch.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className="container relative z-10 pt-32 pb-20 md:pt-40 md:pb-24 px-4">
+        <div className="container relative z-10 pt-[clamp(252px,46vh,372px)] pb-14 md:pt-40 md:pb-24 px-4">
           <div className="max-w-3xl">
-            <span className="eyebrow mb-6 animate-fade-up">О компании</span>
-            <h1 className="h1-hero text-white mt-5 mb-6 animate-fade-up animation-delay-100">
+            <span className="eyebrow mb-5 animate-fade-up">О компании</span>
+            <h1 className="h1-hero text-white mt-4 mb-5 md:mt-5 md:mb-6 animate-fade-up animation-delay-100">
               Верди и Ко. — юридическая и консалтинговая практика
             </h1>
-            <p className="text-lg text-white/85 mb-4 animate-fade-up animation-delay-200">
+            <p className="text-[16px] leading-[1.55] md:text-lg md:leading-normal text-white/85 mb-4 animate-fade-up animation-delay-200 text-left">
               Верди и Ко. работает с коммерческими, имущественными и договорными вопросами.
               Суд, переговоры, претензия, договор или исполнительное производство
               рассматриваются не как формальность, а как инструмент защиты конкретного
               интереса доверителя.
             </p>
-            <p className="text-white/80 animate-fade-up animation-delay-300">
+            <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-white/80 animate-fade-up animation-delay-300 text-left">
               Работа строится вокруг трёх вещей: правовая позиция, доказательства и
               экономический смысл. Там, где возможны переговоры, они должны быть
               подготовлены так же тщательно, как судебный процесс.
@@ -77,10 +77,10 @@ const AboutRu = () => {
       </section>
 
       {/* Founder */}
-      <section className="py-16 md:py-24 px-4 bg-secondary/50">
+      <section className="py-14 md:py-24 px-4 bg-secondary/50">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative order-2 lg:order-1 mx-auto lg:mx-0 max-w-[70%] lg:max-w-none lg:w-[70%]">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-12 items-center">
+            <div className="relative order-2 lg:order-1 mx-auto lg:mx-0 max-w-[60%] sm:max-w-[55%] lg:max-w-none lg:w-[70%]">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
                 <img
                   src={founderImage}
@@ -94,20 +94,20 @@ const AboutRu = () => {
             </div>
 
             <div className="order-1 lg:order-2">
-              <h2 className="font-serif text-3xl md:text-4xl mb-2">
+              <h2 className="font-serif text-[26px] md:text-4xl mb-2">
                 Джамал Гахвердиев
               </h2>
-              <p className="text-gradient-brand font-medium mb-6">
+              <p className="text-gradient-brand font-medium mb-5 md:mb-6 text-[14px] md:text-base">
                 Основатель практики • Юрист
               </p>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground mb-6 text-left">
                 Юрист с международным образованием (Университет Лозанны, BPP Law School,
                 Лондон) и опытом работы в российской правовой среде.
                 Самостоятельная практика — с 2010 года.
               </p>
-              <blockquote className="border-l-2 border-accent pl-6 italic text-muted-foreground">
+              <blockquote className="border-l-2 border-accent pl-5 md:pl-6 italic text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground text-left">
                 <span className="text-gradient-brand not-italic">"</span>
-                Каждое действие должно иметь назначение — защитить право, снизить риск, 
+                Каждое действие должно иметь назначение — защитить право, снизить риск,
                 усилить переговорную позицию или приблизить исполнение.
                 <span className="text-gradient-brand not-italic">"</span>
               </blockquote>
@@ -117,19 +117,19 @@ const AboutRu = () => {
       </section>
 
       {/* Focus Areas */}
-      <section className="py-16 md:py-24 px-4">
+      <section className="py-14 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="h2-section mb-8 text-center">
+            <h2 className="h2-section mb-7 md:mb-8 text-center">
               Ключевые направления
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {focusAreas.map((area) => (
-                <div key={area} className="flex items-center gap-4 p-5 bg-card verdico-card border border-border">
-                  <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0">
+                <div key={area} className="flex items-start gap-4 p-5 md:p-5 bg-card verdico-card border border-border">
+                  <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-4 h-4 text-white" />
                   </div>
-                  <span className="font-medium">{area}</span>
+                  <span className="font-medium text-[15.5px] leading-[1.5] md:text-base md:leading-normal">{area}</span>
                 </div>
               ))}
             </div>
@@ -138,25 +138,25 @@ const AboutRu = () => {
       </section>
 
       {/* Approach */}
-      <section className="py-16 md:py-24 px-4 bg-secondary/50">
+      <section className="py-14 md:py-24 px-4 bg-secondary/50">
         <div className="container">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10 md:mb-12">
             <span className="eyebrow justify-center">Подход</span>
-            <h2 className="h2-section mt-5 mb-4">Принципы работы</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Мы не подменяем юридическую работу общими обещаниями. Позиция должна быть 
+            <h2 className="h2-section mt-4 md:mt-5 mb-3 md:mb-4">Принципы работы</h2>
+            <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground max-w-2xl mx-auto text-left md:text-center">
+              Мы не подменяем юридическую работу общими обещаниями. Позиция должна быть
               собрана до подачи документов, а не в ходе импровизации.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {approach.map((item) => (
-              <div key={item.title} className="p-7 bg-card verdico-card border border-border text-center">
-                <div className="w-12 h-12 rounded-lg bg-gradient-brand flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-6 h-6 text-white" />
+              <div key={item.title} className="p-5 md:p-7 bg-card verdico-card border border-border text-left md:text-center">
+                <div className="w-11 h-11 md:w-12 md:h-12 rounded-lg bg-gradient-brand flex items-center justify-center mb-3 md:mb-4 md:mx-auto">
+                  <item.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
-                <h3 className="font-serif text-xl font-medium mb-3">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2 md:mb-3">{item.title}</h3>
+                <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
@@ -164,16 +164,16 @@ const AboutRu = () => {
       </section>
 
       {/* CTA — navy transition into footer */}
-      <section className="py-16 md:py-24 px-4 bg-verdico-cta">
+      <section className="py-14 md:py-24 px-4 bg-verdico-cta">
         <div className="container text-center">
-          <h2 className="font-serif text-3xl md:text-4xl mb-4 text-white">
+          <h2 className="font-serif text-[28px] leading-tight md:text-4xl mb-4 text-white">
             Готовы обсудить задачу?
           </h2>
-          <p className="text-white/75 mb-8 max-w-xl mx-auto">
+          <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-white/75 mb-7 md:mb-8 max-w-xl mx-auto">
             Свяжитесь с нами для первичной консультации. По запросу — NDA.
           </p>
           <Link to="/ru/kontakty">
-            <Button size="lg" className="gap-2 btn-navy-glass rounded-full">
+            <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
               Связаться
               <ArrowRight className="w-4 h-4" />
             </Button>

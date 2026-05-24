@@ -38,32 +38,32 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
       />
 
       {/* Hero */}
-      <section className="py-16 md:py-24 px-4">
+      <section className="pt-24 pb-14 md:py-24 px-4">
         <div className="container">
           <div className="max-w-3xl">
             <span className="eyebrow">
               {lang === "ru" ? "Услуга" : "Service"}
             </span>
-            <h1 className="h1-hero mt-5 mb-6">{service.h1}</h1>
-            <p className="text-lg text-muted-foreground whitespace-pre-line">{content.intro}</p>
+            <h1 className="h1-hero mt-4 md:mt-5 mb-5 md:mb-6">{service.h1}</h1>
+            <p className="text-[16px] leading-[1.6] md:text-lg md:leading-normal text-muted-foreground whitespace-pre-line text-left">{content.intro}</p>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-16 px-4 bg-secondary/50">
+      <section className="py-14 md:py-16 px-4 bg-secondary/50">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl mb-8">
+            <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
               {lang === "ru" ? "Что включает" : "What's Included"}
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               {content.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-5 p-5 bg-card rounded-xl border border-border">
+                <li key={i} className="flex items-start gap-4 md:gap-5 p-5 bg-card rounded-xl border border-border">
                   <span className="numeral-navy flex-shrink-0 leading-none pt-0.5" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="pt-1">{feature}</span>
+                  <span className="pt-1 text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-left">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -73,22 +73,22 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
 
       {/* Related Services */}
       {relatedServices.length > 0 && (
-        <section className="py-16 px-4">
+        <section className="py-14 md:py-16 px-4">
           <div className="container">
-            <h2 className="font-serif text-2xl md:text-3xl mb-8 text-center">
+            <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8 text-center">
               {lang === "ru" ? "Связанные услуги" : "Related Services"}
             </h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
               {relatedServices.map((s) => (
                 <Link
                   key={s.path}
                   to={s.path}
-                  className="group verdico-card p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
+                  className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
                 >
-                  <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-gradient-brand">
+                  <h3 className="font-serif text-[18px] md:text-lg font-medium mb-2 group-hover:text-gradient-brand">
                     {s.h1}
                   </h3>
-                  <span className="inline-flex items-center gap-1 text-sm text-accent">
+                  <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm text-accent min-h-[28px]">
                     {lang === "ru" ? "Подробнее" : "Learn more"}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -100,13 +100,13 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
       )}
 
       {/* CTA — navy transition into footer */}
-      <section className="py-16 px-4 bg-verdico-cta">
+      <section className="py-14 md:py-16 px-4 bg-verdico-cta">
         <div className="container text-center">
-          <h2 className="font-serif text-3xl mb-4 text-white">
+          <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-white">
             {lang === "ru" ? "Обсудить вашу задачу?" : "Discuss your case?"}
           </h2>
           <Link to={contactPath}>
-            <Button size="lg" className="gap-2 btn-navy-glass rounded-full">
+            <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
               {lang === "ru" ? "Связаться" : "Contact Us"}
               <ArrowRight className="w-4 h-4" />
             </Button>

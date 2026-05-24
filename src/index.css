@@ -588,6 +588,53 @@
   }
 }
 
+/* ---------------------------------------------------------------------
+   Mobile-only: band the cinematic video/image hero into a top strip
+   instead of letting it occupy the full hero section. Keeps the video
+   present as supporting media without dominating the first viewport.
+   Desktop layout (>=768px) is unchanged.
+   --------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .verdico-hero-media,
+  .insights-hero-media {
+    inset: 0 0 auto 0;
+    height: clamp(220px, 42vh, 340px);
+  }
+  /* Soft fade at the bottom of the band so it blends into the navy hero bg */
+  .verdico-hero-media::before,
+  .insights-hero-media::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 56px;
+    background: linear-gradient(180deg, rgba(7, 23, 47, 0) 0%, hsl(var(--verdico-blue-night)) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Calm the decorative offset gradient squares behind the founder image
+     so they don't compete with the text column on mobile. */
+  .bg-gradient-brand.opacity-10 {
+    display: none;
+  }
+
+  /* Slightly soften the hero video tone so titles read first */
+  .verdico-hero-media video {
+    filter: saturate(1.04) contrast(1.02) brightness(1.0);
+    opacity: 0.85;
+  }
+  .insights-hero-media img {
+    opacity: 0.82;
+  }
+
+  /* Tighten card border radius on mobile for a more disciplined feel */
+  .verdico-card {
+    border-radius: 18px;
+  }
+}
+
 /* Animations */
 @keyframes fade-up {
   0% {

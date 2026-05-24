@@ -123,20 +123,28 @@ const MultilingualHeader = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation — order: О нас, Услуги, Аналитика, Контакты */}
       {isMobileMenuOpen && (
-        <nav className="lg:hidden absolute top-[calc(100%+8px)] left-0 right-0 glass-pill rounded-2xl p-6 animate-fade-in max-h-[80vh] overflow-y-auto">
-          <div className="flex flex-col gap-2">
-            {/* Services Section */}
-            <div className="border-b border-border pb-4 mb-2">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
+        <nav className="lg:hidden absolute top-[calc(100%+8px)] left-0 right-0 glass-pill rounded-2xl p-5 animate-fade-in max-h-[80vh] overflow-y-auto">
+          <div className="flex flex-col">
+            <Link
+              to={nav.about.path}
+              className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {nav.about.label}
+            </Link>
+
+            {/* Services group — keeps subitems, sits second after О нас */}
+            <div className="border-y border-border/70 py-3 my-1">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.18em] mb-2">
                 {nav.services.label}
               </p>
               {nav.services.items.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="block text-sm font-medium py-2 hover:text-accent transition-colors"
+                  className="flex items-center text-[14.5px] font-medium min-h-[44px] py-1.5 hover:text-accent transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -144,18 +152,23 @@ const MultilingualHeader = () => {
               ))}
             </div>
 
-            <Link to={nav.about.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
-              {nav.about.label}
-            </Link>
-            <Link to={nav.insights.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to={nav.insights.path}
+              className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               {nav.insights.label}
             </Link>
-            <Link to={nav.contacts.path} className="text-sm font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to={nav.contacts.path}
+              className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               {nav.contacts.label}
             </Link>
 
             <Link to={nav.contacts.path}>
-              <Button className="mt-4 w-full">
+              <Button className="mt-4 w-full h-12 rounded-full btn-navy-glass">
                 {lang === "ru" ? "Связаться" : "Contact Us"}
               </Button>
             </Link>

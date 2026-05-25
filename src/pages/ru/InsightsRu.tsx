@@ -44,21 +44,6 @@ const InsightsRu = () => {
               <ArticleCard key={article.slug} article={article} />
             ))}
           </div>
-
-          <div className="text-center mt-10 md:mt-12">
-            <p className="text-[15px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground">
-              Новые материалы публикуются по мере накопления практики. Обновления —{" "}
-              <a
-                href="https://t.me/DjamalG"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline"
-              >
-                Telegram
-              </a>
-              .
-            </p>
-          </div>
         </div>
       </section>
     </MultilingualLayout>

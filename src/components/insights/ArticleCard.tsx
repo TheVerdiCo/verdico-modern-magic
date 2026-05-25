@@ -17,15 +17,15 @@ const ArticleCard = ({ article, className = "" }: ArticleCardProps) => {
       to={href}
       className={`group flex flex-col p-5 md:p-7 bg-card verdico-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all ${className}`}
     >
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-[11px] md:text-xs font-medium px-2.5 py-1 bg-secondary rounded-full">
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <span className="text-[11px] md:text-xs font-medium px-2.5 py-1 bg-secondary rounded-full max-w-full break-words">
           {article.category}
         </span>
       </div>
-      <h2 className="font-serif text-[19px] md:text-lg font-medium mb-3 group-hover:text-gradient-brand">
+      <h2 className="font-serif text-[19px] leading-snug md:text-lg md:leading-snug font-medium mb-3 break-words group-hover:text-gradient-brand">
         {article.title}
       </h2>
-      <p className="text-[15.5px] leading-[1.6] md:text-sm md:leading-normal text-muted-foreground mb-4 text-left">
+      <p className="text-[15.5px] leading-[1.6] md:text-sm md:leading-normal text-muted-foreground mb-4 text-left break-words">
         {article.excerpt}
       </p>
       <span className="mt-auto inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">

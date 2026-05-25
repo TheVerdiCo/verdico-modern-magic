@@ -99,20 +99,30 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
       <section className="pt-24 pb-8 md:pt-28 md:pb-12 px-4">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            {/* Breadcrumb-style back link */}
-            <Link
-              to="/ru/insights"
-              className="inline-flex items-center gap-1 text-[13px] md:text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Аналитика
-            </Link>
+            {/* Breadcrumb + category row: wraps cleanly on narrow screens,
+                keeps a clear gap and separator between the back link and the
+                category label so they cannot visually merge. */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 md:mb-8">
+              <Link
+                to="/ru/insights"
+                className="inline-flex items-center gap-1.5 text-[13px] md:text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Аналитика</span>
+              </Link>
+              <span
+                aria-hidden="true"
+                className="hidden sm:inline-block w-1 h-1 rounded-full bg-muted-foreground/40"
+              />
+              <span className="text-[11px] md:text-xs font-semibold uppercase text-verdico-gold tracking-[0.14em] md:tracking-[0.18em] break-words">
+                {article.category}
+              </span>
+            </div>
 
-            <span className="eyebrow mb-4">{article.category}</span>
-            <h1 className="font-serif text-[28px] leading-[1.15] md:text-[40px] md:leading-[1.1] tracking-[-0.02em] mt-3 mb-4 md:mt-4 md:mb-5 text-foreground">
+            <h1 className="font-serif text-[26px] leading-[1.18] sm:text-[30px] sm:leading-[1.15] md:text-[36px] md:leading-[1.12] lg:text-[40px] lg:leading-[1.1] tracking-[-0.02em] mb-4 md:mb-5 text-foreground text-balance break-words">
               {article.title}
             </h1>
-            <p className="text-[16px] leading-[1.6] md:text-lg md:leading-[1.55] text-muted-foreground italic">
+            <p className="text-[16px] leading-[1.6] md:text-lg md:leading-[1.55] text-muted-foreground italic break-words">
               {article.subtitle}
             </p>
           </div>

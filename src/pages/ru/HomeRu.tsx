@@ -35,7 +35,7 @@ const HomeRu = () => {
             poster=""
             disablePictureInPicture
           >
-            <source src="/media/home-world.mp4" type="video/mp4" />
+            <source src="/media/home-world-lite.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="container relative z-10 pt-[clamp(252px,46vh,372px)] pb-14 md:pt-40 md:pb-28 px-4">

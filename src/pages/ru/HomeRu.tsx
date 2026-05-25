@@ -44,11 +44,11 @@ const HomeRu = () => {
               Юридическая практика с 2010 года
             </span>
             <h1 className="h1-hero-home text-white mt-5 mb-5 md:mt-6 md:mb-6 animate-fade-up animation-delay-100">
-              Юридические услуги для бизнеса и инвесторов в России и зарубежом.
+              Юридические услуги для бизнеса и инвесторов в России и за рубежом.
             </h1>
             <p className="text-[16px] leading-[1.55] md:text-xl md:leading-normal text-white/85 mb-7 md:mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
-              Коммерческие споры, имущественные вопросы, договоры и переговоры — там,
-              где юридическая позиция должна быть связана с экономическим результатом.
+              Споры, сделки, договоры и переговоры — там,
+              где правовая форма должна соответствовать имущественному интересу.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to="/ru/kontakty">

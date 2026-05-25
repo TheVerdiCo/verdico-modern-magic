@@ -15,6 +15,7 @@ import HomeRu from "./pages/ru/HomeRu";
 import AboutRu from "./pages/ru/AboutRu";
 import ContactsRu from "./pages/ru/ContactsRu";
 import InsightsRu from "./pages/ru/InsightsRu";
+import InsightArticleRu from "./pages/ru/InsightArticleRu";
 import InvestmentRaisingRu from "./pages/ru/services/InvestmentRaisingRu";
 import MARu from "./pages/ru/services/MARu";
 import InvestmentSupportRu from "./pages/ru/services/InvestmentSupportRu";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/ru/o-nas" element={<AboutRu />} />
             <Route path="/ru/kontakty" element={<ContactsRu />} />
             <Route path="/ru/insights" element={<InsightsRu />} />
+            <Route path="/ru/insights/:slug" element={<InsightArticleRu />} />
 
             {/* EN Routes — English is temporarily disabled publicly. Do not delete EN pages/content; restore by re-enabling these routes and the LanguageSwitcher in MultilingualHeader. */}
             <Route path="/en" element={<Navigate to="/ru" replace />} />

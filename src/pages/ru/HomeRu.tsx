@@ -43,7 +43,7 @@ const HomeRu = () => {
             <span className="eyebrow mb-5 animate-fade-up">
               Юридическая практика с 2010 года
             </span>
-            <h1 className="h1-hero-home text-white mt-5 mb-5 md:mt-6 md:mb-6 animate-fade-up animation-delay-100">
+            <h1 className="h1-hero-home text-white mt-5 mb-5 md:mt-6 md:mb-6">
               Юридические услуги для бизнеса и инвесторов в России и за рубежом.
             </h1>
             <p className="text-[16px] leading-[1.55] md:text-xl md:leading-normal text-white/85 mb-7 md:mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">

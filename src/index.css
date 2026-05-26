@@ -620,7 +620,6 @@
 
   /* Slightly soften the hero video tone so titles read first */
   .verdico-hero-media video {
-    filter: saturate(1.04) contrast(1.02) brightness(1.0);
     opacity: 0.85;
   }
   .insights-hero-media img {

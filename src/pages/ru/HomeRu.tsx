@@ -13,6 +13,34 @@ const stats = [
   { value: "15+", label: "стран и юрисдикций" },
 ];
 
+const homeCardCopy: Record<string, { title: string; summary: string }> = {
+  "/ru/privlechenie-investitsiy": {
+    title: "Инвестиционные ситуации",
+    summary:
+      "Привлечение инвестиций: структура сделки, проверка прав и полномочий, распределение рисков и условия выхода.",
+  },
+  "/ru/sdelki-m-a": {
+    title: "Сделки и структура",
+    summary:
+      "Сопровождение M&A и иных сделок: due diligence, договорная конструкция, переговоры и управляемый порядок исполнения.",
+  },
+  "/ru/yuridicheskoe-soprovozhdenie-investitsiy": {
+    title: "Договоры и контроль рисков",
+    summary:
+      "Договорная и корпоративная работа инвестиционного цикла: точная формулировка прав, обязательств и пределов ответственности.",
+  },
+  "/ru/mezhdunarodnyy-yurist-rossiya": {
+    title: "Трансграничный контекст",
+    summary:
+      "Правовые задачи с иностранным элементом — контрагентом, активом, платежом или применимой юрисдикцией.",
+  },
+  "/ru/arbitrazhnye-spory": {
+    title: "Споры и переговоры",
+    summary:
+      "Коммерческие, договорные и имущественные споры — позиция, доказательства и дисциплина процесса в арбитраже.",
+  },
+};
+
 const HomeRu = () => {
   return (
     <MultilingualLayout>
@@ -88,29 +116,53 @@ const HomeRu = () => {
               Ключевые направления практики
             </h2>
             <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground max-w-2xl mx-auto text-left md:text-center">
-              Каждый проект уникален. Мы анализируем задачу и предлагаем оптимальное решение.
+              Направления, в которых юридическая форма решения определяет имущественный,
+              переговорный и процессуальный результат.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {ruServices.map((service) => (
-              <Link
-                key={service.path}
-                to={service.path}
-                className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
-              >
-                <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
-                  {service.h1}
-                </h3>
-                <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground mb-4">
-                  {service.description.slice(0, 100)}...
-                </p>
-                <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
-                  Подробнее
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            ))}
+            {ruServices.map((service) => {
+              const copy = homeCardCopy[service.path];
+              const title = copy?.title ?? service.h1;
+              const summary = copy?.summary ?? `${service.description.slice(0, 100)}...`;
+              return (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
+                >
+                  <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
+                    {title}
+                  </h3>
+                  <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground mb-4">
+                    {summary}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
+                    Подробнее
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              );
+            })}
+
+            {/* Russian domestic legal-practice vector */}
+            <Link
+              to="/ru/kontakty"
+              className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
+            >
+              <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
+                Российская правовая практика
+              </h3>
+              <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground mb-4">
+                Договоры, недвижимость, корпоративные и имущественные вопросы — там, где
+                значение имеют правовая форма, состав прав и порядок действий.
+              </p>
+              <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
+                Обсудить задачу
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>

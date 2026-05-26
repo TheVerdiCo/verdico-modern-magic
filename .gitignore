@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local SEO and Lighthouse audit artifacts
+.lighthouseci/
+tools/seo/lhci-reports/
+tools/seo/local-lighthouse-reports/
+tools/seo/reports/
+tools/seo/live-video-proof.txt
+tools/seo/live-video-runtime-proof.txt

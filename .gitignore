@@ -30,3 +30,6 @@ tools/seo/local-lighthouse-reports/
 tools/seo/reports/
 tools/seo/live-video-proof.txt
 tools/seo/live-video-runtime-proof.txt
+
+# Local Claude launcher configuration
+.claude/launch.json

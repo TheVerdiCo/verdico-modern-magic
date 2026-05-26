@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import type { RuArticle, ArticleSection } from "@/content/insights/ruArticles";
 
@@ -94,6 +95,7 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
         description={article.excerpt}
         path={path}
       />
+      <BreadcrumbSchema articleTitle={article.title} articlePath={path} />
 
       {/* Article header */}
       <section className="pt-24 pb-8 md:pt-28 md:pb-12 px-4">

@@ -13,9 +13,14 @@ interface ServicePageTemplateProps {
     features: string[];
     process?: string[];
   };
+  relatedMaterials?: Array<{
+    title: string;
+    href: string;
+    label?: string;
+  }>;
 }
 
-const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => {
+const ServicePageTemplate = ({ service, content, relatedMaterials = [] }: ServicePageTemplateProps) => {
   const lang = getLangFromPath(service.path);
   const contactPath = lang === "ru" ? "/ru/kontakty" : "/en/contacts";
   
@@ -93,6 +98,31 @@ const ServicePageTemplate = ({ service, content }: ServicePageTemplateProps) => 
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {relatedMaterials.length > 0 && (
+        <section className="pb-14 md:pb-16 px-4">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              {relatedMaterials.map((material) => (
+                <div key={material.href} className="p-5 md:p-7 bg-card verdico-card border border-border">
+                  {material.label && (
+                    <p className="eyebrow mb-3">{material.label}</p>
+                  )}
+                  <Link
+                    to={material.href}
+                    className="group inline-flex items-start gap-2 text-foreground hover:text-accent transition-colors"
+                  >
+                    <span className="font-serif text-[19px] leading-snug md:text-xl font-medium">
+                      {material.title}
+                    </span>
+                    <ArrowRight className="w-4 h-4 mt-1.5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               ))}
             </div>
           </div>

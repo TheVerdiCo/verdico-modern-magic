@@ -2,10 +2,18 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/seo/SEOHead";
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Политика обработки персональных данных — VERDICO"
+        description="Политика обработки персональных данных и условия использования сайта VERDICO."
+        path="/policy"
+        canonicalUrl="https://www.verdico.ru/policy"
+        noIndex
+      />
       <Header />
       <main className="flex-1 py-16 md:py-24 px-4 sm:px-6">
         <div className="container max-w-3xl mx-auto">

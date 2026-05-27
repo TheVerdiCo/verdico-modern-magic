@@ -5,16 +5,17 @@ interface SEOHeadProps {
   title: string;
   description: string;
   path: string;
+  canonicalUrl?: string;
   noIndex?: boolean;
 }
 
-const SEOHead = ({ title, description, path, noIndex = false }: SEOHeadProps) => {
+const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride, noIndex = false }: SEOHeadProps) => {
   const lang = getLangFromPath(path);
   const alternatePath = routeAlternates[path];
   const toAbsoluteUrl = (targetPath: string) =>
     targetPath === "/" ? `${SITE_URL}/` : `${SITE_URL}${targetPath}`;
   const canonicalPath = path === "/ru" ? "/" : path;
-  const canonicalUrl = toAbsoluteUrl(canonicalPath);
+  const canonicalUrl = canonicalUrlOverride ?? toAbsoluteUrl(canonicalPath);
   const alternateUrl = alternatePath ? toAbsoluteUrl(alternatePath) : null;
 
   return (
@@ -46,7 +47,7 @@ const SEOHead = ({ title, description, path, noIndex = false }: SEOHeadProps) =>
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
 
-      {noIndex && <meta name="robots" content="noindex,nofollow" />}
+      {noIndex && <meta name="robots" content="noindex, follow" />}
     </Helmet>
   );
 };

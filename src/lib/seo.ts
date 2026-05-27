@@ -92,6 +92,15 @@ export const ruServices: ServicePage[] = [
     relatedServices: ["/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/mezhdunarodnyy-yurist-rossiya"],
     serviceType: "Arbitration and Dispute Resolution",
   },
+  {
+    path: "/ru/nedvizhimost-i-arenda",
+    title: "Недвижимость и аренда — юридическое сопровождение | Verdi&Co.",
+    h1: "Недвижимость, аренда и защита собственника",
+    description: "Юридическое сопровождение недвижимости и аренды: договоры, имущественные споры, защита собственника и оспаривание кадастровой стоимости.",
+    alternatePath: "",
+    relatedServices: ["/ru/arbitrazhnye-spory", "/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy"],
+    serviceType: "Real Estate Legal Services",
+  },
 ];
 
 // EN Service Pages

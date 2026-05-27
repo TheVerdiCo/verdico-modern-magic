@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish RU service deep links
+      - name: Publish RU indexable deep links
         run: |
           for route in \
             ru/privlechenie-investitsiy \
@@ -41,7 +41,16 @@ jobs:
             ru/yuridicheskoe-soprovozhdenie-investitsiy \
             ru/mezhdunarodnyy-yurist-rossiya \
             ru/arbitrazhnye-spory \
-            ru/nedvizhimost-i-arenda; do
+            ru/nedvizhimost-i-arenda \
+            ru/o-nas \
+            ru/kontakty \
+            ru/insights \
+            ru/insights/samovolnaya-rekonstruktsiya-i-pereplanirovka \
+            ru/insights/bezdejstvie-pristava \
+            ru/insights/subsidiarnaya-otvetstvennost-prezumptsii \
+            ru/insights/dogovor-arendy-kak-dokazatelstvo \
+            ru/insights/osparivanie-kadastrovoj-stoimosti \
+            ru/insights/registratsiya-tovarnogo-znaka-podgotovka-dokumentov; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done

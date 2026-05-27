@@ -22,6 +22,11 @@ const ArbitrationRu = () => (
         href: "/ru/insights/bezdejstvie-pristava",
         label: "Практический материал",
       },
+      {
+        title: "Договор аренды как доказательство: что собственник должен фиксировать постоянно",
+        href: "/ru/insights/dogovor-arendy-kak-dokazatelstvo",
+        label: "Практический материал",
+      },
     ]}
   />
 );

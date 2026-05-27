@@ -33,6 +33,19 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Publish RU service deep links
+        run: |
+          for route in \
+            ru/privlechenie-investitsiy \
+            ru/sdelki-m-a \
+            ru/yuridicheskoe-soprovozhdenie-investitsiy \
+            ru/mezhdunarodnyy-yurist-rossiya \
+            ru/arbitrazhnye-spory \
+            ru/nedvizhimost-i-arenda; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

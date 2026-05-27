@@ -49,7 +49,7 @@ export const routeAlternates: Record<string, string> = {
 export const ruServices: ServicePage[] = [
   {
     path: "/ru/privlechenie-investitsiy",
-    title: "Привлечение инвестиций в России и зарубежом — юрист международник | Верди и Ко.",
+    title: "Привлечение инвестиций в России и за рубежом — юрист международник | Верди и Ко.",
     h1: "Юридическое сопровождение привлечения инвестиций",
     description: "Юридическое сопровождение привлечения инвестиций: структура сделки, документы, переговоры, защита интересов инвестора и бизнеса в России.",
     alternatePath: "/en/investment-raising",

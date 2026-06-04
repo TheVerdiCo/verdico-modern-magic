@@ -15,6 +15,7 @@ import HomeRu from "./pages/ru/HomeRu";
 import AboutRu from "./pages/ru/AboutRu";
 import ContactsRu from "./pages/ru/ContactsRu";
 import ConsultationPaymentRu from "./pages/ru/ConsultationPaymentRu";
+import ConsultationPaymentRuPayment from "./pages/ru/ConsultationPaymentRuPayment";
 import InsightsRu from "./pages/ru/InsightsRu";
 import InsightArticleRu from "./pages/ru/InsightArticleRu";
 import InvestmentRaisingRu from "./pages/ru/services/InvestmentRaisingRu";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/ru/o-nas" element={<AboutRu />} />
             <Route path="/ru/kontakty" element={<ContactsRu />} />
             <Route path="/ru/konsultatsiya-oplata" element={<ConsultationPaymentRu />} />
+            <Route path="/ru/konsultatsiya-oplata/oplata" element={<ConsultationPaymentRuPayment />} />
             <Route path="/ru/insights" element={<InsightsRu />} />
             <Route path="/ru/insights/:slug" element={<InsightArticleRu />} />
 

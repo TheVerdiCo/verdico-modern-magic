@@ -31,8 +31,16 @@ const ConsultationPaymentRuPayment = () => {
                 Оплата после подтверждения
               </h1>
               <p className="text-[16px] leading-[1.65] md:text-lg md:leading-relaxed text-muted-foreground">
-                Эта страница используется после отправки формы согласия и
+                Эта страница используется после отправки формы подтверждения и
                 согласования консультации с Verdico.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
+                Если вы попали на эту страницу без отправки формы подтверждения,
+                сначала заполните форму на{" "}
+                <Link to="/ru/konsultatsiya-oplata" className="text-accent hover:underline">
+                  странице условий
+                </Link>
+                .
               </p>
             </div>
 

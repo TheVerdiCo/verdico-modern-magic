@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { ArrowLeft, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
@@ -9,8 +10,37 @@ const mailBody =
   "Я ознакомился(лась) с условиями консультации и даю согласие на обработку персональных данных, добровольно направляемых мной для рассмотрения запроса.";
 
 const mailtoHref = `mailto:admin@verdico.ru?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+const emailTemplate = `Кому: ${EMAIL}
+Тема: ${mailSubject}
+
+Текст письма:
+${mailBody}
+
+Кратко опишите вопрос и приложите документы, если считаете это необходимым.`;
 
 const ConsultationPaymentRu = () => {
+  const emailTemplateRef = useRef<HTMLDivElement>(null);
+  const [copyStatus, setCopyStatus] = useState("");
+
+  const handlePrepareEmail = async () => {
+    emailTemplateRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setCopyStatus("Откройте почту вручную и скопируйте текст ниже.");
+
+    try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error("Clipboard API is unavailable");
+      }
+
+      await Promise.race([
+        navigator.clipboard.writeText(emailTemplate),
+        new Promise((_, reject) => window.setTimeout(() => reject(new Error("Clipboard write timed out")), 1500)),
+      ]);
+      setCopyStatus("Текст письма скопирован. Откройте почту и отправьте его на admin@verdico.ru.");
+    } catch {
+      setCopyStatus("Откройте почту вручную и скопируйте текст ниже.");
+    }
+  };
+
   return (
     <MultilingualLayout>
       <SEOHead
@@ -180,16 +210,27 @@ const ConsultationPaymentRu = () => {
                   согласия; сайт не отправляет автоматически и не сохраняет
                   содержание обращения.
                 </p>
-                <a
-                  href={mailtoHref}
-                  aria-label="Направить запрос на консультацию по электронной почте"
-                  title="Открыть письмо на admin@verdico.ru"
+                <button
+                  type="button"
+                  onClick={handlePrepareEmail}
+                  aria-label="Подготовить письмо для консультации"
                   className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-navy-glass px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Mail className="w-5 h-5" />
-                  Направить запрос на консультацию
-                </a>
-                <div className="mt-6 rounded-lg border border-border bg-card p-4 text-left">
+                  Подготовить письмо для консультации
+                </button>
+                <p
+                  id="consultation-email-status"
+                  aria-live="polite"
+                  className="mt-4 min-h-6 text-[14px] leading-[1.6] text-muted-foreground"
+                >
+                  {copyStatus}
+                </p>
+                <div
+                  id="consultation-email-template"
+                  ref={emailTemplateRef}
+                  className="mt-6 rounded-lg border border-border bg-card p-4 text-left"
+                >
                   <h3 className="font-serif text-lg mb-3 text-foreground">
                     Если кнопка не открывает почту
                   </h3>
@@ -197,9 +238,9 @@ const ConsultationPaymentRu = () => {
                     Некоторые браузеры или устройства не открывают почтовую
                     программу автоматически. В этом случае направьте письмо
                     вручную на{" "}
-                    <a href={mailtoHref} className="text-accent hover:underline">
+                    <span className="font-medium text-foreground">
                       admin@verdico.ru
-                    </a>
+                    </span>
                     .
                   </p>
                   <div className="mt-4 rounded-md bg-secondary/50 p-4 text-[14px] leading-[1.65] text-muted-foreground">
@@ -219,6 +260,13 @@ const ConsultationPaymentRu = () => {
                       это необходимым.
                     </p>
                   </div>
+                  <p className="mt-4 text-[14px] leading-[1.6] text-muted-foreground">
+                    Если на устройстве настроена почтовая программа, можно
+                    попробовать открыть письмо автоматически:{" "}
+                    <a href={mailtoHref} className="text-accent hover:underline">
+                      Открыть почту через mailto
+                    </a>
+                  </p>
                 </div>
               </section>
             </div>

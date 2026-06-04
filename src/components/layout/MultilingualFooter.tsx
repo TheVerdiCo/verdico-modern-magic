@@ -18,7 +18,7 @@ const MultilingualFooter = () => {
       contactCta: "Обсудить задачу",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_RU} Все права защищены.`,
       privacy: "Политика конфиденциальности",
-      disclaimer: "Данный сайт носит информационный характер и не собирает, не хранит и не обрабатывает персональные данные посетителей.",
+      disclaimer: "Обработка персональных данных возможна только при добровольном направлении обращения пользователем и осуществляется в соответствии с политикой обработки персональных данных.",
     },
     en: {
       trust: "Russia / International Projects",
@@ -28,7 +28,7 @@ const MultilingualFooter = () => {
       contactCta: "Discuss Your Case",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_EN}. All rights reserved.`,
       privacy: "Privacy Policy",
-      disclaimer: "This website is for informational purposes only and does not collect, store, or process personal data of its visitors.",
+      disclaimer: "Personal data may be processed only when a user voluntarily sends a request and is handled in accordance with the personal data processing policy.",
     },
   };
 

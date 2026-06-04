@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/seo/SEOHead";
+import { EMAIL } from "@/lib/seo";
 
 const PrivacyPolicy = () => {
   return (
@@ -17,9 +18,8 @@ const PrivacyPolicy = () => {
       <Header />
       <main className="flex-1 py-16 md:py-24 px-4 sm:px-6">
         <div className="container max-w-3xl mx-auto">
-          {/* Back link */}
-          <Link 
-            to="/" 
+          <Link
+            to="/ru"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -27,74 +27,125 @@ const PrivacyPolicy = () => {
           </Link>
 
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-8 md:mb-12 text-center">
-            Информация об использовании сайта и конфиденциальности
+            Политика обработки персональных данных
           </h1>
 
           <div className="space-y-8 md:space-y-10">
-            {/* Section 1 */}
             <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
               <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
                 1. Общие положения
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Настоящий документ определяет статус сайта https://www.verdico.ru (далее — «Сайт») в отношении персональных данных посетителей. Владельцем Сайта является Индивидуальный предприниматель Гахвердиев Джамал Джалилович (ИНН: 110213503960).
+                Настоящая политика применяется к страницам Verdico.ru, на
+                которых пользователь может инициировать контакт или запрос на
+                консультацию. Владельцем сайта является Индивидуальный
+                предприниматель Гахвердиев Джамал Джалилович (ИНН:
+                110213503960).
               </p>
             </section>
 
-            {/* Section 2 */}
             <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
               <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
-                2. Отсутствие сбора персональных данных
+                2. Использование сайта
               </h2>
               <div className="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
                 <p>
-                  Сайт является исключительно информационным ресурсом. Владелец Сайта не является оператором персональных данных в понимании Федерального закона № 152-ФЗ «О персональных данных» в рамках работы данного Сайта, так как:
+                  Общий просмотр сайта не требует регистрации, создания личного
+                  кабинета или заполнения формы на сайте.
                 </p>
-                <ul className="list-disc list-outside ml-5 space-y-1.5">
-                  <li>на Сайте отсутствуют формы обратной связи, подписки, регистрации или личные кабинеты;</li>
-                  <li>на Сайте не производится сбор, запись, систематизация, накопление или хранение персональных данных пользователей (ФИО, телефонов, адресов e-mail);</li>
-                  <li>на Сайте не используются сервисы веб-аналитики (Yandex Metrica, Google Analytics и аналоги), пиксели соцсетей или иные инструменты скрытого сбора данных.</li>
-                </ul>
+                <p>
+                  Персональные данные могут обрабатываться, если пользователь
+                  добровольно направляет обращение по электронной почте со
+                  страницы контактов или страницы консультации и оплаты.
+                </p>
+                <p>
+                  На сайте не используется автоматическая форма отправки данных.
+                  Содержание обращения и подтверждение согласия фиксируются в
+                  электронном письме, направленном пользователем.
+                </p>
               </div>
             </section>
 
-            {/* Section 3 */}
             <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
               <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
-                3. Взаимодействие вне Сайта
+                3. Категории данных
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3">
+                В зависимости от содержания обращения могут обрабатываться:
+              </p>
+              <ul className="list-disc list-outside ml-5 space-y-1.5 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <li>имя пользователя, если оно указано в обращении;</li>
+                <li>контактные данные: адрес электронной почты или телефон;</li>
+                <li>текст запроса и сведения о ситуации, добровольно сообщенные пользователем;</li>
+                <li>документы и материалы, добровольно направленные пользователем;</li>
+                <li>данные, связанные с подтверждением оплаты, если они применимы.</li>
+              </ul>
+            </section>
+
+            <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
+              <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
+                4. Цели и основания обработки
+              </h2>
+              <div className="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <p>
+                  Данные используются для коммуникации с пользователем,
+                  рассмотрения запроса на консультацию, проверки объема
+                  обращения и возможного конфликта интересов, проведения
+                  согласованной консультации, подтверждения оплаты и учета, а
+                  также соблюдения применимых правовых требований.
+                </p>
+                <p>
+                  Основанием обработки является согласие пользователя и/или
+                  действия, необходимые для рассмотрения запрошенной консультации
+                  или последующего оказания услуги.
+                </p>
+              </div>
+            </section>
+
+            <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
+              <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
+                5. Ограничение направляемых сведений
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Взаимодействие с ИП Гахвердиевым Д.Д. осуществляется исключительно по инициативе пользователя вне интерфейса Сайта (путем самостоятельного перехода в мессенджер Telegram или отправки письма на электронную почту). В этом случае обработка предоставленных пользователем данных (например, адреса e-mail или ника в мессенджере) регулируется ст. 6 ФЗ-152 и осуществляется исключительно для целей коммуникации по запросу пользователя или исполнения договора.
+                Пользователю не следует направлять специальные категории
+                персональных данных или избыточные сведения, если они отдельно
+                не запрошены, не необходимы для рассмотрения ситуации и не
+                согласованы применительно к конкретному обращению.
               </p>
             </section>
 
-            {/* Section 4 */}
             <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
               <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
-                4. Использование файлов Cookie
+                6. Права пользователя
               </h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Сайт использует только технические (сессионные) файлы cookie, которые необходимы для корректного отображения страниц и обеспечения безопасности соединения. Эти данные не позволяют идентифицировать личность пользователя и не передаются третьим лицам. Пользователь может ограничить использование cookie в настройках своего браузера.
-              </p>
+              <div className="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <p>
+                  Пользователь вправе отозвать согласие, запросить доступ к
+                  своим данным, их уточнение или удаление в случаях и пределах,
+                  применимых к конкретному обращению.
+                </p>
+                <p>
+                  Для обращений по вопросам персональных данных используется
+                  адрес{" "}
+                  <a href={`mailto:${EMAIL}`} className="text-accent hover:underline">
+                    {EMAIL}
+                  </a>
+                  .
+                </p>
+              </div>
             </section>
 
-            {/* Section 5 */}
-            <section className="bg-card/50 rounded-xl p-4 sm:p-6 border border-border/50">
-              <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
-                5. Права пользователей
-              </h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Поскольку сбор данных на Сайте не ведется, запросы об уточнении или удалении данных с Сайта не применимы. По вопросам взаимодействия вне Сайта пользователь может обратиться по адресу: admin@verdico.ru.
-              </p>
-            </section>
-
-            {/* Contact */}
             <section className="bg-primary/5 rounded-xl p-4 sm:p-6 border border-primary/20">
               <h2 className="font-serif text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-foreground">
                 Контактная информация
               </h2>
               <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
-                <p><span className="font-medium text-foreground">E-mail:</span> admin@verdico.ru</p>
+                <p>
+                  <span className="font-medium text-foreground">E-mail:</span>{" "}
+                  <a href={`mailto:${EMAIL}`} className="text-accent hover:underline">
+                    {EMAIL}
+                  </a>
+                </p>
               </div>
             </section>
           </div>

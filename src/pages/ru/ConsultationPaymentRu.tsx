@@ -9,7 +9,7 @@ const mailSubject = "Запрос на консультацию через Verdi
 const mailBody =
   "Я ознакомился(лась) с условиями консультации и даю согласие на обработку персональных данных, добровольно направляемых мной для рассмотрения запроса.";
 
-const mailtoHref = `mailto:${EMAIL}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+const mailtoHref = `mailto:admin@verdico.ru?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
 const ConsultationPaymentRu = () => {
   return (
@@ -105,10 +105,15 @@ const ConsultationPaymentRu = () => {
                     индивидуально с учетом применимого законодательства и
                     обстоятельств платежа.
                   </p>
-                  <div className="mt-5 rounded-lg border border-dashed border-border bg-secondary/40 p-5 text-center">
-                    <p className="text-sm font-medium text-foreground">
-                      QR-код для оплаты размещается после согласования консультации.
+                  <div className="mt-5 rounded-lg border border-border bg-secondary/40 p-5 text-center">
+                    <p className="text-sm font-medium text-foreground mb-4">
+                      QR-код используется для оплаты после согласования консультации и условий.
                     </p>
+                    <img
+                      src="/payment/qr-sberbank-account.png"
+                      alt="QR-код для оплаты консультации"
+                      className="mx-auto w-full max-w-[280px] rounded-lg border border-border bg-white p-3"
+                    />
                   </div>
                 </div>
               </section>
@@ -167,16 +172,18 @@ const ConsultationPaymentRu = () => {
                   Направление запроса
                 </h2>
                 <p className="text-[15px] leading-[1.65] text-muted-foreground mb-6">
+                  Нажатие на кнопку открывает черновик электронного письма.
                   Запрос направляется пользователем самостоятельно по электронной
-                  почте. Сайт не сохраняет содержание обращения и не использует
-                  автоматическую форму отправки данных.
+                  почте. Направленное письмо является подтверждением запроса и
+                  согласия; сайт не отправляет автоматически и не сохраняет
+                  содержание обращения.
                 </p>
-                <a href={mailtoHref}>
-                  <Button size="lg" className="gap-2 btn-navy-glass rounded-full w-full sm:w-auto">
+                <Button asChild size="lg" className="gap-2 btn-navy-glass rounded-full w-full sm:w-auto">
+                  <a href={mailtoHref}>
                     <Mail className="w-5 h-5" />
                     Направить запрос на консультацию
-                  </Button>
-                </a>
+                  </a>
+                </Button>
               </section>
             </div>
           </div>

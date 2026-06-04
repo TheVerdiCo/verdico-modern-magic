@@ -1,6 +1,5 @@
 import { ArrowLeft, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import SEOHead from "@/components/seo/SEOHead";
 import { EMAIL } from "@/lib/seo";
@@ -178,12 +177,25 @@ const ConsultationPaymentRu = () => {
                   согласия; сайт не отправляет автоматически и не сохраняет
                   содержание обращения.
                 </p>
-                <Button asChild size="lg" className="gap-2 btn-navy-glass rounded-full w-full sm:w-auto">
-                  <a href={mailtoHref}>
-                    <Mail className="w-5 h-5" />
-                    Направить запрос на консультацию
+                <a
+                  href={mailtoHref}
+                  aria-label="Направить запрос на консультацию по электронной почте"
+                  title="Открыть письмо на admin@verdico.ru"
+                  className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-navy-glass px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <Mail className="w-5 h-5" />
+                  Направить запрос на консультацию
+                </a>
+                <p className="mt-4 text-[14px] leading-[1.6] text-muted-foreground">
+                  Если почтовая программа не открылась автоматически, напишите
+                  напрямую на{" "}
+                  <a href={mailtoHref} className="text-accent hover:underline">
+                    admin@verdico.ru
                   </a>
-                </Button>
+                  . В письме укажите, что вы ознакомились с условиями
+                  консультации и даёте согласие на обработку персональных данных
+                  для рассмотрения запроса.
+                </p>
               </section>
             </div>
           </div>

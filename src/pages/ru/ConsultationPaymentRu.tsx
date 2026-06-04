@@ -90,13 +90,16 @@ const ConsultationPaymentRu = () => {
                 </h2>
                 <div className="space-y-3 text-[15px] leading-[1.65] text-muted-foreground">
                   <p>
-                    Оплата производится только после того, как пользователь
-                    ознакомился с настоящими условиями и направил запрос на
-                    консультацию.
+                    Последовательность работы: пользователь направляет запрос,
+                    Verdico подтверждает объем и стоимость консультации, после
+                    этого производится оплата по QR-коду.
                   </p>
                   <p>
                     Блок оплаты по QR-коду является информацией для совершения
                     платежа и не изменяет согласованный объем консультации.
+                  </p>
+                  <p>
+                    QR-код используется только после предварительного согласования консультации, стоимости и объёма работы. Не оплачивайте консультацию до подтверждения со стороны Verdico.
                   </p>
                   <p>
                     Если после оплаты консультация не может быть предоставлена,
@@ -186,16 +189,37 @@ const ConsultationPaymentRu = () => {
                   <Mail className="w-5 h-5" />
                   Направить запрос на консультацию
                 </a>
-                <p className="mt-4 text-[14px] leading-[1.6] text-muted-foreground">
-                  Если почтовая программа не открылась автоматически, напишите
-                  напрямую на{" "}
-                  <a href={mailtoHref} className="text-accent hover:underline">
-                    admin@verdico.ru
-                  </a>
-                  . В письме укажите, что вы ознакомились с условиями
-                  консультации и даёте согласие на обработку персональных данных
-                  для рассмотрения запроса.
-                </p>
+                <div className="mt-6 rounded-lg border border-border bg-card p-4 text-left">
+                  <h3 className="font-serif text-lg mb-3 text-foreground">
+                    Если кнопка не открывает почту
+                  </h3>
+                  <p className="text-[14px] leading-[1.6] text-muted-foreground">
+                    Некоторые браузеры или устройства не открывают почтовую
+                    программу автоматически. В этом случае направьте письмо
+                    вручную на{" "}
+                    <a href={mailtoHref} className="text-accent hover:underline">
+                      admin@verdico.ru
+                    </a>
+                    .
+                  </p>
+                  <div className="mt-4 rounded-md bg-secondary/50 p-4 text-[14px] leading-[1.65] text-muted-foreground">
+                    <p className="font-medium text-foreground">
+                      Тема: Запрос на консультацию через Verdico.ru
+                    </p>
+                    <p className="mt-3 font-medium text-foreground">
+                      Текст письма:
+                    </p>
+                    <p className="mt-1">
+                      Я ознакомился(лась) с условиями консультации и даю
+                      согласие на обработку персональных данных, добровольно
+                      направляемых мной для рассмотрения запроса.
+                    </p>
+                    <p className="mt-3">
+                      Кратко опишите вопрос и приложите документы, если считаете
+                      это необходимым.
+                    </p>
+                  </div>
+                </div>
               </section>
             </div>
           </div>

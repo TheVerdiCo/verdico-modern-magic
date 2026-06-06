@@ -61,6 +61,8 @@ const App = () => (
             <Route path="/ru/kontakty" element={<ContactsRu />} />
             <Route path="/ru/konsultatsiya-oplata" element={<ConsultationPaymentRu />} />
             <Route path="/ru/konsultatsiya-oplata/oplata" element={<ConsultationPaymentRuPayment />} />
+            {/* Short public payment alias */}
+            <Route path="/oplata" element={<ConsultationPaymentRuPayment />} />
             <Route path="/ru/insights" element={<InsightsRu />} />
             <Route path="/ru/insights/:slug" element={<InsightArticleRu />} />
 

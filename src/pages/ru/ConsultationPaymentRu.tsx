@@ -8,8 +8,12 @@ import { EMAIL } from "@/lib/seo";
 // Бэкенд-эндпоинт принимает форму подтверждения, формирует серверную
 // запись и отправляет её на admin@verdico.ru, после чего фронтенд
 // открывает страницу оплаты. До подключения эндпоинта оплата недоступна.
-const ACCEPTANCE_API_URL = "REPLACE_WITH_ACCEPTANCE_API_URL";
-const apiConfigured = ACCEPTANCE_API_URL !== "REPLACE_WITH_ACCEPTANCE_API_URL";
+// Public production acceptance endpoint (API Gateway). The URL is public and
+// safe to ship; override via the Vite public env var if needed. No secrets here.
+const ACCEPTANCE_API_URL =
+  import.meta.env.VITE_VERDICO_ACCEPTANCE_ENDPOINT ||
+  "https://d5d9nsqvjkh3dhmpsdsg.628pfjdx.apigw.yandexcloud.net/acceptance";
+const apiConfigured = ACCEPTANCE_API_URL.length > 0;
 
 // Версии принимаемых документов фиксируются в записи о подтверждении.
 const TERMS_VERSION = "verdico-consultation-terms-2026-06-05";

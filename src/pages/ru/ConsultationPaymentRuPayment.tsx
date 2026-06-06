@@ -9,7 +9,7 @@ const ConsultationPaymentRuPayment = () => {
     <MultilingualLayout>
       <SEOHead
         title="Оплата консультации — Верди и Ко."
-        description="Страница оплаты консультации после отправки формы согласия и согласования суммы с Verdico."
+        description="Страница оплаты консультации после отправки формы согласия и согласования суммы с Верди и Ко."
         path="/ru/konsultatsiya-oplata/oplata"
         noIndex
       />
@@ -32,7 +32,7 @@ const ConsultationPaymentRuPayment = () => {
               </h1>
               <p className="text-[16px] leading-[1.65] md:text-lg md:leading-relaxed text-muted-foreground">
                 Эта страница используется после отправки формы подтверждения и
-                согласования консультации с Verdico.
+                согласования консультации с Верди и Ко.
               </p>
               <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
                 Если вы попали на эту страницу без отправки формы подтверждения,
@@ -47,8 +47,8 @@ const ConsultationPaymentRuPayment = () => {
             <div className="space-y-6 md:space-y-8">
               <section className="bg-card border border-border verdico-card p-5 md:p-7 text-center">
                 <p className="text-[15px] leading-[1.65] text-muted-foreground mb-2">
-                  Оплачивайте только сумму, которую Verdico заранее подтвердил в
-                  переписке.
+                  Оплачивайте только сумму, которую Верди и Ко. заранее
+                  подтвердил в переписке.
                 </p>
                 <div className="mt-5 rounded-lg border border-border bg-secondary/40 p-5">
                   <img
@@ -67,7 +67,7 @@ const ConsultationPaymentRuPayment = () => {
                 <div className="space-y-3 text-[15px] leading-[1.65] text-muted-foreground">
                   <p>
                     Оплата производится после отправки формы согласия и
-                    предварительного согласования консультации с Verdico.
+                    предварительного согласования консультации с Верди и Ко.
                   </p>
                   <p>
                     Вопросы по оплате и её подтверждению:{" "}
@@ -77,8 +77,10 @@ const ConsultationPaymentRuPayment = () => {
                     .
                   </p>
                   <p className="text-[14px] leading-[1.6]">
-                    Фискальный чек/подтверждение оплаты предоставляется в порядке,
-                    применимом к выбранному способу оплаты.
+                    После подтверждения оплаты будет направлена информация по
+                    консультации; кассовый чек оформляется в порядке,
+                    предусмотренном законом. Банковская квитанция или письмо с
+                    сайта не являются кассовым чеком.
                   </p>
                 </div>
               </section>

@@ -49,7 +49,7 @@ const ConsultationPaymentRu = () => {
       e.email = "Укажите корректный адрес электронной почты.";
     if (!form.agreedAmount.trim() && !form.amountAgreedInPriorCorrespondence)
       e.amount =
-        "Укажите согласованную сумму или отметьте, что сумма согласована с Verdico в переписке.";
+        "Укажите согласованную сумму или отметьте, что сумма согласована с Верди и Ко. в переписке.";
     if (!form.personalDataConsentAccepted)
       e.personalDataConsentAccepted =
         "Требуется согласие на обработку персональных данных.";
@@ -120,7 +120,7 @@ const ConsultationPaymentRu = () => {
     <MultilingualLayout>
       <SEOHead
         title="Консультация и порядок оплаты — Верди и Ко."
-        description="Общие условия направления запроса на индивидуальную консультацию, подтверждение согласия через форму и порядок оплаты."
+        description="Направление запроса на индивидуальную консультацию Верди и Ко., подтверждение согласия через форму и порядок оплаты."
         path="/ru/konsultatsiya-oplata"
         noIndex
       />
@@ -136,19 +136,219 @@ const ConsultationPaymentRu = () => {
               На главную
             </Link>
 
-            <div className="mb-10 md:mb-12">
+            <div className="mb-8 md:mb-10">
               <span className="eyebrow">Консультация</span>
               <h1 className="font-serif text-3xl md:text-5xl mt-4 mb-5">
                 Консультация и порядок оплаты
               </h1>
               <p className="text-[16px] leading-[1.65] md:text-lg md:leading-relaxed text-muted-foreground">
-                Настоящая страница определяет общие условия направления запроса
-                на индивидуальную юридическую или бизнес-консультацию через
-                Verdico.ru.
+                Чтобы направить запрос на индивидуальную юридическую или
+                бизнес-консультацию Верди и Ко., заполните форму ниже. Условия
+                консультации и порядок оплаты приведены под формой.
               </p>
             </div>
 
-            <div className="space-y-6 md:space-y-8">
+            {/* Форма — в начале страницы */}
+            <section className="border-2 border-accent/40 bg-accent/5 rounded-xl p-5 md:p-7">
+              <h2 className="font-serif text-xl md:text-2xl mb-4">
+                Форма подтверждения
+              </h2>
+              <p className="text-[15px] leading-[1.65] text-muted-foreground mb-2">
+                Согласие на обработку персональных данных и согласие с условиями
+                консультации оформляются отдельными отметками ниже. Это
+                самостоятельные подтверждения, не объединённые с другими
+                сведениями.
+              </p>
+              <p className="text-[15px] leading-[1.65] text-muted-foreground mb-6">
+                Запись о подтверждении формируется и направляется на {EMAIL}.
+                Содержание обращения на самом сайте не хранится.
+              </p>
+
+              {!apiConfigured && (
+                <p className="mb-6 rounded-lg border border-amber-400/50 bg-amber-50 px-4 py-3 text-[14px] leading-[1.6] text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
+                  Форма подтверждения ещё не подключена. Не используйте
+                  страницу для оплаты до настройки подтверждения.
+                </p>
+              )}
+
+              <form onSubmit={handleSubmit} noValidate className="space-y-5 text-left">
+                <div>
+                  <label htmlFor="fullName" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                    ФИО <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    id="fullName"
+                    type="text"
+                    autoComplete="name"
+                    className={inputClass}
+                    value={form.fullName}
+                    onChange={(e) => update("fullName", e.target.value)}
+                  />
+                  {errors.fullName && (
+                    <p className="mt-1 text-[13px] text-destructive">{errors.fullName}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                    Email <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    className={inputClass}
+                    value={form.email}
+                    onChange={(e) => update("email", e.target.value)}
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-[13px] text-destructive">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="contact" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                    Телефон или Telegram <span className="text-muted-foreground">(необязательно)</span>
+                  </label>
+                  <input
+                    id="contact"
+                    type="text"
+                    className={inputClass}
+                    value={form.contact}
+                    onChange={(e) => update("contact", e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="agreedAmount" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                    Согласованная сумма консультации
+                  </label>
+                  <input
+                    id="agreedAmount"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="например, 15 000 ₽"
+                    className={inputClass}
+                    value={form.agreedAmount}
+                    onChange={(e) => update("agreedAmount", e.target.value)}
+                  />
+                  <label className="mt-2 flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+                      checked={form.amountAgreedInPriorCorrespondence}
+                      onChange={(e) => update("amountAgreedInPriorCorrespondence", e.target.checked)}
+                    />
+                    <span>Сумма консультации согласована с Верди и Ко. в переписке.</span>
+                  </label>
+                  {errors.amount && (
+                    <p className="mt-1 text-[13px] text-destructive">{errors.amount}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="matterSummary" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                    Кратко о вопросе <span className="text-muted-foreground">(необязательно)</span>
+                  </label>
+                  <textarea
+                    id="matterSummary"
+                    rows={4}
+                    className={inputClass}
+                    value={form.matterSummary}
+                    onChange={(e) => update("matterSummary", e.target.value)}
+                  />
+                </div>
+
+                <div className="space-y-3 rounded-lg border border-border bg-card p-4">
+                  <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+                      checked={form.personalDataConsentAccepted}
+                      onChange={(e) => update("personalDataConsentAccepted", e.target.checked)}
+                    />
+                    <span>
+                      Я даю согласие на обработку персональных данных в
+                      соответствии с{" "}
+                      <Link to="/policy" className="text-accent hover:underline">
+                        политикой обработки персональных данных
+                      </Link>
+                      . <span className="text-accent">*</span>
+                    </span>
+                  </label>
+                  {errors.personalDataConsentAccepted && (
+                    <p className="text-[13px] text-destructive">{errors.personalDataConsentAccepted}</p>
+                  )}
+
+                  <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+                      checked={form.termsAccepted}
+                      onChange={(e) => update("termsAccepted", e.target.checked)}
+                    />
+                    <span>
+                      Я ознакомился(лась) и согласен(на) с условиями
+                      консультации и порядком оплаты, изложенными на этой
+                      странице. <span className="text-accent">*</span>
+                    </span>
+                  </label>
+                  {errors.termsAccepted && (
+                    <p className="text-[13px] text-destructive">{errors.termsAccepted}</p>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-navy-glass px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <ClipboardCheck className="w-5 h-5" />
+                  {submitting ? "Отправка…" : "Отправить форму подтверждения"}
+                </button>
+
+                <p aria-live="polite" className="min-h-5 text-[14px] leading-[1.6] text-muted-foreground">
+                  {status}
+                </p>
+              </form>
+            </section>
+
+            {/* Условия — под формой */}
+            <div className="mt-10 md:mt-12 space-y-6 md:space-y-8">
+              <section className="bg-card border border-border verdico-card p-5 md:p-7">
+                <h2 className="font-serif text-xl md:text-2xl mb-4">
+                  Как это работает
+                </h2>
+                <ol className="space-y-4">
+                  <li className="flex gap-3">
+                    <FileText className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
+                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
+                      <span className="font-medium text-foreground">Шаг 1.</span>{" "}
+                      Заполните форму подтверждения выше — отдельно подтвердите
+                      согласие на обработку персональных данных и согласие с
+                      условиями консультации.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <ShieldCheck className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
+                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
+                      <span className="font-medium text-foreground">Шаг 2.</span>{" "}
+                      После отправки формы откроется страница оплаты с
+                      реквизитами.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CreditCard className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
+                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
+                      <span className="font-medium text-foreground">Шаг 3.</span>{" "}
+                      Оплачивайте только после того, как Верди и Ко. подтвердит
+                      объём и стоимость консультации, и только согласованную
+                      сумму.
+                    </span>
+                  </li>
+                </ol>
+              </section>
+
               <section className="bg-card border border-border verdico-card p-5 md:p-7">
                 <h2 className="font-serif text-xl md:text-2xl mb-4">
                   Правовой характер информации
@@ -196,7 +396,7 @@ const ConsultationPaymentRu = () => {
                 <div className="space-y-3 text-[15px] leading-[1.65] text-muted-foreground">
                   <p>
                     Последовательность работы: пользователь заполняет форму
-                    подтверждения, Verdico согласовывает объем и стоимость
+                    подтверждения, Верди и Ко. согласовывает объем и стоимость
                     консультации, после этого производится оплата.
                   </p>
                   <p>
@@ -206,8 +406,13 @@ const ConsultationPaymentRu = () => {
                   </p>
                   <p>
                     Не оплачивайте консультацию до подтверждения со стороны
-                    Verdico. Оплачивается только сумма, заранее согласованная с
-                    Verdico в переписке.
+                    Верди и Ко. Оплачивается только сумма, заранее согласованная
+                    с Верди и Ко. в переписке.
+                  </p>
+                  <p>
+                    После подтверждения оплаты будет направлена информация по
+                    консультации; кассовый чек оформляется в порядке,
+                    предусмотренном законом.
                   </p>
                   <p>
                     Если после оплаты консультация не может быть предоставлена,
@@ -248,203 +453,6 @@ const ConsultationPaymentRu = () => {
                     .
                   </p>
                 </div>
-              </section>
-
-              <section className="bg-card border border-border verdico-card p-5 md:p-7">
-                <h2 className="font-serif text-xl md:text-2xl mb-4">
-                  Как направить запрос
-                </h2>
-                <ol className="space-y-4">
-                  <li className="flex gap-3">
-                    <FileText className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
-                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
-                      <span className="font-medium text-foreground">Шаг 1.</span>{" "}
-                      Ознакомьтесь с условиями консультации на этой странице.
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <ShieldCheck className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
-                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
-                      <span className="font-medium text-foreground">Шаг 2.</span>{" "}
-                      Заполните форму подтверждения ниже — отдельно подтвердите
-                      согласие на обработку персональных данных и согласие с
-                      условиями консультации.
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <CreditCard className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
-                    <span className="text-[15px] leading-[1.65] text-muted-foreground">
-                      <span className="font-medium text-foreground">Шаг 3.</span>{" "}
-                      После успешной отправки формы откроется страница оплаты.
-                      Оплата производится только после согласования суммы с
-                      Verdico.
-                    </span>
-                  </li>
-                </ol>
-              </section>
-
-              <section className="border-2 border-accent/40 bg-accent/5 rounded-xl p-5 md:p-7">
-                <h2 className="font-serif text-xl md:text-2xl mb-4">
-                  Форма подтверждения
-                </h2>
-                <p className="text-[15px] leading-[1.65] text-muted-foreground mb-2">
-                  Согласие на обработку персональных данных и согласие с
-                  условиями консультации оформляются отдельными отметками ниже.
-                  Это самостоятельные подтверждения, не объединённые с другими
-                  сведениями.
-                </p>
-                <p className="text-[15px] leading-[1.65] text-muted-foreground mb-6">
-                  Запись о подтверждении формируется и направляется на {EMAIL}.
-                  Содержание обращения на самом сайте не хранится.
-                </p>
-
-                {!apiConfigured && (
-                  <p className="mb-6 rounded-lg border border-amber-400/50 bg-amber-50 px-4 py-3 text-[14px] leading-[1.6] text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
-                    Форма подтверждения ещё не подключена. Не используйте
-                    страницу для оплаты до настройки подтверждения.
-                  </p>
-                )}
-
-                <form onSubmit={handleSubmit} noValidate className="space-y-5 text-left">
-                  <div>
-                    <label htmlFor="fullName" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      ФИО <span className="text-accent">*</span>
-                    </label>
-                    <input
-                      id="fullName"
-                      type="text"
-                      autoComplete="name"
-                      className={inputClass}
-                      value={form.fullName}
-                      onChange={(e) => update("fullName", e.target.value)}
-                    />
-                    {errors.fullName && (
-                      <p className="mt-1 text-[13px] text-destructive">{errors.fullName}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      Email <span className="text-accent">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      autoComplete="email"
-                      className={inputClass}
-                      value={form.email}
-                      onChange={(e) => update("email", e.target.value)}
-                    />
-                    {errors.email && (
-                      <p className="mt-1 text-[13px] text-destructive">{errors.email}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="contact" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      Телефон или Telegram <span className="text-muted-foreground">(необязательно)</span>
-                    </label>
-                    <input
-                      id="contact"
-                      type="text"
-                      className={inputClass}
-                      value={form.contact}
-                      onChange={(e) => update("contact", e.target.value)}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="agreedAmount" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      Согласованная сумма консультации
-                    </label>
-                    <input
-                      id="agreedAmount"
-                      type="text"
-                      inputMode="numeric"
-                      placeholder="например, 15 000 ₽"
-                      className={inputClass}
-                      value={form.agreedAmount}
-                      onChange={(e) => update("agreedAmount", e.target.value)}
-                    />
-                    <label className="mt-2 flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
-                      <input
-                        type="checkbox"
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
-                        checked={form.amountAgreedInPriorCorrespondence}
-                        onChange={(e) => update("amountAgreedInPriorCorrespondence", e.target.checked)}
-                      />
-                      <span>Сумма консультации согласована с Verdico в переписке.</span>
-                    </label>
-                    {errors.amount && (
-                      <p className="mt-1 text-[13px] text-destructive">{errors.amount}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="matterSummary" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      Кратко о вопросе <span className="text-muted-foreground">(необязательно)</span>
-                    </label>
-                    <textarea
-                      id="matterSummary"
-                      rows={4}
-                      className={inputClass}
-                      value={form.matterSummary}
-                      onChange={(e) => update("matterSummary", e.target.value)}
-                    />
-                  </div>
-
-                  <div className="space-y-3 rounded-lg border border-border bg-card p-4">
-                    <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
-                      <input
-                        type="checkbox"
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
-                        checked={form.personalDataConsentAccepted}
-                        onChange={(e) => update("personalDataConsentAccepted", e.target.checked)}
-                      />
-                      <span>
-                        Я даю согласие на обработку персональных данных в
-                        соответствии с{" "}
-                        <Link to="/policy" className="text-accent hover:underline">
-                          политикой обработки персональных данных
-                        </Link>
-                        . <span className="text-accent">*</span>
-                      </span>
-                    </label>
-                    {errors.personalDataConsentAccepted && (
-                      <p className="text-[13px] text-destructive">{errors.personalDataConsentAccepted}</p>
-                    )}
-
-                    <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
-                      <input
-                        type="checkbox"
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
-                        checked={form.termsAccepted}
-                        onChange={(e) => update("termsAccepted", e.target.checked)}
-                      />
-                      <span>
-                        Я ознакомился(лась) и согласен(на) с условиями
-                        консультации и порядком оплаты, изложенными на этой
-                        странице. <span className="text-accent">*</span>
-                      </span>
-                    </label>
-                    {errors.termsAccepted && (
-                      <p className="text-[13px] text-destructive">{errors.termsAccepted}</p>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-navy-glass px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    <ClipboardCheck className="w-5 h-5" />
-                    {submitting ? "Отправка…" : "Отправить форму подтверждения"}
-                  </button>
-
-                  <p aria-live="polite" className="min-h-5 text-[14px] leading-[1.6] text-muted-foreground">
-                    {status}
-                  </p>
-                </form>
               </section>
             </div>
           </div>

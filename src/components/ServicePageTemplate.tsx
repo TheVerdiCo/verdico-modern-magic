@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import type { ReactNode } from "react";
 import SEOHead from "@/components/seo/SEOHead";
 import LegalServiceSchema from "@/components/seo/LegalServiceSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
@@ -18,9 +19,10 @@ interface ServicePageTemplateProps {
     href: string;
     label?: string;
   }>;
+  additionalSections?: ReactNode;
 }
 
-const ServicePageTemplate = ({ service, content, relatedMaterials = [] }: ServicePageTemplateProps) => {
+const ServicePageTemplate = ({ service, content, relatedMaterials = [], additionalSections }: ServicePageTemplateProps) => {
   const lang = getLangFromPath(service.path);
   const contactPath = lang === "ru" ? "/ru/kontakty" : "/en/contacts";
   
@@ -75,6 +77,8 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [] }: Servic
           </div>
         </div>
       </section>
+
+      {additionalSections}
 
       {/* Related Services */}
       {relatedServices.length > 0 && (

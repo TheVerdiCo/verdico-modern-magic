@@ -33,3 +33,7 @@ tools/seo/live-video-runtime-proof.txt
 
 # Local Claude launcher configuration
 .claude/launch.json
+
+# Local Yandex Webmaster API credentials and reports
+.yandex-webmaster.env
+tools/yandex-webmaster/reindex-report.json

@@ -37,7 +37,7 @@ const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride,
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+      <meta property="og:image" content={`${SITE_URL}/og/verdico-social-preview.png`} />
       <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "en_US"} />
       <meta property="og:site_name" content={lang === "ru" ? "Верди и Ко." : "Verdi & Co."} />
 
@@ -45,7 +45,7 @@ const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride,
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+      <meta name="twitter:image" content={`${SITE_URL}/og/verdico-social-preview.png`} />
 
       {noIndex && <meta name="robots" content="noindex, follow" />}
     </Helmet>

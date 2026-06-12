@@ -36,6 +36,7 @@ jobs:
       - name: Publish RU indexable deep links
         run: |
           for route in \
+            ru \
             ru/privlechenie-investitsiy \
             ru/sdelki-m-a \
             ru/yuridicheskoe-soprovozhdenie-investitsiy \

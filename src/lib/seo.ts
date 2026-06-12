@@ -80,7 +80,7 @@ export const ruServices: ServicePage[] = [
     h1: "Международный юрист в России",
     description: "Трансграничные сделки и инвестиции: структура, договоры, риски, взаимодействие с иностранными контрагентами и юрисдикциями.",
     alternatePath: "/en/international-lawyer-russia",
-    relatedServices: ["/ru/privlechenie-investitsiy", "/ru/sdelki-m-a", "/ru/arbitrazhnye-spory"],
+    relatedServices: ["/ru/services/international-migration-coordination", "/ru/privlechenie-investitsiy", "/ru/sdelki-m-a"],
     serviceType: "International Legal Services",
   },
   {
@@ -100,6 +100,15 @@ export const ruServices: ServicePage[] = [
     alternatePath: "",
     relatedServices: ["/ru/arbitrazhnye-spory", "/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy"],
     serviceType: "Real Estate Legal Services",
+  },
+  {
+    path: "/ru/services/international-migration-coordination",
+    title: "Международные миграционные вопросы — координация с иностранными специалистами | Верди и Ко.",
+    h1: "Международные миграционные вопросы",
+    description: "Координация русскоязычного клиента с иностранными адвокатами и специалистами: вид на жительство, семейное воссоединение, статус высококвалифицированного специалиста, документы, сроки, расходы и риски.",
+    alternatePath: "",
+    relatedServices: ["/ru/mezhdunarodnyy-yurist-rossiya", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/nedvizhimost-i-arenda"],
+    serviceType: "Международная миграционная координация",
   },
 ];
 

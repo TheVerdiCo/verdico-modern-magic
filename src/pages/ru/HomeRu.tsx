@@ -44,6 +44,11 @@ const homeCardCopy: Record<string, { title: string; summary: string }> = {
     summary:
       "Недвижимость и аренда: договоры, защита собственника, имущественные споры и оспаривание кадастровой стоимости.",
   },
+  "/ru/services/international-migration-coordination": {
+    title: "Миграционная координация",
+    summary:
+      "Координация с иностранными специалистами: резидентство, семейное воссоединение, документы, сроки, расходы и риски.",
+  },
 };
 
 const HomeRu = () => {

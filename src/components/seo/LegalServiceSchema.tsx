@@ -6,9 +6,10 @@ interface LegalServiceSchemaProps {
   description: string;
   serviceType: string;
   url: string;
+  providerName?: string;
 }
 
-const LegalServiceSchema = ({ name, description, serviceType, url }: LegalServiceSchemaProps) => {
+const LegalServiceSchema = ({ name, description, serviceType, url, providerName = BRAND_NAME }: LegalServiceSchemaProps) => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LegalService",
@@ -18,7 +19,7 @@ const LegalServiceSchema = ({ name, description, serviceType, url }: LegalServic
     url: `${SITE_URL}${url}`,
     provider: {
       "@type": "Organization",
-      name: BRAND_NAME,
+      name: providerName,
       url: SITE_URL,
     },
     areaServed: {

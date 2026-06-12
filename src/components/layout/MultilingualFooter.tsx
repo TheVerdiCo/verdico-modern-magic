@@ -119,6 +119,16 @@ const MultilingualFooter = () => {
                   {t.privacy}
                 </Link>
               </li>
+              {lang === "ru" && (
+                <li>
+                  <Link
+                    to="/ru/email-privacy"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Конфиденциальность email
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 

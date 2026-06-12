@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import HomeRu from "./pages/ru/HomeRu";
 import AboutRu from "./pages/ru/AboutRu";
 import ContactsRu from "./pages/ru/ContactsRu";
+import EmailPrivacyRu from "./pages/ru/EmailPrivacyRu";
 import ConsultationPaymentRu from "./pages/ru/ConsultationPaymentRu";
 import ConsultationPaymentRuPayment from "./pages/ru/ConsultationPaymentRuPayment";
 import InsightsRu from "./pages/ru/InsightsRu";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/ru/nedvizhimost-i-arenda" element={<RealEstateRu />} />
             <Route path="/ru/o-nas" element={<AboutRu />} />
             <Route path="/ru/kontakty" element={<ContactsRu />} />
+            <Route path="/ru/email-privacy" element={<EmailPrivacyRu />} />
             <Route path="/ru/konsultatsiya-oplata" element={<ConsultationPaymentRu />} />
             <Route path="/ru/konsultatsiya-oplata/oplata" element={<ConsultationPaymentRuPayment />} />
             {/* Short public payment alias */}

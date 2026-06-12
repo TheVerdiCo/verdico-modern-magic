@@ -58,6 +58,30 @@ jobs:
             cp dist/index.html "dist/$route/index.html"
           done
 
+      - name: Patch international migration route metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from "node:fs";
+
+          const file = "dist/ru/services/international-migration-coordination/index.html";
+          const title = "Международные миграционные вопросы — координация с иностранными специалистами | Верди и Ко.";
+          const description = "Координация русскоязычного клиента с иностранными адвокатами и специалистами: вид на жительство, семейное воссоединение, статус высококвалифицированного специалиста, документы, сроки, расходы и риски.";
+          const url = "https://www.verdico.ru/ru/services/international-migration-coordination";
+
+          let html = readFileSync(file, "utf8");
+          html = html
+            .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+            .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
+            .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />`)
+            .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
+            .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
+            .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
+            .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
+            .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`);
+
+          writeFileSync(file, html);
+          NODE
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

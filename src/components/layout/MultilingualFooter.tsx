@@ -111,21 +111,40 @@ const MultilingualFooter = () => {
                   {nav.insights.label}
                 </Link>
               </li>
-              <li>
-                <Link
-                  to={lang === "ru" ? "/policy" : "/policy"}
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t.privacy}
-                </Link>
-              </li>
-              {lang === "ru" && (
+              {lang === "ru" ? (
+                <>
+                  <li>
+                    <Link
+                      to="/ru/privacy-policy"
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      Политика обработки персональных данных
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/ru/cookie-policy"
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      Политика использования cookies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/ru/email-privacy"
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      Уведомление для электронной переписки
+                    </Link>
+                  </li>
+                </>
+              ) : (
                 <li>
                   <Link
-                    to="/ru/email-privacy"
+                    to="/policy"
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
-                    Конфиденциальность email
+                    {t.privacy}
                   </Link>
                 </li>
               )}

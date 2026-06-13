@@ -17,7 +17,7 @@ const MIN_RUB = 1000;
 const MAX_RUB = 300000;
 const MAX_COMMENT_LENGTH = 500;
 const PD_CONSENT_TEXT =
-  "Согласен на обработку персональных данных для подготовки и направления индивидуальной ссылки на оплату, связи со мной и направления кассового чека. Подтверждаю, что ознакомлен с Политикой конфиденциальности.";
+  "Согласен на обработку персональных данных для подготовки и направления ссылки на оплату, связи со мной и направления кассового чека. Подтверждаю, что ознакомлен с Политикой конфиденциальности.";
 const PD_CONSENT_VERSION = "payment_request_pd_v1";
 const PRIVACY_POLICY_URL = "https://www.verdico.ru/ru/privacy-policy";
 const PAYMENT_METHODS = ["МИР", "Visa", "Mastercard", "СБП", "SberPay", "T-Pay"];
@@ -93,7 +93,7 @@ const ConsultationPaymentRuPayment = () => {
 
     if (!apiConfigured) {
       setStatus(
-        "Форма заявки ещё не подключена. Напишите на admin@verdico.ru для получения индивидуальной ссылки.",
+        "Форма заявки ещё не подключена. Напишите на admin@verdico.ru, чтобы получить ссылку на оплату.",
       );
       return;
     }
@@ -127,7 +127,7 @@ const ConsultationPaymentRuPayment = () => {
       if (res.ok && data?.ok) {
         setSent(true);
         setStatus(
-          "Заявка направлена. Проверьте e-mail: мы отправим письмо для подтверждения суммы, услуги и адреса для кассового чека.",
+          "Заявка направлена. Подтверждение будет направлено с официального адреса Верди и Ко. — admin@verdico.ru.",
         );
         setForm({
           fullName: "",
@@ -151,7 +151,7 @@ const ConsultationPaymentRuPayment = () => {
     <MultilingualLayout>
       <SEOHead
         title="Оплата юридических услуг — Верди и Ко."
-        description="Заявка на индивидуальную ссылку или QR-код для оплаты юридических услуг после предварительного согласования с Верди и Ко."
+        description="Заявка на оплату юридических услуг после предварительного согласования услуги, суммы и назначения платежа с Верди и Ко."
         path="/ru/konsultatsiya-oplata/oplata"
         noIndex
       />
@@ -173,34 +173,38 @@ const ConsultationPaymentRuPayment = () => {
                 Оплата юридических услуг
               </h1>
               <p className="text-[16px] leading-[1.65] md:text-lg md:leading-relaxed text-muted-foreground">
-                Оплата производится только после предварительного согласования
-                услуги, суммы и назначения платежа с Верди и Ко.
+                Оплата производится после предварительного согласования услуги,
+                суммы и назначения платежа с Верди и Ко.
               </p>
               <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
-                Для получения индивидуальной ссылки на оплату заполните форму.
-                После этого мы направим письмо на указанный e-mail для
-                подтверждения. Платёжная ссылка или QR-код направляются только
-                после подтверждения e-mail.
+                Заполните форму, чтобы получить ссылку на оплату. Подтверждение
+                будет направлено с официального адреса Верди и Ко. —{" "}
+                <a href={`mailto:${EMAIL}`} className="text-accent hover:underline">
+                  {EMAIL}
+                </a>
+                . После подтверждения e-mail, суммы и назначения платежа вам
+                будет направлена платёжная ссылка или QR-код ЮKassa.
               </p>
               <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
                 Кассовый чек формируется через ЮKassa и направляется на
                 подтверждённый e-mail.
               </p>
               <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
-                Самостоятельные переводы по публичному QR-коду не используются.
+                Оплата принимается только по платёжной ссылке или QR-коду,
+                направленным после подтверждения данных.
               </p>
             </div>
 
             <div className="space-y-6 md:space-y-8">
               <section className="border-2 border-accent/40 bg-accent/5 rounded-xl p-5 md:p-7">
                 <h2 className="font-serif text-xl md:text-2xl mb-4">
-                  Заявка на индивидуальную ссылку
+                  Заявка на оплату
                 </h2>
 
                 {!apiConfigured && (
                   <p className="mb-6 rounded-lg border border-amber-400/50 bg-amber-50 px-4 py-3 text-[14px] leading-[1.6] text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
-                    Форма заявки ещё не подключена. Напишите на {EMAIL} для
-                    получения индивидуальной ссылки.
+                    Форма заявки ещё не подключена. Напишите на {EMAIL}, чтобы
+                    получить ссылку на оплату.
                   </p>
                 )}
 
@@ -253,7 +257,8 @@ const ConsultationPaymentRuPayment = () => {
                       onChange={(e) => update("amount", e.target.value)}
                     />
                     <p className="mt-1 text-[13px] text-muted-foreground">
-                      От 1 000 до 300 000 ₽, как согласовано с Верди и Ко.
+                      От 1 000 до 300 000 ₽. Укажите сумму, предварительно
+                      согласованную с Верди и Ко.
                     </p>
                     {errors.amount && (
                       <p className="mt-1 text-[13px] text-destructive">{errors.amount}</p>
@@ -287,8 +292,8 @@ const ConsultationPaymentRuPayment = () => {
                         onChange={(e) => update("preAgreed", e.target.checked)}
                       />
                       <span>
-                        Подтверждаю, что сумма и услуга предварительно
-                        согласованы с Верди и Ко.{" "}
+                        Подтверждаю, что сумма, услуга и назначение платежа
+                        предварительно согласованы с Верди и Ко.{" "}
                         <span className="text-accent">*</span>
                       </span>
                     </label>
@@ -307,9 +312,9 @@ const ConsultationPaymentRuPayment = () => {
                       />
                       <span>
                         Согласен на обработку персональных данных для подготовки
-                        и направления индивидуальной ссылки на оплату, связи со
-                        мной и направления кассового чека. Подтверждаю, что
-                        ознакомлен с{" "}
+                        и направления ссылки на оплату, связи со мной и
+                        направления кассового чека. Подтверждаю, что ознакомлен
+                        с{" "}
                         <Link to="/ru/privacy-policy" className="text-accent hover:underline">
                           Политикой конфиденциальности
                         </Link>
@@ -325,9 +330,9 @@ const ConsultationPaymentRuPayment = () => {
 
                   <div className="rounded-lg border border-border bg-card/80 p-4">
                     <p className="text-[14px] leading-[1.6] text-muted-foreground">
-                      После подтверждения заявки индивидуальный счёт ЮKassa
-                      можно оплатить банковской картой, через СБП/QR, SberPay,
-                      T-Pay и другие способы, доступные в ЮKassa.
+                      После подтверждения заявки счёт ЮKassa можно оплатить
+                      банковской картой, через СБП/QR, SberPay, T-Pay и другие
+                      доступные способы оплаты.
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2" aria-label="Доступные способы оплаты в ЮKassa">
                       {PAYMENT_METHODS.map((method) => (
@@ -364,21 +369,27 @@ const ConsultationPaymentRuPayment = () => {
               <section className="bg-card border border-border verdico-card p-5 md:p-7">
                 <div className="space-y-3 text-[15px] leading-[1.65] text-muted-foreground">
                   <p>
-                    Заявка не создаёт платёж и не является оплатой. После
-                    получения заявки Верди и Ко. вручную направит письмо на
-                    указанный e-mail для подтверждения суммы, услуги и адреса
-                    для кассового чека.
+                    Заявка фиксирует данные для подготовки платёжной ссылки и не
+                    является оплатой.
                   </p>
                   <p>
-                    Вопросы по оплате и её подтверждению:{" "}
+                    После получения заявки подтверждение будет направлено с
+                    официального адреса Верди и Ко. —{" "}
                     <a href={`mailto:${EMAIL}`} className="text-accent hover:underline">
                       {EMAIL}
                     </a>
                     .
                   </p>
                   <p className="text-[14px] leading-[1.6]">
-                    Индивидуальная платёжная ссылка или QR-код создаются вручную
-                    в личном кабинете ЮKassa только после подтверждения e-mail.
+                    После подтверждения данных вам будет направлена ссылка на
+                    оплату или QR-код ЮKassa.
+                  </p>
+                  <p>
+                    Вопросы по оплате:{" "}
+                    <a href={`mailto:${EMAIL}`} className="text-accent hover:underline">
+                      {EMAIL}
+                    </a>
+                    .
                   </p>
                 </div>
               </section>

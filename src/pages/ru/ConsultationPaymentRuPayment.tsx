@@ -1,75 +1,132 @@
 import { useState } from "react";
-import { ArrowLeft, CreditCard } from "lucide-react";
+import { ArrowLeft, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import SEOHead from "@/components/seo/SEOHead";
 import { EMAIL } from "@/lib/seo";
 
-// Public payments endpoint (API Gateway). The URL is public and safe to ship;
-// override via the Vite public env var if needed. No secret belongs here — the
-// YooKassa key lives only in the backend (Lockbox).
-const PAYMENTS_ENDPOINT =
-  import.meta.env.VITE_VERDICO_PAYMENTS_ENDPOINT ||
-  "https://d5d9nsqvjkh3dhmpsdsg.628pfjdx.apigw.yandexcloud.net/payments/create";
+// Public production acceptance endpoint (API Gateway). The URL is public and
+// safe to ship; override via the Vite public env var if needed. No secrets here.
+const ACCEPTANCE_API_URL =
+  import.meta.env.VITE_VERDICO_ACCEPTANCE_ENDPOINT ||
+  "https://d5d9nsqvjkh3dhmpsdsg.628pfjdx.apigw.yandexcloud.net/acceptance";
+const apiConfigured = ACCEPTANCE_API_URL.length > 0;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_RUB = 1000;
 const MAX_RUB = 300000;
+const MAX_COMMENT_LENGTH = 500;
 
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-3 py-2 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
+type PaymentRequestForm = {
+  fullName: string;
+  email: string;
+  amount: string;
+  comment: string;
+  preAgreed: boolean;
+};
+
 const ConsultationPaymentRuPayment = () => {
-  const [email, setEmail] = useState("");
-  const [amount, setAmount] = useState("");
-  const [purpose, setPurpose] = useState("");
+  const [form, setForm] = useState<PaymentRequestForm>({
+    fullName: "",
+    email: "",
+    amount: "",
+    comment: "",
+    preAgreed: false,
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+  const [sent, setSent] = useState(false);
 
-  const handlePay = async (event: React.FormEvent) => {
+  const update = (field: keyof PaymentRequestForm, value: string | boolean) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const normalizeAmount = (value: string) =>
+    value.trim().replace(/\s/g, "").replace(",", ".");
+
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+    const normalizedAmount = normalizeAmount(form.amount);
+
+    if (!form.fullName.trim()) nextErrors.fullName = "Укажите ФИО плательщика.";
+    if (!EMAIL_RE.test(form.email.trim()))
+      nextErrors.email = "Укажите корректный e-mail для кассового чека.";
+    if (!/^\d+(\.\d{1,2})?$/.test(normalizedAmount)) {
+      nextErrors.amount = "Укажите сумму числом, не более двух знаков после запятой.";
+    } else {
+      const amountNumber = Number(normalizedAmount);
+      if (amountNumber < MIN_RUB || amountNumber > MAX_RUB) {
+        nextErrors.amount = "Сумма должна быть от 1 000 до 300 000 ₽.";
+      }
+    }
+    if (form.comment.length > MAX_COMMENT_LENGTH)
+      nextErrors.comment = "Комментарий не должен превышать 500 символов.";
+    if (!form.preAgreed)
+      nextErrors.preAgreed =
+        "Подтвердите, что сумма и услуга предварительно согласованы.";
+
+    return nextErrors;
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setError("");
+    setStatus("");
+    setSent(false);
 
-    const em = email.trim();
-    if (!EMAIL_RE.test(em)) {
-      setError("Укажите корректный e-mail для кассового чека.");
+    const nextErrors = validate();
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    if (!apiConfigured) {
+      setStatus(
+        "Форма заявки ещё не подключена. Напишите на admin@verdico.ru для получения индивидуальной ссылки.",
+      );
       return;
     }
-    const a = amount.trim().replace(",", ".");
-    if (!/^\d+(\.\d{1,2})?$/.test(a)) {
-      setError("Укажите сумму числом, не более двух знаков после запятой.");
-      return;
-    }
-    const n = Number(a);
-    if (n < MIN_RUB || n > MAX_RUB) {
-      setError("Сумма должна быть от 1 000 до 300 000 ₽.");
-      return;
-    }
-    if (purpose.length > 120) {
-      setError("Комментарий не должен превышать 120 символов.");
-      return;
-    }
+
+    const amountRub = Number(normalizeAmount(form.amount));
 
     setSubmitting(true);
     try {
-      const res = await fetch(PAYMENTS_ENDPOINT, {
+      const res = await fetch(ACCEPTANCE_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          service: "custom-legal-services",
-          amountRub: n,
-          customerEmail: em,
-          purpose: purpose.trim(),
+          requestType: "manual-payment-request",
+          fullName: form.fullName.trim(),
+          email: form.email.trim(),
+          contact: "",
+          agreedAmount: `${amountRub.toFixed(2)} ₽`,
+          amountRub,
+          amountAgreedInPriorCorrespondence: form.preAgreed,
+          matterSummary: form.comment.trim(),
+          paymentRequestComment: form.comment.trim(),
+          paymentLinkRequested: true,
+          pageUrl: window.location.href,
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && typeof data?.confirmation_url === "string") {
-        window.location.href = data.confirmation_url;
+      if (res.ok && data?.ok) {
+        setSent(true);
+        setStatus(
+          "Заявка направлена. Проверьте e-mail: мы отправим письмо для подтверждения суммы, услуги и адреса для кассового чека.",
+        );
+        setForm({
+          fullName: "",
+          email: "",
+          amount: "",
+          comment: "",
+          preAgreed: false,
+        });
         return;
       }
-      setError(`Не удалось создать платёж. Попробуйте позже или напишите на ${EMAIL}.`);
+      setStatus(`Не удалось отправить заявку. Попробуйте позже или напишите на ${EMAIL}.`);
     } catch {
-      setError(`Не удалось создать платёж. Попробуйте позже или напишите на ${EMAIL}.`);
+      setStatus(`Не удалось отправить заявку. Попробуйте позже или напишите на ${EMAIL}.`);
     } finally {
       setSubmitting(false);
     }
@@ -78,8 +135,8 @@ const ConsultationPaymentRuPayment = () => {
   return (
     <MultilingualLayout>
       <SEOHead
-        title="Оплата консультации — Верди и Ко."
-        description="Страница оплаты консультации после отправки формы согласия и согласования суммы с Верди и Ко."
+        title="Оплата юридических услуг — Верди и Ко."
+        description="Заявка на индивидуальную ссылку или QR-код для оплаты юридических услуг после предварительного согласования с Верди и Ко."
         path="/ru/konsultatsiya-oplata/oplata"
         noIndex
       />
@@ -98,51 +155,73 @@ const ConsultationPaymentRuPayment = () => {
             <div className="mb-8 md:mb-10">
               <span className="eyebrow">Оплата</span>
               <h1 className="font-serif text-3xl md:text-5xl mt-4 mb-5">
-                Оплата после подтверждения
+                Оплата юридических услуг
               </h1>
               <p className="text-[16px] leading-[1.65] md:text-lg md:leading-relaxed text-muted-foreground">
-                Эта страница используется после отправки формы подтверждения и
-                согласования консультации с Верди и Ко.
+                Оплата производится только после предварительного согласования
+                услуги, суммы и назначения платежа с Верди и Ко.
               </p>
               <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
-                Если вы попали на эту страницу без отправки формы подтверждения,
-                сначала заполните форму на{" "}
-                <Link to="/ru/konsultatsiya-oplata" className="text-accent hover:underline">
-                  странице условий
-                </Link>
-                .
+                Для получения индивидуальной ссылки на оплату заполните форму.
+                После этого мы направим письмо на указанный e-mail для
+                подтверждения. Платёжная ссылка или QR-код направляются только
+                после подтверждения e-mail.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
+                Кассовый чек формируется через ЮKassa и направляется на
+                подтверждённый e-mail.
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.65] text-muted-foreground">
+                Самостоятельные переводы по публичному QR-коду не используются.
               </p>
             </div>
 
             <div className="space-y-6 md:space-y-8">
-              {/* Оплата картой онлайн — согласованная сумма (ЮKassa) */}
               <section className="border-2 border-accent/40 bg-accent/5 rounded-xl p-5 md:p-7">
                 <h2 className="font-serif text-xl md:text-2xl mb-4">
-                  Оплата картой онлайн
+                  Заявка на индивидуальную ссылку
                 </h2>
-                <p className="text-[15px] leading-[1.65] text-muted-foreground mb-2">
-                  Оплата производится только после предварительного согласования
-                  услуги и суммы с Верди и Ко.
-                </p>
-                <p className="text-[14px] leading-[1.6] text-muted-foreground mb-6">
-                  Для оплаты укажите e-mail для чека и согласованную сумму.
-                  Оплата проходит на защищённой странице ЮKassa, кассовый чек по
-                  54-ФЗ формирует ЮKassa.
-                </p>
 
-                <form onSubmit={handlePay} noValidate className="space-y-5 text-left">
+                {!apiConfigured && (
+                  <p className="mb-6 rounded-lg border border-amber-400/50 bg-amber-50 px-4 py-3 text-[14px] leading-[1.6] text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
+                    Форма заявки ещё не подключена. Напишите на {EMAIL} для
+                    получения индивидуальной ссылки.
+                  </p>
+                )}
+
+                <form onSubmit={handleSubmit} noValidate className="space-y-5 text-left">
+                  <div>
+                    <label htmlFor="pay-full-name" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                      ФИО плательщика <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      id="pay-full-name"
+                      type="text"
+                      autoComplete="name"
+                      className={inputClass}
+                      value={form.fullName}
+                      onChange={(e) => update("fullName", e.target.value)}
+                    />
+                    {errors.fullName && (
+                      <p className="mt-1 text-[13px] text-destructive">{errors.fullName}</p>
+                    )}
+                  </div>
+
                   <div>
                     <label htmlFor="pay-email" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      E-mail для чека <span className="text-accent">*</span>
+                      E-mail для кассового чека <span className="text-accent">*</span>
                     </label>
                     <input
                       id="pay-email"
                       type="email"
                       autoComplete="email"
                       className={inputClass}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
                     />
+                    {errors.email && (
+                      <p className="mt-1 text-[13px] text-destructive">{errors.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -155,27 +234,52 @@ const ConsultationPaymentRuPayment = () => {
                       inputMode="decimal"
                       placeholder="например, 5000"
                       className={inputClass}
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
+                      value={form.amount}
+                      onChange={(e) => update("amount", e.target.value)}
                     />
                     <p className="mt-1 text-[13px] text-muted-foreground">
                       От 1 000 до 300 000 ₽, как согласовано с Верди и Ко.
                     </p>
+                    {errors.amount && (
+                      <p className="mt-1 text-[13px] text-destructive">{errors.amount}</p>
+                    )}
                   </div>
 
                   <div>
-                    <label htmlFor="pay-purpose" className="mb-1.5 block text-[14px] font-medium text-foreground">
-                      Комментарий / назначение{" "}
+                    <label htmlFor="pay-comment" className="mb-1.5 block text-[14px] font-medium text-foreground">
+                      Назначение платежа / комментарий{" "}
                       <span className="text-muted-foreground">(необязательно)</span>
                     </label>
-                    <input
-                      id="pay-purpose"
-                      type="text"
-                      maxLength={120}
+                    <textarea
+                      id="pay-comment"
+                      rows={4}
+                      maxLength={MAX_COMMENT_LENGTH}
                       className={inputClass}
-                      value={purpose}
-                      onChange={(e) => setPurpose(e.target.value)}
+                      value={form.comment}
+                      onChange={(e) => update("comment", e.target.value)}
                     />
+                    {errors.comment && (
+                      <p className="mt-1 text-[13px] text-destructive">{errors.comment}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
+                      <input
+                        type="checkbox"
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+                        checked={form.preAgreed}
+                        onChange={(e) => update("preAgreed", e.target.checked)}
+                      />
+                      <span>
+                        Подтверждаю, что сумма и услуга предварительно
+                        согласованы с Верди и Ко.{" "}
+                        <span className="text-accent">*</span>
+                      </span>
+                    </label>
+                    {errors.preAgreed && (
+                      <p className="mt-1 text-[13px] text-destructive">{errors.preAgreed}</p>
+                    )}
                   </div>
 
                   <button
@@ -183,43 +287,28 @@ const ConsultationPaymentRuPayment = () => {
                     disabled={submitting}
                     className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full btn-navy-glass px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    <CreditCard className="w-5 h-5" />
-                    {submitting ? "Переходим к оплате…" : "Оплатить через ЮKassa"}
+                    <Send className="w-5 h-5" />
+                    {submitting ? "Отправка…" : "Отправить заявку на оплату"}
                   </button>
 
-                  <p aria-live="polite" className="min-h-5 text-[14px] leading-[1.6] text-destructive">
-                    {error}
+                  <p
+                    aria-live="polite"
+                    className={`min-h-5 text-[14px] leading-[1.6] ${
+                      sent ? "text-muted-foreground" : "text-destructive"
+                    }`}
+                  >
+                    {status}
                   </p>
                 </form>
-              </section>
-
-              {/* Альтернатива — перевод по QR-коду Сбербанка */}
-              <section className="bg-card border border-border verdico-card p-5 md:p-7 text-center">
-                <h2 className="font-serif text-lg md:text-xl mb-2">
-                  Альтернатива — перевод по QR-коду
-                </h2>
-                <p className="text-[15px] leading-[1.65] text-muted-foreground mb-2">
-                  Оплачивайте только сумму, которую Верди и Ко. заранее
-                  подтвердил в переписке.
-                </p>
-                <div className="mt-5 rounded-lg border border-border bg-secondary/40 p-5">
-                  <img
-                    src="/payment/qr-sberbank-account.png"
-                    alt="QR-код Сбербанка для оплаты консультации"
-                    className="mx-auto w-full max-w-[280px] rounded-lg border border-border bg-white p-3"
-                  />
-                </div>
-                <p className="mt-4 text-[14px] leading-[1.6] text-muted-foreground">
-                  Если QR-код предполагает ручной ввод суммы, укажите точную
-                  согласованную сумму.
-                </p>
               </section>
 
               <section className="bg-card border border-border verdico-card p-5 md:p-7">
                 <div className="space-y-3 text-[15px] leading-[1.65] text-muted-foreground">
                   <p>
-                    Оплата производится после отправки формы согласия и
-                    предварительного согласования консультации с Верди и Ко.
+                    Заявка не создаёт платёж и не является оплатой. После
+                    получения заявки Верди и Ко. вручную направит письмо на
+                    указанный e-mail для подтверждения суммы, услуги и адреса
+                    для кассового чека.
                   </p>
                   <p>
                     Вопросы по оплате и её подтверждению:{" "}
@@ -229,9 +318,8 @@ const ConsultationPaymentRuPayment = () => {
                     .
                   </p>
                   <p className="text-[14px] leading-[1.6]">
-                    Кассовый чек по 54-ФЗ при оплате картой формирует ЮKassa.
-                    Банковская квитанция или письмо с сайта не являются кассовым
-                    чеком.
+                    Индивидуальная платёжная ссылка или QR-код создаются вручную
+                    в личном кабинете ЮKassa только после подтверждения e-mail.
                   </p>
                 </div>
               </section>

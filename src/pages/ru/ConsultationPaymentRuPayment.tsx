@@ -16,6 +16,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_RUB = 1000;
 const MAX_RUB = 300000;
 const MAX_COMMENT_LENGTH = 500;
+const PD_CONSENT_TEXT =
+  "Согласен на обработку персональных данных для подготовки и направления индивидуальной ссылки на оплату, связи со мной и направления кассового чека. Подтверждаю, что ознакомлен с Политикой конфиденциальности.";
+const PD_CONSENT_VERSION = "payment_request_pd_v1";
+const PRIVACY_POLICY_URL = "https://www.verdico.ru/ru/privacy-policy";
+const PAYMENT_METHODS = ["МИР", "Visa", "Mastercard", "СБП", "SberPay", "T-Pay"];
 
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-3 py-2 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -26,6 +31,7 @@ type PaymentRequestForm = {
   amount: string;
   comment: string;
   preAgreed: boolean;
+  personalDataConsentAccepted: boolean;
 };
 
 const ConsultationPaymentRuPayment = () => {
@@ -35,6 +41,7 @@ const ConsultationPaymentRuPayment = () => {
     amount: "",
     comment: "",
     preAgreed: false,
+    personalDataConsentAccepted: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -68,6 +75,9 @@ const ConsultationPaymentRuPayment = () => {
     if (!form.preAgreed)
       nextErrors.preAgreed =
         "Подтвердите, что сумма и услуга предварительно согласованы.";
+    if (!form.personalDataConsentAccepted)
+      nextErrors.personalDataConsentAccepted =
+        "Подтвердите согласие на обработку персональных данных.";
 
     return nextErrors;
   };
@@ -106,6 +116,10 @@ const ConsultationPaymentRuPayment = () => {
           matterSummary: form.comment.trim(),
           paymentRequestComment: form.comment.trim(),
           paymentLinkRequested: true,
+          personalDataConsentAccepted: form.personalDataConsentAccepted,
+          personalDataConsentText: PD_CONSENT_TEXT,
+          personalDataConsentVersion: PD_CONSENT_VERSION,
+          privacyPolicyUrl: PRIVACY_POLICY_URL,
           pageUrl: window.location.href,
         }),
       });
@@ -121,6 +135,7 @@ const ConsultationPaymentRuPayment = () => {
           amount: "",
           comment: "",
           preAgreed: false,
+          personalDataConsentAccepted: false,
         });
         return;
       }
@@ -280,6 +295,50 @@ const ConsultationPaymentRuPayment = () => {
                     {errors.preAgreed && (
                       <p className="mt-1 text-[13px] text-destructive">{errors.preAgreed}</p>
                     )}
+                  </div>
+
+                  <div>
+                    <label className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-muted-foreground">
+                      <input
+                        type="checkbox"
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+                        checked={form.personalDataConsentAccepted}
+                        onChange={(e) => update("personalDataConsentAccepted", e.target.checked)}
+                      />
+                      <span>
+                        Согласен на обработку персональных данных для подготовки
+                        и направления индивидуальной ссылки на оплату, связи со
+                        мной и направления кассового чека. Подтверждаю, что
+                        ознакомлен с{" "}
+                        <Link to="/ru/privacy-policy" className="text-accent hover:underline">
+                          Политикой конфиденциальности
+                        </Link>
+                        . <span className="text-accent">*</span>
+                      </span>
+                    </label>
+                    {errors.personalDataConsentAccepted && (
+                      <p className="mt-1 text-[13px] text-destructive">
+                        {errors.personalDataConsentAccepted}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="rounded-lg border border-border bg-card/80 p-4">
+                    <p className="text-[14px] leading-[1.6] text-muted-foreground">
+                      После подтверждения заявки индивидуальный счёт ЮKassa
+                      можно оплатить банковской картой, через СБП/QR, SberPay,
+                      T-Pay и другие способы, доступные в ЮKassa.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2" aria-label="Доступные способы оплаты в ЮKassa">
+                      {PAYMENT_METHODS.map((method) => (
+                        <span
+                          key={method}
+                          className="rounded-full border border-border bg-background px-3 py-1 text-[12px] font-medium text-foreground/80"
+                        >
+                          {method}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   <button

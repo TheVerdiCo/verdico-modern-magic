@@ -20,7 +20,6 @@ const PD_CONSENT_TEXT =
   "Согласен на обработку персональных данных для подготовки и направления ссылки на оплату, связи со мной и направления кассового чека. Подтверждаю, что ознакомлен с Политикой конфиденциальности.";
 const PD_CONSENT_VERSION = "payment_request_pd_v1";
 const PRIVACY_POLICY_URL = "https://www.verdico.ru/ru/privacy-policy";
-const PAYMENT_METHODS = ["МИР", "Visa", "Mastercard", "СБП", "SberPay", "T-Pay"];
 
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-3 py-2 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -331,19 +330,10 @@ const ConsultationPaymentRuPayment = () => {
                   <div className="rounded-lg border border-border bg-card/80 p-4">
                     <p className="text-[14px] leading-[1.6] text-muted-foreground">
                       После подтверждения заявки счёт ЮKassa можно оплатить
-                      банковской картой, через СБП/QR, SberPay, T-Pay и другие
-                      доступные способы оплаты.
+                      банковской картой, через СБП/QR, SberPay, T-Pay и иные
+                      способы, доступные на странице оплаты ЮKassa. Доступные
+                      способы оплаты определяются ЮKassa.
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2" aria-label="Доступные способы оплаты в ЮKassa">
-                      {PAYMENT_METHODS.map((method) => (
-                        <span
-                          key={method}
-                          className="rounded-full border border-border bg-background px-3 py-1 text-[12px] font-medium text-foreground/80"
-                        >
-                          {method}
-                        </span>
-                      ))}
-                    </div>
                   </div>
 
                   <button

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import type { RuArticle } from "@/content/insights/ruArticles";
+import { toFinalPath } from "@/lib/seo";
 
 interface ArticleCardProps {
   article: RuArticle;
@@ -11,7 +12,7 @@ interface ArticleCardProps {
 // All visible copy (label "Читать", category, title, excerpt) is sourced from
 // the RU article object — no hardcoded EN strings.
 const ArticleCard = ({ article, className = "" }: ArticleCardProps) => {
-  const href = `/ru/insights/${article.slug}`;
+  const href = toFinalPath(`/ru/insights/${article.slug}`);
   return (
     <Link
       to={href}

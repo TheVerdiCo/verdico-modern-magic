@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail, Send } from "lucide-react";
 import LogoMark from "@/components/LogoMark";
-import { getNavItems, getLangFromPath, BRAND_NAME_RU, BRAND_NAME_EN, EMAIL } from "@/lib/seo";
+import { getNavItems, getLangFromPath, BRAND_NAME_RU, BRAND_NAME_EN, EMAIL, toFinalPath } from "@/lib/seo";
 
 const MultilingualFooter = () => {
   const location = useLocation();
@@ -115,7 +115,7 @@ const MultilingualFooter = () => {
                 <>
                   <li>
                     <Link
-                      to="/ru/privacy-policy"
+                      to={toFinalPath("/ru/privacy-policy")}
                       className="text-sm text-white/70 hover:text-white transition-colors"
                     >
                       Политика обработки персональных данных
@@ -123,7 +123,7 @@ const MultilingualFooter = () => {
                   </li>
                   <li>
                     <Link
-                      to="/ru/cookie-policy"
+                      to={toFinalPath("/ru/cookie-policy")}
                       className="text-sm text-white/70 hover:text-white transition-colors"
                     >
                       Политика использования cookies
@@ -131,7 +131,7 @@ const MultilingualFooter = () => {
                   </li>
                   <li>
                     <Link
-                      to="/ru/email-privacy"
+                      to={toFinalPath("/ru/email-privacy")}
                       className="text-sm text-white/70 hover:text-white transition-colors"
                     >
                       Уведомление для электронной переписки

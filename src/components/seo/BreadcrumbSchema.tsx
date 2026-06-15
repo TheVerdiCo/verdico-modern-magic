@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SITE_URL } from "@/lib/seo";
+import { toAbsoluteFinalUrl } from "@/lib/seo";
 
 interface BreadcrumbSchemaProps {
   articleTitle: string;
@@ -15,13 +15,13 @@ const BreadcrumbSchema = ({ articleTitle, articlePath }: BreadcrumbSchemaProps) 
         "@type": "ListItem",
         position: 1,
         name: "Аналитика",
-        item: `${SITE_URL}/ru/insights`,
+        item: toAbsoluteFinalUrl("/ru/insights"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: articleTitle,
-        item: `${SITE_URL}${articlePath}`,
+        item: toAbsoluteFinalUrl(articlePath),
       },
     ],
   };

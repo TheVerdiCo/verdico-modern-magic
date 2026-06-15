@@ -5,6 +5,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import type { RuArticle, ArticleSection } from "@/content/insights/ruArticles";
+import { toFinalPath } from "@/lib/seo";
 
 interface ArticlePageTemplateProps {
   article: RuArticle;
@@ -106,7 +107,7 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
                 category label so they cannot visually merge. */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 md:mb-8">
               <Link
-                to="/ru/insights"
+                to={toFinalPath("/ru/insights")}
                 className="inline-flex items-center gap-1.5 text-[13px] md:text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -151,7 +152,7 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
           <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-white">
             Обсудить вашу задачу?
           </h2>
-          <Link to="/ru/kontakty">
+          <Link to={toFinalPath("/ru/kontakty")}>
             <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
               Связаться
               <ArrowRight className="w-4 h-4" />

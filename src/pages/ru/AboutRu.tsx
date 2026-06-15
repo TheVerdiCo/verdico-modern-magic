@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Lock, Target } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
+import { toFinalPath } from "@/lib/seo";
 
 const usefulAreas = [
   {
@@ -187,7 +188,7 @@ const AboutRu = () => {
           <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-white/75 mb-7 md:mb-8 max-w-xl mx-auto">
             Свяжитесь с нами для первичной консультации. По запросу — NDA.
           </p>
-          <Link to="/ru/kontakty">
+          <Link to={toFinalPath("/ru/kontakty")}>
             <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
               Связаться
               <ArrowRight className="w-4 h-4" />

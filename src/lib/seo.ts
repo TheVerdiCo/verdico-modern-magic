@@ -6,6 +6,37 @@ export const BRAND_NAME_EN = "Verdi & Co.";
 export const BRAND_NAME = "Верди и Ко. (Verdi & Co.)";
 export const EMAIL = "admin@verdico.ru";
 
+export const toFinalPath = (path: string): string => {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path)) {
+    return path;
+  }
+
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  const [pathnameAndSearch, hash = ""] = path.split("#");
+  const [pathname, search = ""] = pathnameAndSearch.split("?");
+  const normalizedPathname =
+    pathname === "/" || pathname.endsWith("/") ? pathname : `${pathname}/`;
+
+  return `${normalizedPathname}${search ? `?${search}` : ""}${hash ? `#${hash}` : ""}`;
+};
+
+export const toAbsoluteFinalUrl = (target: string): string => {
+  try {
+    const url = new URL(target, SITE_URL);
+
+    if (url.origin === SITE_URL) {
+      url.pathname = toFinalPath(url.pathname);
+    }
+
+    return url.toString();
+  } catch {
+    return target;
+  }
+};
+
 export type Language = "ru" | "en";
 
 export interface PageSEO {
@@ -177,22 +208,22 @@ export const getNavItems = (lang: Language) => {
     return {
       services: {
         label: "Услуги",
-        items: ruServices.map(s => ({ path: s.path, label: s.h1 })),
+        items: ruServices.map(s => ({ path: toFinalPath(s.path), label: s.h1 })),
       },
-      about: { path: "/ru/o-nas", label: "О нас" },
-      contacts: { path: "/ru/kontakty", label: "Контакты" },
-      insights: { path: "/ru/insights", label: "Аналитика" },
-      home: { path: "/ru", label: "Главная" },
+      about: { path: toFinalPath("/ru/o-nas"), label: "О нас" },
+      contacts: { path: toFinalPath("/ru/kontakty"), label: "Контакты" },
+      insights: { path: toFinalPath("/ru/insights"), label: "Аналитика" },
+      home: { path: toFinalPath("/ru"), label: "Главная" },
     };
   }
   return {
     services: {
       label: "Services",
-      items: enServices.map(s => ({ path: s.path, label: s.h1 })),
+      items: enServices.map(s => ({ path: toFinalPath(s.path), label: s.h1 })),
     },
-    about: { path: "/en/about", label: "About" },
-    contacts: { path: "/en/contacts", label: "Contacts" },
-    insights: { path: "/en/insights", label: "Insights" },
-    home: { path: "/en", label: "Home" },
+    about: { path: toFinalPath("/en/about"), label: "About" },
+    contacts: { path: toFinalPath("/en/contacts"), label: "Contacts" },
+    insights: { path: toFinalPath("/en/insights"), label: "Insights" },
+    home: { path: toFinalPath("/en"), label: "Home" },
   };
 };

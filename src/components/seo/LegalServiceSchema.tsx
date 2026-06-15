@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SITE_URL, BRAND_NAME } from "@/lib/seo";
+import { SITE_URL, BRAND_NAME, toAbsoluteFinalUrl } from "@/lib/seo";
 
 interface LegalServiceSchemaProps {
   name: string;
@@ -16,7 +16,7 @@ const LegalServiceSchema = ({ name, description, serviceType, url, providerName 
     name: name,
     description: description,
     serviceType: serviceType,
-    url: `${SITE_URL}${url}`,
+    url: toAbsoluteFinalUrl(url),
     provider: {
       "@type": "Organization",
       name: providerName,

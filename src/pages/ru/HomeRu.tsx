@@ -4,7 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
-import { ruServices } from "@/lib/seo";
+import { ruServices, toFinalPath } from "@/lib/seo";
 import founderImage from "@/assets/founder-image.avif";
 
 const stats = [
@@ -89,13 +89,13 @@ const HomeRu = () => {
               где правовая форма должна соответствовать имущественному интересу.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-up animation-delay-300">
-              <Link to="/ru/kontakty">
+              <Link to={toFinalPath("/ru/kontakty")}>
                 <Button size="lg" variant="secondary" className="gap-2 rounded-full h-12 md:h-11 w-full sm:w-auto">
                   Обсудить задачу
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <Link to="/ru/o-nas">
+              <Link to={toFinalPath("/ru/o-nas")}>
                 <Button variant="outline" size="lg" className="rounded-full h-12 md:h-11 w-full sm:w-auto bg-white/8 border-white/40 text-white hover:bg-white/15 hover:text-white">
                   О компании
                 </Button>
@@ -139,7 +139,7 @@ const HomeRu = () => {
               return (
                 <Link
                   key={service.path}
-                  to={service.path}
+                  to={toFinalPath(service.path)}
                   className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
                 >
                   <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
@@ -158,7 +158,7 @@ const HomeRu = () => {
 
             {/* Russian domestic legal-practice vector */}
             <Link
-              to="/ru/kontakty"
+              to={toFinalPath("/ru/kontakty")}
               className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
             >
               <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
@@ -201,7 +201,7 @@ const HomeRu = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/ru/o-nas">
+              <Link to={toFinalPath("/ru/o-nas")}>
                 <Button variant="outline" className="gap-2 h-12 md:h-10 rounded-full">
                   Подробнее о нас
                   <ArrowRight className="w-4 h-4" />
@@ -233,7 +233,7 @@ const HomeRu = () => {
           <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-white/75 mb-7 md:mb-8 max-w-xl mx-auto">
             Опишите ситуацию — мы свяжемся с вами и предложим варианты решения.
           </p>
-          <Link to="/ru/kontakty">
+          <Link to={toFinalPath("/ru/kontakty")}>
             <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
               Связаться с нами
               <ArrowRight className="w-4 h-4" />

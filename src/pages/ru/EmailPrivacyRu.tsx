@@ -4,7 +4,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import { EMAIL } from "@/lib/seo";
 
-const CANONICAL_URL = "https://www.verdico.ru/ru/email-privacy";
+const CANONICAL_URL = "https://www.verdico.ru/ru/email-privacy/";
 
 const disclaimerSections = [
   {

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import LegalServiceSchema from "@/components/seo/LegalServiceSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
-import { BRAND_NAME_RU, getServiceByPath, ruServices, type ServicePage } from "@/lib/seo";
+import { BRAND_NAME_RU, getServiceByPath, ruServices, toFinalPath, type ServicePage } from "@/lib/seo";
 
 const service = ruServices.find(
   (item) => item.path === "/ru/services/international-migration-coordination",
@@ -277,7 +277,7 @@ const InternationalMigrationCoordinationRu = () => (
             {relatedServices.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
+                to={toFinalPath(item.path)}
                 className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
               >
                 <h3 className="font-serif text-[18px] md:text-lg font-medium mb-2 group-hover:text-gradient-brand">
@@ -299,7 +299,7 @@ const InternationalMigrationCoordinationRu = () => (
         <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-white">
           Обсудить вашу задачу?
         </h2>
-        <Link to="/ru/kontakty">
+        <Link to={toFinalPath("/ru/kontakty")}>
           <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
             Связаться
             <ArrowRight className="w-4 h-4" />

@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SITE_URL, routeAlternates, getLangFromPath } from "@/lib/seo";
+import { SITE_URL, routeAlternates, getLangFromPath, toAbsoluteFinalUrl } from "@/lib/seo";
 
 interface SEOHeadProps {
   title: string;
@@ -12,11 +12,11 @@ interface SEOHeadProps {
 const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride, noIndex = false }: SEOHeadProps) => {
   const lang = getLangFromPath(path);
   const alternatePath = routeAlternates[path];
-  const toAbsoluteUrl = (targetPath: string) =>
-    targetPath === "/" ? `${SITE_URL}/` : `${SITE_URL}${targetPath}`;
   const canonicalPath = path === "/ru" ? "/" : path;
-  const canonicalUrl = canonicalUrlOverride ?? toAbsoluteUrl(canonicalPath);
-  const alternateUrl = alternatePath ? toAbsoluteUrl(alternatePath) : null;
+  const canonicalUrl = canonicalUrlOverride
+    ? toAbsoluteFinalUrl(canonicalUrlOverride)
+    : toAbsoluteFinalUrl(canonicalPath);
+  const alternateUrl = alternatePath ? toAbsoluteFinalUrl(alternatePath) : null;
 
   return (
     <Helmet>

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import SEOHead from "@/components/seo/SEOHead";
 import LegalServiceSchema from "@/components/seo/LegalServiceSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
-import { ServicePage, getServiceByPath, getLangFromPath } from "@/lib/seo";
+import { ServicePage, getServiceByPath, getLangFromPath, toFinalPath } from "@/lib/seo";
 
 interface ServicePageTemplateProps {
   service: ServicePage;
@@ -24,7 +24,7 @@ interface ServicePageTemplateProps {
 
 const ServicePageTemplate = ({ service, content, relatedMaterials = [], additionalSections }: ServicePageTemplateProps) => {
   const lang = getLangFromPath(service.path);
-  const contactPath = lang === "ru" ? "/ru/kontakty" : "/en/contacts";
+  const contactPath = toFinalPath(lang === "ru" ? "/ru/kontakty" : "/en/contacts");
   
   const relatedServices = service.relatedServices
     .map(path => getServiceByPath(path))
@@ -91,7 +91,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
               {relatedServices.map((s) => (
                 <Link
                   key={s.path}
-                  to={s.path}
+                  to={toFinalPath(s.path)}
                   className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
                 >
                   <h3 className="font-serif text-[18px] md:text-lg font-medium mb-2 group-hover:text-gradient-brand">
@@ -118,7 +118,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
                     <p className="eyebrow mb-3">{material.label}</p>
                   )}
                   <Link
-                    to={material.href}
+                    to={toFinalPath(material.href)}
                     className="group inline-flex items-start gap-2 text-foreground hover:text-accent transition-colors"
                   >
                     <span className="font-serif text-[19px] leading-snug md:text-xl font-medium">

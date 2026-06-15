@@ -4,8 +4,8 @@ import { Mail, ShieldCheck } from "lucide-react";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import { EMAIL, SITE_URL } from "@/lib/seo";
 
-const CANONICAL_URL = "https://www.verdico.ru/ru/cookie-policy";
-const PRIVACY_URL = "https://www.verdico.ru/ru/privacy-policy";
+const CANONICAL_URL = "https://www.verdico.ru/ru/cookie-policy/";
+const PRIVACY_URL = "https://www.verdico.ru/ru/privacy-policy/";
 const SITE_LABEL = "www.verdico.ru";
 const BRAND_NAME = "Верди и Ко";
 

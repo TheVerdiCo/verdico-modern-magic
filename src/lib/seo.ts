@@ -141,6 +141,15 @@ export const ruServices: ServicePage[] = [
     relatedServices: ["/ru/mezhdunarodnyy-yurist-rossiya", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/nedvizhimost-i-arenda"],
     serviceType: "Международная миграционная координация",
   },
+  {
+    path: "/ru/mezhdunarodnye-aktivy",
+    title: "Международные активы | Верди и Ко.",
+    h1: "Международные активы",
+    description: "Недвижимость, ВНЖ, ПМЖ, второе гражданство и доходные объекты за рубежом с юридико-коммерческой координацией Верди и Ко.",
+    alternatePath: "",
+    relatedServices: ["/ru/nedvizhimost-i-arenda", "/ru/services/international-migration-coordination", "/ru/mezhdunarodnyy-yurist-rossiya"],
+    serviceType: "Юридико-коммерческое сопровождение международных активов",
+  },
 ];
 
 // EN Service Pages

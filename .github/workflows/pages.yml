@@ -44,6 +44,11 @@ jobs:
             ru/arbitrazhnye-spory \
             ru/nedvizhimost-i-arenda \
             ru/services/international-migration-coordination \
+            ru/mezhdunarodnye-aktivy \
+            ru/kipr-nedvizhimost-pmzh \
+            ru/gretsiya-vnzh-san-tome-grazhdanstvo \
+            ru/tailand-phuket-kurortnye-rezidentsii \
+            ru/kommercheskaya-nedvizhimost-zarubezhom \
             ru/o-nas \
             ru/kontakty \
             ru/konsultatsiya-oplata \
@@ -58,28 +63,76 @@ jobs:
             cp dist/index.html "dist/$route/index.html"
           done
 
-      - name: Patch international migration route metadata
+      - name: Patch published route metadata
         run: |
           node --input-type=module <<'NODE'
           import { readFileSync, writeFileSync } from "node:fs";
 
-          const file = "dist/ru/services/international-migration-coordination/index.html";
-          const title = "Международные миграционные вопросы — координация с иностранными специалистами | Верди и Ко.";
-          const description = "Координация русскоязычного клиента с иностранными адвокатами и специалистами: вид на жительство, семейное воссоединение, статус высококвалифицированного специалиста, документы, сроки, расходы и риски.";
-          const url = "https://www.verdico.ru/ru/services/international-migration-coordination";
+          const pages = [
+            {
+              file: "dist/ru/services/international-migration-coordination/index.html",
+              title: "Международные миграционные вопросы — координация с иностранными специалистами | Верди и Ко.",
+              description: "Координация русскоязычного клиента с иностранными адвокатами и специалистами: вид на жительство, семейное воссоединение, статус высококвалифицированного специалиста, документы, сроки, расходы и риски.",
+              url: "https://www.verdico.ru/ru/services/international-migration-coordination/",
+            },
+            {
+              file: "dist/ru/mezhdunarodnye-aktivy/index.html",
+              title: "Международные активы | Верди и Ко.",
+              description: "Недвижимость, ВНЖ, ПМЖ, второе гражданство и доходные объекты за рубежом с юридико-коммерческой координацией Верди и Ко.",
+              url: "https://www.verdico.ru/ru/mezhdunarodnye-aktivy/",
+            },
+            {
+              file: "dist/ru/kipr-nedvizhimost-pmzh/index.html",
+              title: "Недвижимость и ПМЖ на Кипре для частного капитала | Верди и Ко.",
+              description: "Юридико-коммерческая координация приобретения недвижимости на Кипре, вопросов ПМЖ, налоговой структуры, банковских требований и семейного планирования.",
+              url: "https://www.verdico.ru/ru/kipr-nedvizhimost-pmzh/",
+            },
+            {
+              file: "dist/ru/gretsiya-vnzh-san-tome-grazhdanstvo/index.html",
+              title: "ВНЖ в Греции, гражданство Сан-Томе и доходная недвижимость | Верди и Ко.",
+              description: "Координация семейного маршрута: вид на жительство в Греции, второе гражданство Сан-Томе и доходная недвижимость с отдельной проверкой условий.",
+              url: "https://www.verdico.ru/ru/gretsiya-vnzh-san-tome-grazhdanstvo/",
+            },
+            {
+              file: "dist/ru/tailand-phuket-kurortnye-rezidentsii/index.html",
+              title: "Курортные резиденции на Пхукете | Верди и Ко.",
+              description: "Юридико-коммерческая координация приобретения курортной резиденции на Пхукете: форма владения, управление, аренда, расчёты и проверка проекта.",
+              url: "https://www.verdico.ru/ru/tailand-phuket-kurortnye-rezidentsii/",
+            },
+            {
+              file: "dist/ru/kommercheskaya-nedvizhimost-zarubezhom/index.html",
+              title: "Коммерческая недвижимость за рубежом | Верди и Ко.",
+              description: "Координация сделок с зарубежной коммерческой недвижимостью: офисами, гостиницами, доходными домами, торговыми объектами и проектами развития.",
+              url: "https://www.verdico.ru/ru/kommercheskaya-nedvizhimost-zarubezhom/",
+            },
+          ];
 
-          let html = readFileSync(file, "utf8");
-          html = html
-            .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
-            .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
-            .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />`)
-            .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
-            .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
-            .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
-            .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
-            .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`);
+          for (const page of pages) {
+            let html = readFileSync(page.file, "utf8");
+            html = html
+              .replace(/<title>.*?<\/title>/, `<title>${page.title}</title>`)
+              .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${page.description}" />`)
+              .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${page.title}" />`)
+              .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${page.description}" />`)
+              .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${page.title}" />`)
+              .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${page.description}" />`);
 
-          writeFileSync(file, html);
+            const canonicalTag = `<link rel="canonical" href="${page.url}" />`;
+            if (/<link rel="canonical" href="[^"]*" \/>/.test(html)) {
+              html = html.replace(/<link rel="canonical" href="[^"]*" \/>/, canonicalTag);
+            } else {
+              html = html.replace("</title>", `</title>\n    ${canonicalTag}`);
+            }
+
+            const openGraphUrlTag = `<meta property="og:url" content="${page.url}" />`;
+            if (/<meta property="og:url" content="[^"]*" \/>/.test(html)) {
+              html = html.replace(/<meta property="og:url" content="[^"]*" \/>/, openGraphUrlTag);
+            } else {
+              html = html.replace("<!-- Open Graph -->", `<!-- Open Graph -->\n    ${openGraphUrlTag}`);
+            }
+
+            writeFileSync(page.file, html);
+          }
           NODE
 
       - name: Upload artifact

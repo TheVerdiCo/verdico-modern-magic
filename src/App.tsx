@@ -28,6 +28,7 @@ import InternationalLawyerRu from "./pages/ru/services/InternationalLawyerRu";
 import ArbitrationRu from "./pages/ru/services/ArbitrationRu";
 import RealEstateRu from "./pages/ru/services/RealEstateRu";
 import InternationalMigrationCoordinationRu from "./pages/ru/services/InternationalMigrationCoordinationRu";
+import InternationalAssetsPageRu from "./pages/ru/services/InternationalAssetsPageRu";
 
 // EN Pages
 import HomeEn from "./pages/en/HomeEn";
@@ -62,6 +63,11 @@ const App = () => (
             <Route path="/ru/arbitrazhnye-spory" element={<ArbitrationRu />} />
             <Route path="/ru/nedvizhimost-i-arenda" element={<RealEstateRu />} />
             <Route path="/ru/services/international-migration-coordination" element={<InternationalMigrationCoordinationRu />} />
+            <Route path="/ru/mezhdunarodnye-aktivy" element={<InternationalAssetsPageRu pageKey="hub" />} />
+            <Route path="/ru/kipr-nedvizhimost-pmzh" element={<InternationalAssetsPageRu pageKey="cyprus" />} />
+            <Route path="/ru/gretsiya-vnzh-san-tome-grazhdanstvo" element={<InternationalAssetsPageRu pageKey="greeceSaoTome" />} />
+            <Route path="/ru/tailand-phuket-kurortnye-rezidentsii" element={<InternationalAssetsPageRu pageKey="phuket" />} />
+            <Route path="/ru/kommercheskaya-nedvizhimost-zarubezhom" element={<InternationalAssetsPageRu pageKey="commercial" />} />
             <Route path="/ru/o-nas" element={<AboutRu />} />
             <Route path="/ru/kontakty" element={<ContactsRu />} />
             <Route path="/ru/email-privacy" element={<EmailPrivacyRu />} />

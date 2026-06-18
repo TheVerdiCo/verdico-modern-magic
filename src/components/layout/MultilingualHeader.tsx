@@ -72,14 +72,14 @@ const MultilingualHeader = () => {
 
             {isServicesOpen && (
               <div
-                className="absolute top-full left-0 mt-2 w-80 glass-pill rounded-xl p-2 animate-fade-in"
+                className="absolute top-full left-0 z-[60] mt-3 w-80 rounded-xl border border-verdico-gold/30 bg-gradient-to-b from-verdico-blue-night to-verdico-blue-deep p-3 text-white shadow-[0_24px_64px_rgba(4,20,52,0.42)] animate-fade-in"
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 {nav.services.items.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block px-4 py-3 text-sm rounded-lg hover:bg-secondary/60 transition-colors"
+                    className="block rounded-lg px-4 py-3.5 text-sm font-medium leading-snug text-white/95 transition-colors hover:bg-white/10 hover:text-verdico-gold-soft"
                   >
                     {item.label}
                   </Link>

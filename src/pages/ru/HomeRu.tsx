@@ -11,6 +11,7 @@ const stats = [
   { value: "14+", label: "лет практики" },
   { value: "60+", label: "успешных дел" },
   { value: "15+", label: "стран и юрисдикций" },
+  { value: "90%+", label: "выигранных дел" },
 ];
 
 const homeCardCopy: Record<string, { title: string; summary: string }> = {
@@ -108,7 +109,7 @@ const HomeRu = () => {
             </div>
 
             {/* Stat rail — gold values + uppercase micro-labels (Verdico family) */}
-            <div className="grid grid-cols-3 gap-3 md:gap-8 max-w-3xl mx-auto mt-10 md:mt-12 pt-6 border-t border-verdico-gold/25 animate-fade-up animation-delay-400">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 lg:gap-8 max-w-4xl mx-auto mt-10 md:mt-12 pt-6 border-t border-verdico-gold/25 animate-fade-up animation-delay-400">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <p className="font-serif text-2xl md:text-4xl font-medium text-verdico-gold">

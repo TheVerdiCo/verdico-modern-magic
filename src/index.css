@@ -73,8 +73,8 @@
     --shadow-card-verdico: 0 18px 54px rgba(7, 23, 47, 0.08);
 
     --gradient-verdico-footer:
-      linear-gradient(180deg, rgba(201, 165, 85, 0.08), rgba(201, 165, 85, 0) 18%),
-      linear-gradient(180deg, #0b1830 0%, #081225 52%, #07111f 100%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04) 32%, rgba(0, 0, 0, 0.06)),
+      linear-gradient(180deg, hsl(218 65% 58%), hsl(220 71% 44%) 52%, hsl(220 80% 32%));
     --gradient-verdico-hero:
       linear-gradient(90deg, rgba(4, 20, 52, 0.94), rgba(7, 47, 111, 0.72) 52%, rgba(14, 67, 145, 0.44)),
       radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.20), transparent 34%),

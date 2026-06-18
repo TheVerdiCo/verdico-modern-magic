@@ -229,13 +229,13 @@ const HomeRu = () => {
         </div>
       </section>
 
-      {/* CTA Section — navy transition into footer */}
-      <section className="py-14 md:py-24 px-4 bg-verdico-cta">
+      {/* CTA Section — light editorial transition into footer */}
+      <section className="py-14 md:py-24 px-4 bg-verdico-closing">
         <div className="container text-center">
-          <h2 className="font-serif text-[28px] leading-tight md:text-4xl mb-4 text-white">
+          <h2 className="font-serif text-[28px] leading-tight md:text-4xl mb-4 text-verdico-ink">
             Готовы обсудить вашу задачу?
           </h2>
-          <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-white/75 mb-7 md:mb-8 max-w-xl mx-auto">
+          <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-verdico-ink/70 mb-7 md:mb-8 max-w-xl mx-auto">
             Опишите ситуацию — мы свяжемся с вами и предложим варианты решения.
           </p>
           <Link to={toFinalPath("/ru/kontakty")}>

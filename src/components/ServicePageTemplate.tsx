@@ -133,10 +133,10 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
         </section>
       )}
 
-      {/* CTA — navy transition into footer */}
-      <section className="py-14 md:py-16 px-4 bg-verdico-cta">
+      {/* CTA — light editorial transition into footer */}
+      <section className="py-14 md:py-16 px-4 bg-verdico-closing">
         <div className="container text-center">
-          <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-white">
+          <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-verdico-ink">
             {lang === "ru" ? "Обсудить вашу задачу?" : "Discuss your case?"}
           </h2>
           <Link to={contactPath}>

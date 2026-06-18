@@ -189,9 +189,9 @@ const InternationalAssetsPageRu = ({ pageKey }: InternationalAssetsPageRuProps) 
         </div>
       </section>
 
-      <section className="py-14 md:py-16 px-4 bg-verdico-cta">
+      <section className="py-14 md:py-16 px-4 bg-verdico-closing">
         <div className="container text-center">
-          <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-5 text-white">
+          <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-5 text-verdico-ink">
             {page.cta}
           </h2>
           <Link to={toFinalPath("/ru/kontakty")}>

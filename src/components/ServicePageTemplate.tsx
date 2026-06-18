@@ -52,7 +52,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
               {lang === "ru" ? "Услуга" : "Service"}
             </span>
             <h1 className="h1-hero mt-4 md:mt-5 mb-5 md:mb-6">{service.h1}</h1>
-            <p className="text-[16px] leading-[1.6] md:text-lg md:leading-normal text-muted-foreground whitespace-pre-line text-left">{content.intro}</p>
+            <p className="narrative-copy whitespace-pre-line text-left">{content.intro}</p>
           </div>
         </div>
       </section>

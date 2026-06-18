@@ -83,7 +83,7 @@ const InternationalAssetsPageRu = ({ pageKey }: InternationalAssetsPageRuProps) 
             <p className="font-serif text-[21px] leading-snug md:text-2xl text-foreground mb-6 text-left">
               {page.subtitle}
             </p>
-            <div className="space-y-4 text-[16px] leading-[1.6] md:text-lg md:leading-normal text-muted-foreground text-left">
+            <div className="narrative-copy space-y-4 text-left">
               {page.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -134,7 +134,7 @@ const InternationalAssetsPageRu = ({ pageKey }: InternationalAssetsPageRuProps) 
             <div className="max-w-3xl mx-auto">
               <h2 className="font-serif text-[24px] md:text-3xl mb-6">{section.title}</h2>
               {section.paragraphs && (
-                <div className="space-y-4 text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground text-left">
+                <div className="narrative-copy space-y-4 text-left">
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}

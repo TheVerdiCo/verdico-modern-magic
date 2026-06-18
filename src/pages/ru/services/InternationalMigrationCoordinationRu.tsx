@@ -119,7 +119,7 @@ const InternationalMigrationCoordinationRu = () => (
         <div className="max-w-3xl">
           <span className="eyebrow">Услуга</span>
           <h1 className="h1-hero mt-4 md:mt-5 mb-5 md:mb-6">{service.h1}</h1>
-          <div className="space-y-4 text-[16px] leading-[1.6] md:text-lg md:leading-normal text-muted-foreground text-left">
+          <div className="narrative-copy space-y-4 text-left">
             <p>
               Верди и Ко. помогает частным клиентам и семьям разобраться со сложными
               миграционными и резидентскими вопросами за рубежом: когда нужно не
@@ -150,7 +150,7 @@ const InternationalMigrationCoordinationRu = () => (
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Когда это может быть полезно
           </h2>
-          <p className="text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground mb-5 text-left">
+          <p className="narrative-copy mb-5 text-left">
             Такая работа может быть нужна, если:
           </p>
           <DashList items={usefulScenarios} />
@@ -164,7 +164,7 @@ const InternationalMigrationCoordinationRu = () => (
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Что делает Верди и Ко.
           </h2>
-          <p className="text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground mb-6 text-left">
+          <p className="narrative-copy mb-6 text-left">
             На первом этапе мы можем:
           </p>
           <NumberedList items={coordinationSteps} />
@@ -178,7 +178,7 @@ const InternationalMigrationCoordinationRu = () => (
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Какие вопросы могут входить в работу
           </h2>
-          <p className="text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground mb-5 text-left">
+          <p className="narrative-copy mb-5 text-left">
             В зависимости от страны и ситуации это может касаться:
           </p>
           <DashList items={workScope} />
@@ -192,7 +192,7 @@ const InternationalMigrationCoordinationRu = () => (
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Пример ситуации
           </h2>
-          <div className="space-y-4 text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground text-left">
+          <div className="narrative-copy space-y-4 text-left">
             <p>
               Семья хочет понять, как пожилой родитель может законно переехать к
               взрослому сыну или дочери, которые уже проживают за рубежом.
@@ -231,7 +231,7 @@ const InternationalMigrationCoordinationRu = () => (
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Как строится работа
           </h2>
-          <div className="space-y-4 text-[15.5px] leading-[1.6] md:text-base md:leading-normal text-muted-foreground text-left">
+          <div className="narrative-copy space-y-4 text-left">
             <p>Обычно работа идет поэтапно.</p>
             <p>
               Сначала мы проводим первичный разбор ситуации, определяем возможные

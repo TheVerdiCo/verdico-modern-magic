@@ -38,7 +38,7 @@ const renderSection = (section: ArticleSection, idx: number) => {
       return (
         <p
           key={idx}
-          className="text-[16px] leading-[1.7] md:text-[17px] md:leading-[1.7] text-foreground/85 mb-5"
+          className="narrative-copy mb-5"
         >
           {renderInline(section.text)}
         </p>
@@ -52,7 +52,7 @@ const renderSection = (section: ArticleSection, idx: number) => {
           {section.items.map((item, i) => (
             <li
               key={i}
-              className="text-[16px] leading-[1.65] md:text-[17px] md:leading-[1.65] text-foreground/85"
+              className="narrative-copy"
             >
               {renderInline(item)}
             </li>
@@ -68,7 +68,7 @@ const renderSection = (section: ArticleSection, idx: number) => {
           {section.items.map((item, i) => (
             <li
               key={i}
-              className="text-[16px] leading-[1.65] md:text-[17px] md:leading-[1.65] text-foreground/85"
+              className="narrative-copy"
             >
               {renderInline(item)}
             </li>
@@ -137,7 +137,7 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             {/* Lead — slightly larger, drop-cap-free, sets the register */}
-            <p className="text-[17px] leading-[1.65] md:text-[19px] md:leading-[1.6] text-foreground mb-2">
+            <p className="narrative-copy mb-2">
               {article.lead}
             </p>
 

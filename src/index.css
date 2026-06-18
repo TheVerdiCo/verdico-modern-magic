@@ -73,8 +73,8 @@
     --shadow-card-verdico: 0 18px 54px rgba(7, 23, 47, 0.08);
 
     --gradient-verdico-footer:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04) 32%, rgba(0, 0, 0, 0.06)),
-      linear-gradient(180deg, hsl(218 65% 58%), hsl(220 71% 44%) 52%, hsl(220 80% 32%));
+      linear-gradient(180deg, rgba(201, 165, 85, 0.08), rgba(201, 165, 85, 0) 18%),
+      linear-gradient(180deg, #0b1830 0%, #081225 52%, #07111f 100%);
     --gradient-verdico-hero:
       linear-gradient(90deg, rgba(4, 20, 52, 0.94), rgba(7, 47, 111, 0.72) 52%, rgba(14, 67, 145, 0.44)),
       radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.20), transparent 34%),
@@ -253,6 +253,20 @@
     line-height: 1.05;
     letter-spacing: -0.04em;
     font-weight: 400;
+  }
+
+  /* Long-form editorial copy only; compact UI and technical text stay sans. */
+  .narrative-copy {
+    max-width: 74ch;
+    color: hsl(var(--verdico-ink) / 0.84);
+    font-family: var(--font-serif);
+    font-size: clamp(1.125rem, 1.075rem + 0.25vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.72;
+    letter-spacing: 0.003em;
+  }
+  .dark .narrative-copy {
+    color: hsl(var(--foreground) / 0.88);
   }
 
   /* Glass-pill header: translucent, blurred, with inner highlight + shadow */
@@ -487,8 +501,10 @@
      --------------------------------------------------------------------- */
   .bg-verdico-cta {
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0) 30%, rgba(0,0,0,0.08)),
-      linear-gradient(180deg, hsl(220 28% 22%) 0%, hsl(220 36% 18%) 55%, hsl(218 65% 24%) 100%);
+      linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0) 28%, rgba(0,0,0,0.08)),
+      linear-gradient(180deg, #17233a 0%, #101b30 56%, #0b1830 100%);
+    border-top: 1px solid rgba(201, 165, 85, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
     color: #ffffff;
   }
 

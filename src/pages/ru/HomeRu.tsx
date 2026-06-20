@@ -4,6 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
+import TechnologyPartnershipsRu from "@/components/TechnologyPartnershipsRu";
 import { ruServices, toFinalPath } from "@/lib/seo";
 import founderImage from "@/assets/founder-image.avif";
 
@@ -182,6 +183,8 @@ const HomeRu = () => {
           </div>
         </div>
       </section>
+
+      <TechnologyPartnershipsRu />
 
       {/* About Preview */}
       <section className="py-14 md:py-24 px-4">

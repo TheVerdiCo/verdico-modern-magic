@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, Send, MessageCircle, Shield } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
+import ContactWorldClocks from "@/components/ContactWorldClocks";
 import { EMAIL } from "@/lib/seo";
 
 const ContactsRu = () => {
@@ -15,6 +16,8 @@ const ContactsRu = () => {
 
       <section className="py-14 md:py-24 px-4">
         <div className="container">
+          <ContactWorldClocks />
+
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10 md:mb-12">
               <span className="eyebrow justify-center">Контакты</span>
@@ -26,7 +29,9 @@ const ContactsRu = () => {
                 в течение рабочего дня.
               </p>
             </div>
+          </div>
 
+          <div className="max-w-3xl mx-auto">
             {/* Contact Methods */}
             <div className="grid sm:grid-cols-2 gap-3 md:gap-4 mb-10 md:mb-12">
               <a

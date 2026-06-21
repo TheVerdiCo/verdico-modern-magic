@@ -104,11 +104,24 @@ const MultilingualHeader = () => {
 
         {/* LanguageSwitcher temporarily removed — English is publicly disabled. */}
 
-        <Link to={nav.contacts.path} className="hidden lg:inline-flex shrink-0">
-          <Button size="sm" className="rounded-full btn-navy-glass">
-            {lang === "ru" ? "Связаться" : "Contact Us"}
-          </Button>
-        </Link>
+        {lang === "ru" ? (
+          <a
+            href="https://t.me/DjamalG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-flex shrink-0"
+          >
+            <Button size="sm" className="rounded-full btn-navy-glass">
+              Связаться
+            </Button>
+          </a>
+        ) : (
+          <Link to={nav.contacts.path} className="hidden lg:inline-flex shrink-0">
+            <Button size="sm" className="rounded-full btn-navy-glass">
+              Contact Us
+            </Button>
+          </Link>
+        )}
 
         {/* Mobile Menu Button */}
         <div className="flex lg:hidden items-center gap-3">

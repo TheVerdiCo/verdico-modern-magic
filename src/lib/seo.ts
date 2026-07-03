@@ -1,8 +1,9 @@
-// SEO configuration and route mapping for RU/EN site
+// SEO configuration and route mapping for RU/EN/FR site
 
 export const SITE_URL = "https://www.verdico.ru";
 export const BRAND_NAME_RU = "Верди и Ко.";
 export const BRAND_NAME_EN = "Verdi & Co.";
+export const BRAND_NAME_FR = "Verdi & Co.";
 export const BRAND_NAME = "Верди и Ко. (Verdi & Co.)";
 export const EMAIL = "admin@verdico.ru";
 
@@ -37,7 +38,9 @@ export const toAbsoluteFinalUrl = (target: string): string => {
   }
 };
 
-export type Language = "ru" | "en";
+export type Language = "ru" | "en" | "fr";
+export type HreflangCode = Language | "x-default";
+export type HreflangAlternates = Partial<Record<HreflangCode, string>>;
 
 export interface PageSEO {
   path: string;
@@ -52,29 +55,83 @@ export interface ServicePage extends PageSEO {
   serviceType: string;
 }
 
-// Route mappings for hreflang
-export const routeAlternates: Record<string, string> = {
-  // RU -> EN
-  "/ru": "/en",
-  "/ru/privlechenie-investitsiy": "/en/investment-raising",
-  "/ru/sdelki-m-a": "/en/m-a-legal-advisory",
-  "/ru/yuridicheskoe-soprovozhdenie-investitsiy": "/en/investment-legal-support",
-  "/ru/mezhdunarodnyy-yurist-rossiya": "/en/international-lawyer-russia",
-  "/ru/arbitrazhnye-spory": "/en/arbitration-disputes",
-  "/ru/o-nas": "/en/about",
-  "/ru/kontakty": "/en/contacts",
-  "/ru/insights": "/en/insights",
-  // EN -> RU
-  "/en": "/ru",
-  "/en/investment-raising": "/ru/privlechenie-investitsiy",
-  "/en/m-a-legal-advisory": "/ru/sdelki-m-a",
-  "/en/investment-legal-support": "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
-  "/en/international-lawyer-russia": "/ru/mezhdunarodnyy-yurist-rossiya",
-  "/en/arbitration-disputes": "/ru/arbitrazhnye-spory",
-  "/en/about": "/ru/o-nas",
-  "/en/contacts": "/ru/kontakty",
-  "/en/insights": "/ru/insights",
+const normalizeRoutePath = (path: string): string => {
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  const [pathnameAndSearch] = path.split("#");
+  const [pathname] = pathnameAndSearch.split("?");
+  return pathname.replace(/\/+$/, "") || "/";
 };
+
+const alternateGroups: HreflangAlternates[] = [
+  {
+    ru: "/ru",
+    en: "/en",
+    fr: "/fr",
+    "x-default": "/",
+  },
+  {
+    ru: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
+    en: "/en/investment-legal-support-russia",
+    fr: "/fr/accompagnement-juridique-investisseurs-russie",
+    "x-default": "/en/investment-legal-support-russia",
+  },
+  {
+    ru: "/ru/sdelki-m-a",
+    en: "/en/ma-transactions-russia",
+    fr: "/fr/transactions-ma-russie",
+    "x-default": "/en/ma-transactions-russia",
+  },
+  {
+    ru: "/ru/arbitrazhnye-spory",
+    en: "/en/arbitration-enforcement-russia",
+    fr: "/fr/arbitrage-et-execution-russie",
+    "x-default": "/en/arbitration-enforcement-russia",
+  },
+  {
+    ru: "/ru/mezhdunarodnyy-yurist-rossiya",
+    en: "/en/international-lawyer-russia",
+    fr: "/fr/juriste-international-russie",
+    "x-default": "/en/international-lawyer-russia",
+  },
+  {
+    en: "/en/legal-services-moscow",
+    fr: "/fr/services-juridiques-moscou",
+    "x-default": "/en/legal-services-moscow",
+  },
+  {
+    en: "/en/english-speaking-legal-counsel-moscow-dinamo",
+    fr: "/fr/juriste-francophone-moscou-dinamo",
+    "x-default": "/en/english-speaking-legal-counsel-moscow-dinamo",
+  },
+];
+
+// Route mappings for reciprocal hreflang groups.
+export const routeAlternates: Record<string, HreflangAlternates> = alternateGroups.reduce(
+  (acc, group) => {
+    Object.values(group).forEach((path) => {
+      if (path) {
+        acc[normalizeRoutePath(path)] = group;
+      }
+    });
+    return acc;
+  },
+  {} as Record<string, HreflangAlternates>,
+);
+
+export const getHreflangAlternates = (path: string): HreflangAlternates => {
+  const normalizedPath = normalizeRoutePath(path);
+  return routeAlternates[normalizedPath] ?? {
+    [getLangFromPath(normalizedPath)]: normalizedPath,
+  };
+};
+
+export const getLanguageAlternate = (
+  path: string,
+  language: Language,
+): string | undefined => getHreflangAlternates(path)[language];
 
 // RU Service Pages
 export const ruServices: ServicePage[] = [
@@ -83,7 +140,7 @@ export const ruServices: ServicePage[] = [
     title: "Привлечение инвестиций в России и за рубежом — юрист международник | Верди и Ко.",
     h1: "Юридическое сопровождение привлечения инвестиций",
     description: "Юридическое сопровождение привлечения инвестиций: структура сделки, документы, переговоры, защита интересов инвестора и бизнеса в России.",
-    alternatePath: "/en/investment-raising",
+    alternatePath: "",
     relatedServices: ["/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/mezhdunarodnyy-yurist-rossiya"],
     serviceType: "Investment Legal Services",
   },
@@ -92,7 +149,7 @@ export const ruServices: ServicePage[] = [
     title: "Сделки M&A — сопровождение слияний и поглощений | Verdi&Co.",
     h1: "Юридическое сопровождение сделок M&A",
     description: "Сопровождение сделок M&A: due diligence, SPA/SHA, структурирование, переговоры и закрытие сделки. Россия и трансграничные проекты.",
-    alternatePath: "/en/m-a-legal-advisory",
+    alternatePath: "/en/ma-transactions-russia",
     relatedServices: ["/ru/privlechenie-investitsiy", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/arbitrazhnye-spory"],
     serviceType: "M&A Legal Advisory",
   },
@@ -101,7 +158,7 @@ export const ruServices: ServicePage[] = [
     title: "Юридическое сопровождение инвестиций в России | Verdi&Co.",
     h1: "Юридическое сопровождение инвестиционных проектов",
     description: "От структуры сделки и договорной документации до корпоративных решений, соблюдения закона (compliance) и защиты прав инвестора. Полный юридический цикл инвестиционного проекта.",
-    alternatePath: "/en/investment-legal-support",
+    alternatePath: "/en/investment-legal-support-russia",
     relatedServices: ["/ru/privlechenie-investitsiy", "/ru/sdelki-m-a", "/ru/mezhdunarodnyy-yurist-rossiya"],
     serviceType: "Investment Project Support",
   },
@@ -119,7 +176,7 @@ export const ruServices: ServicePage[] = [
     title: "Арбитражные споры — представитель в арбитраже | Verdi&Co.",
     h1: "Юрист по арбитражным спорам",
     description: "Представительство в арбитражных судах по коммерческим спорам: стратегия, доказательства, процесс, взыскание задолженности и убытков.",
-    alternatePath: "/en/arbitration-disputes",
+    alternatePath: "/en/arbitration-enforcement-russia",
     relatedServices: ["/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy", "/ru/mezhdunarodnyy-yurist-rossiya"],
     serviceType: "Arbitration and Dispute Resolution",
   },
@@ -155,60 +212,138 @@ export const ruServices: ServicePage[] = [
 // EN Service Pages
 export const enServices: ServicePage[] = [
   {
-    path: "/en/investment-raising",
-    title: "Investment Raising Legal Support in Russia | Verdi&Co.",
-    h1: "Legal support for investment raising",
-    description: "Legal support for investment raising: structuring, term sheets, documentation, negotiations, and risk control for investors and businesses in Russia.",
-    alternatePath: "/ru/privlechenie-investitsiy",
-    relatedServices: ["/en/m-a-legal-advisory", "/en/investment-legal-support", "/en/international-lawyer-russia"],
-    serviceType: "Investment Legal Services",
+    path: "/en/legal-services-moscow",
+    title: "Legal services in Moscow in English | Verdico",
+    h1: "Legal services in Moscow in English",
+    description: "Business-focused legal services in Moscow in English: contracts, investment support, M&A, disputes, enforcement, real estate and cross-border matters.",
+    alternatePath: "/fr/services-juridiques-moscou",
+    relatedServices: ["/en/investment-legal-support-russia", "/en/ma-transactions-russia", "/en/arbitration-enforcement-russia"],
+    serviceType: "English-language legal services in Moscow",
   },
   {
-    path: "/en/m-a-legal-advisory",
-    title: "M&A Legal Advisory (Russia & Cross-border) | Verdi&Co.",
-    h1: "M&A legal advisory",
-    description: "M&A legal advisory: due diligence, transaction documents, structuring, negotiation support, and closing coordination for Russia and cross-border deals.",
-    alternatePath: "/ru/sdelki-m-a",
-    relatedServices: ["/en/investment-raising", "/en/investment-legal-support", "/en/arbitration-disputes"],
-    serviceType: "M&A Legal Advisory",
+    path: "/en/english-speaking-legal-counsel-moscow-dinamo",
+    title: "English-speaking legal counsel near Dinamo, Moscow | Verdico",
+    h1: "English-speaking legal counsel near Dinamo, Moscow",
+    description: "English-speaking legal counsel in Moscow near Dinamo and Petrovsky Park. Support for foreign clients on business, investment, contracts, disputes, enforcement and real estate matters.",
+    alternatePath: "/fr/juriste-francophone-moscou-dinamo",
+    relatedServices: ["/en/legal-services-moscow", "/en/investment-legal-support-russia", "/en/international-lawyer-russia"],
+    serviceType: "Local English-speaking legal counsel in Moscow",
   },
   {
-    path: "/en/investment-legal-support",
-    title: "Legal Support for Investments in Russia | Verdi&Co.",
-    h1: "Legal support for investment projects",
-    description: "Legal support across the investment lifecycle: contracts, corporate structuring, compliance, and investor protection for projects in Russia.",
+    path: "/en/investment-legal-support-russia",
+    title: "Investment legal support in Russia | Verdico",
+    h1: "Investment legal support in Russia",
+    description: "Legal support for foreign and Russian investors in Russia: structuring, due diligence, transaction documents, risk allocation and implementation support.",
     alternatePath: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
-    relatedServices: ["/en/investment-raising", "/en/m-a-legal-advisory", "/en/international-lawyer-russia"],
-    serviceType: "Investment Project Support",
+    relatedServices: ["/en/legal-services-moscow", "/en/ma-transactions-russia", "/en/international-lawyer-russia"],
+    serviceType: "Investment legal support",
+  },
+  {
+    path: "/en/ma-transactions-russia",
+    title: "M&A transactions in Russia | Verdico",
+    h1: "M&A transactions in Russia",
+    description: "Legal support for M&A and business transactions in Russia, including structuring, due diligence, negotiations, documentation and closing support.",
+    alternatePath: "/ru/sdelki-m-a",
+    relatedServices: ["/en/investment-legal-support-russia", "/en/arbitration-enforcement-russia", "/en/international-lawyer-russia"],
+    serviceType: "M&A legal advisory",
+  },
+  {
+    path: "/en/arbitration-enforcement-russia",
+    title: "Arbitration and enforcement in Russia | Verdico",
+    h1: "Arbitration and enforcement in Russia",
+    description: "Legal support in Russian commercial disputes, arbitration, enforcement proceedings and recovery strategy for business clients and creditors.",
+    alternatePath: "/ru/arbitrazhnye-spory",
+    relatedServices: ["/en/ma-transactions-russia", "/en/investment-legal-support-russia", "/en/international-lawyer-russia"],
+    serviceType: "Arbitration and enforcement",
   },
   {
     path: "/en/international-lawyer-russia",
-    title: "International Lawyer in Russia | Verdi&Co.",
-    h1: "International legal support in Russia",
-    description: "International legal support in Russia for cross-border investments and transactions: structuring, documentation, and counterpart coordination.",
+    title: "International lawyer for Russia-related matters | Verdico",
+    h1: "International lawyer for Russia-related matters",
+    description: "Russian-law legal counsel for international clients dealing with business, investment, contracts, disputes and assets connected with Russia.",
     alternatePath: "/ru/mezhdunarodnyy-yurist-rossiya",
-    relatedServices: ["/en/investment-raising", "/en/m-a-legal-advisory", "/en/arbitration-disputes"],
-    serviceType: "International Legal Services",
+    relatedServices: ["/en/legal-services-moscow", "/en/investment-legal-support-russia", "/en/arbitration-enforcement-russia"],
+    serviceType: "International legal counsel for Russia-related matters",
+  },
+];
+
+// FR Service Pages
+export const frServices: ServicePage[] = [
+  {
+    path: "/fr/services-juridiques-moscou",
+    title: "Services juridiques à Moscou en français | Verdico",
+    h1: "Services juridiques à Moscou en français",
+    description: "Services juridiques à Moscou pour clients francophones : contrats, investissements, transactions M&A, litiges, exécution, immobilier et dossiers liés à la Russie.",
+    alternatePath: "/en/legal-services-moscow",
+    relatedServices: ["/fr/accompagnement-juridique-investisseurs-russie", "/fr/transactions-ma-russie", "/fr/arbitrage-et-execution-russie"],
+    serviceType: "Services juridiques en français à Moscou",
   },
   {
-    path: "/en/arbitration-disputes",
-    title: "Arbitration and Commercial Disputes | Verdi&Co.",
-    h1: "Arbitration and commercial disputes",
-    description: "Representation in arbitration and commercial disputes: case strategy, evidence, procedure management, and enforcement support.",
+    path: "/fr/juriste-francophone-moscou-dinamo",
+    title: "Juriste francophone près de Dinamo, Moscou | Verdico",
+    h1: "Juriste francophone près de Dinamo, Moscou",
+    description: "Accompagnement juridique en français à Moscou, près de Dinamo et Petrovsky Park, pour clients étrangers, investisseurs, entreprises et dirigeants.",
+    alternatePath: "/en/english-speaking-legal-counsel-moscow-dinamo",
+    relatedServices: ["/fr/services-juridiques-moscou", "/fr/accompagnement-juridique-investisseurs-russie", "/fr/juriste-international-russie"],
+    serviceType: "Accompagnement juridique local en français à Moscou",
+  },
+  {
+    path: "/fr/accompagnement-juridique-investisseurs-russie",
+    title: "Accompagnement juridique des investisseurs en Russie | Verdico",
+    h1: "Accompagnement juridique des investisseurs en Russie",
+    description: "Accompagnement juridique des investisseurs étrangers et russes en Russie : structuration, due diligence, documentation, risques et mise en œuvre.",
+    alternatePath: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
+    relatedServices: ["/fr/services-juridiques-moscou", "/fr/transactions-ma-russie", "/fr/juriste-international-russie"],
+    serviceType: "Accompagnement juridique des investisseurs",
+  },
+  {
+    path: "/fr/transactions-ma-russie",
+    title: "Transactions M&A en Russie | Verdico",
+    h1: "Transactions M&A en Russie",
+    description: "Accompagnement juridique des transactions M&A en Russie : structuration, due diligence, négociation, documentation et closing.",
+    alternatePath: "/ru/sdelki-m-a",
+    relatedServices: ["/fr/accompagnement-juridique-investisseurs-russie", "/fr/arbitrage-et-execution-russie", "/fr/juriste-international-russie"],
+    serviceType: "Accompagnement juridique des transactions M&A",
+  },
+  {
+    path: "/fr/arbitrage-et-execution-russie",
+    title: "Arbitrage et exécution en Russie | Verdico",
+    h1: "Arbitrage et exécution en Russie",
+    description: "Accompagnement juridique en matière de litiges commerciaux, arbitrage, procédures d’exécution et recouvrement en Russie.",
     alternatePath: "/ru/arbitrazhnye-spory",
-    relatedServices: ["/en/m-a-legal-advisory", "/en/investment-legal-support", "/en/international-lawyer-russia"],
-    serviceType: "Arbitration and Dispute Resolution",
+    relatedServices: ["/fr/transactions-ma-russie", "/fr/accompagnement-juridique-investisseurs-russie", "/fr/juriste-international-russie"],
+    serviceType: "Arbitrage, exécution et recouvrement",
+  },
+  {
+    path: "/fr/juriste-international-russie",
+    title: "Juriste international pour dossiers liés à la Russie | Verdico",
+    h1: "Juriste international pour dossiers liés à la Russie",
+    description: "Conseil juridique en droit russe pour clients internationaux confrontés à des questions d’affaires, d’investissement, de contrats, de litiges ou d’actifs en Russie.",
+    alternatePath: "/ru/mezhdunarodnyy-yurist-rossiya",
+    relatedServices: ["/fr/services-juridiques-moscou", "/fr/accompagnement-juridique-investisseurs-russie", "/fr/arbitrage-et-execution-russie"],
+    serviceType: "Conseil juridique international lié à la Russie",
   },
 ];
 
 // Get service by path
 export const getServiceByPath = (path: string): ServicePage | undefined => {
-  return [...ruServices, ...enServices].find(s => s.path === path);
+  const normalizedPath = normalizeRoutePath(path);
+  return [...ruServices, ...enServices, ...frServices].find(
+    (service) => normalizeRoutePath(service.path) === normalizedPath,
+  );
 };
 
 // Get language from path
 export const getLangFromPath = (path: string): Language => {
-  return path.startsWith("/en") ? "en" : "ru";
+  if (path.startsWith("/en")) {
+    return "en";
+  }
+
+  if (path.startsWith("/fr")) {
+    return "fr";
+  }
+
+  return "ru";
 };
 
 // Navigation items
@@ -217,7 +352,7 @@ export const getNavItems = (lang: Language) => {
     return {
       services: {
         label: "Услуги",
-        items: ruServices.map(s => ({ path: toFinalPath(s.path), label: s.h1 })),
+        items: ruServices.map((service) => ({ path: toFinalPath(service.path), label: service.h1 })),
       },
       about: { path: toFinalPath("/ru/o-nas"), label: "О нас" },
       contacts: { path: toFinalPath("/ru/kontakty"), label: "Контакты" },
@@ -225,14 +360,28 @@ export const getNavItems = (lang: Language) => {
       home: { path: toFinalPath("/ru"), label: "Главная" },
     };
   }
+
+  if (lang === "fr") {
+    return {
+      services: {
+        label: "Services",
+        items: frServices.map((service) => ({ path: toFinalPath(service.path), label: service.h1 })),
+      },
+      about: { path: toFinalPath("/fr/services-juridiques-moscou"), label: "Services à Moscou" },
+      contacts: { path: `mailto:${EMAIL}`, label: "Contact" },
+      insights: { path: toFinalPath("/fr/juriste-francophone-moscou-dinamo"), label: "Dinamo" },
+      home: { path: toFinalPath("/fr"), label: "Accueil" },
+    };
+  }
+
   return {
     services: {
       label: "Services",
-      items: enServices.map(s => ({ path: toFinalPath(s.path), label: s.h1 })),
+      items: enServices.map((service) => ({ path: toFinalPath(service.path), label: service.h1 })),
     },
-    about: { path: toFinalPath("/en/about"), label: "About" },
-    contacts: { path: toFinalPath("/en/contacts"), label: "Contacts" },
-    insights: { path: toFinalPath("/en/insights"), label: "Insights" },
+    about: { path: toFinalPath("/en/legal-services-moscow"), label: "Moscow services" },
+    contacts: { path: `mailto:${EMAIL}`, label: "Contact" },
+    insights: { path: toFinalPath("/en/english-speaking-legal-counsel-moscow-dinamo"), label: "Dinamo area" },
     home: { path: toFinalPath("/en"), label: "Home" },
   };
 };

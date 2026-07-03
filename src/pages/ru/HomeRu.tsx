@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
@@ -59,12 +59,15 @@ const homeCardCopy: Record<string, { title: string; summary: string }> = {
 };
 
 const HomeRu = () => {
+  const location = useLocation();
+  const seoPath = location.pathname === "/" ? "/" : "/ru";
+
   return (
     <MultilingualLayout>
       <SEOHead
         title="Верди и Ко. — право, сделки и инвестиционные проекты"
         description="Юридическое и коммерческое сопровождение недвижимости, инфраструктуры, ЦОДов, энергетики и международных проектов. Конфиденциально, структурно, по делу."
-        path="/ru"
+        path={seoPath}
       />
       <OrganizationSchema />
 

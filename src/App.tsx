@@ -33,18 +33,25 @@ import InternationalAssetsPageRu from "./pages/ru/services/InternationalAssetsPa
 
 // EN Pages
 import HomeEn from "./pages/en/HomeEn";
-import AboutEn from "./pages/en/AboutEn";
-import ContactsEn from "./pages/en/ContactsEn";
-import InsightsEn from "./pages/en/InsightsEn";
-import InvestmentRaisingEn from "./pages/en/services/InvestmentRaisingEn";
+import LegalServicesMoscowEn from "./pages/en/LegalServicesMoscowEn";
+import EnglishSpeakingLegalCounselDinamoEn from "./pages/en/EnglishSpeakingLegalCounselDinamoEn";
 import MAEn from "./pages/en/services/MAEn";
 import InvestmentSupportEn from "./pages/en/services/InvestmentSupportEn";
 import InternationalLawyerEn from "./pages/en/services/InternationalLawyerEn";
 import ArbitrationEn from "./pages/en/services/ArbitrationEn";
 
+// FR Pages
+import HomeFr from "./pages/fr/HomeFr";
+import ServicesJuridiquesMoscouFr from "./pages/fr/ServicesJuridiquesMoscouFr";
+import JuristeFrancophoneDinamoFr from "./pages/fr/JuristeFrancophoneDinamoFr";
+import InvestmentSupportFr from "./pages/fr/services/InvestmentSupportFr";
+import MAFr from "./pages/fr/services/MAFr";
+import ArbitrationFr from "./pages/fr/services/ArbitrationFr";
+import InternationalLawyerFr from "./pages/fr/services/InternationalLawyerFr";
+
 const queryClient = new QueryClient();
 
-const TEMPORARY_SITE_HOLD = true;
+const TEMPORARY_SITE_HOLD = false;
 const LIVE_LEGAL_ROUTES = new Set([
   "/ru/privacy-policy",
   "/ru/cookie-policy",
@@ -61,8 +68,8 @@ const PublicSiteRoutes = () => {
 
   return (
     <Routes>
-      {/* Root redirects to RU */}
-      <Route path="/" element={<Navigate to="/ru" replace />} />
+      {/* Root x-default */}
+      <Route path="/" element={<HomeRu />} />
 
       {/* RU Routes */}
       <Route path="/ru" element={<HomeRu />} />
@@ -90,16 +97,30 @@ const PublicSiteRoutes = () => {
       <Route path="/ru/insights" element={<InsightsRu />} />
       <Route path="/ru/insights/:slug" element={<InsightArticleRu />} />
 
-      {/* EN Routes — English is temporarily disabled publicly. Do not delete EN pages/content; restore by re-enabling these routes and the LanguageSwitcher in MultilingualHeader. */}
-      <Route path="/en" element={<Navigate to="/ru" replace />} />
-      <Route path="/en/investment-raising" element={<Navigate to="/ru/privlechenie-investitsiy" replace />} />
-      <Route path="/en/m-a-legal-advisory" element={<Navigate to="/ru/sdelki-m-a" replace />} />
-      <Route path="/en/investment-legal-support" element={<Navigate to="/ru/yuridicheskoe-soprovozhdenie-investitsiy" replace />} />
-      <Route path="/en/international-lawyer-russia" element={<Navigate to="/ru/mezhdunarodnyy-yurist-rossiya" replace />} />
-      <Route path="/en/arbitration-disputes" element={<Navigate to="/ru/arbitrazhnye-spory" replace />} />
-      <Route path="/en/about" element={<Navigate to="/ru/o-nas" replace />} />
-      <Route path="/en/contacts" element={<Navigate to="/ru/kontakty" replace />} />
-      <Route path="/en/insights" element={<Navigate to="/ru/insights" replace />} />
+      {/* EN Routes */}
+      <Route path="/en" element={<HomeEn />} />
+      <Route path="/en/legal-services-moscow" element={<LegalServicesMoscowEn />} />
+      <Route path="/en/english-speaking-legal-counsel-moscow-dinamo" element={<EnglishSpeakingLegalCounselDinamoEn />} />
+      <Route path="/en/investment-legal-support-russia" element={<InvestmentSupportEn />} />
+      <Route path="/en/ma-transactions-russia" element={<MAEn />} />
+      <Route path="/en/arbitration-enforcement-russia" element={<ArbitrationEn />} />
+      <Route path="/en/international-lawyer-russia" element={<InternationalLawyerEn />} />
+      <Route path="/en/investment-raising" element={<Navigate to="/en/legal-services-moscow/" replace />} />
+      <Route path="/en/m-a-legal-advisory" element={<Navigate to="/en/ma-transactions-russia/" replace />} />
+      <Route path="/en/investment-legal-support" element={<Navigate to="/en/investment-legal-support-russia/" replace />} />
+      <Route path="/en/arbitration-disputes" element={<Navigate to="/en/arbitration-enforcement-russia/" replace />} />
+      <Route path="/en/about" element={<Navigate to="/en/" replace />} />
+      <Route path="/en/contacts" element={<Navigate to="/en/" replace />} />
+      <Route path="/en/insights" element={<Navigate to="/en/" replace />} />
+
+      {/* FR Routes */}
+      <Route path="/fr" element={<HomeFr />} />
+      <Route path="/fr/services-juridiques-moscou" element={<ServicesJuridiquesMoscouFr />} />
+      <Route path="/fr/juriste-francophone-moscou-dinamo" element={<JuristeFrancophoneDinamoFr />} />
+      <Route path="/fr/accompagnement-juridique-investisseurs-russie" element={<InvestmentSupportFr />} />
+      <Route path="/fr/transactions-ma-russie" element={<MAFr />} />
+      <Route path="/fr/arbitrage-et-execution-russie" element={<ArbitrationFr />} />
+      <Route path="/fr/juriste-international-russie" element={<InternationalLawyerFr />} />
 
       {/* Legacy routes */}
       <Route path="/policy" element={<PrivacyPolicy />} />

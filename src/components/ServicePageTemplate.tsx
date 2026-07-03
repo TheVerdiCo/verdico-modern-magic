@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import SEOHead from "@/components/seo/SEOHead";
 import LegalServiceSchema from "@/components/seo/LegalServiceSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
-import { ServicePage, getServiceByPath, getLangFromPath, toFinalPath } from "@/lib/seo";
+import { EMAIL, ServicePage, getServiceByPath, getLangFromPath, toFinalPath } from "@/lib/seo";
 
 interface ServicePageTemplateProps {
   service: ServicePage;
@@ -25,6 +25,35 @@ interface ServicePageTemplateProps {
 const ServicePageTemplate = ({ service, content, relatedMaterials = [], additionalSections }: ServicePageTemplateProps) => {
   const lang = getLangFromPath(service.path);
   const contactPath = toFinalPath(lang === "ru" ? "/ru/kontakty" : "/en/contacts");
+  const labels = {
+    ru: {
+      service: "Услуга",
+      included: "Что включает",
+      process: "Как проходит работа",
+      related: "Связанные услуги",
+      learnMore: "Подробнее",
+      ctaTitle: "Обсудить вашу задачу?",
+      ctaButton: "Связаться",
+    },
+    en: {
+      service: "Service",
+      included: "What's included",
+      process: "How the work starts",
+      related: "Related services",
+      learnMore: "Learn more",
+      ctaTitle: "Discuss your case?",
+      ctaButton: `Email ${EMAIL}`,
+    },
+    fr: {
+      service: "Service",
+      included: "Ce qui est inclus",
+      process: "Déroulement",
+      related: "Services liés",
+      learnMore: "En savoir plus",
+      ctaTitle: "Discuter de votre dossier ?",
+      ctaButton: `Écrire à ${EMAIL}`,
+    },
+  }[lang];
   
   const relatedServices = service.relatedServices
     .map(path => getServiceByPath(path))
@@ -49,7 +78,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
         <div className="container">
           <div className="max-w-3xl">
             <span className="eyebrow">
-              {lang === "ru" ? "Услуга" : "Service"}
+              {labels.service}
             </span>
             <h1 className="h1-hero mt-4 md:mt-5 mb-5 md:mb-6">{service.h1}</h1>
             <p className="narrative-copy whitespace-pre-line text-left">{content.intro}</p>
@@ -62,7 +91,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
-              {lang === "ru" ? "Что включает" : "What's Included"}
+              {labels.included}
             </h2>
             <ul className="space-y-3 md:space-y-4">
               {content.features.map((feature, i) => (
@@ -80,12 +109,36 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
 
       {additionalSections}
 
+      {content.process && content.process.length > 0 && (
+        <section className="py-14 md:py-16 px-4">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
+                {labels.process}
+              </h2>
+              <div className="space-y-4">
+                {content.process.map((step, i) => (
+                  <div key={step} className="flex items-start gap-4 md:gap-5">
+                    <span className="numeral-navy flex-shrink-0 leading-none pt-0.5" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-[15.5px] leading-[1.6] md:text-base text-muted-foreground">
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Related Services */}
       {relatedServices.length > 0 && (
         <section className="py-14 md:py-16 px-4">
           <div className="container">
             <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8 text-center">
-              {lang === "ru" ? "Связанные услуги" : "Related Services"}
+              {labels.related}
             </h2>
             <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
               {relatedServices.map((s) => (
@@ -98,7 +151,7 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
                     {s.h1}
                   </h3>
                   <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm text-accent min-h-[28px]">
-                    {lang === "ru" ? "Подробнее" : "Learn more"}
+                    {labels.learnMore}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
@@ -137,14 +190,23 @@ const ServicePageTemplate = ({ service, content, relatedMaterials = [], addition
       <section className="py-14 md:py-16 px-4 bg-verdico-closing">
         <div className="container text-center">
           <h2 className="font-serif text-[26px] leading-tight md:text-3xl mb-4 text-verdico-ink">
-            {lang === "ru" ? "Обсудить вашу задачу?" : "Discuss your case?"}
+            {labels.ctaTitle}
           </h2>
-          <Link to={contactPath}>
-            <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
-              {lang === "ru" ? "Связаться" : "Contact Us"}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
+          {lang === "ru" ? (
+            <Link to={contactPath}>
+              <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
+                {labels.ctaButton}
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          ) : (
+            <a href={`mailto:${EMAIL}`}>
+              <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
+                {labels.ctaButton}
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </a>
+          )}
         </div>
       </section>
     </MultilingualLayout>

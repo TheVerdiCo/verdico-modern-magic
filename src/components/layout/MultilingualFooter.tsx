@@ -2,12 +2,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail, Send } from "lucide-react";
 import LogoMark from "@/components/LogoMark";
-import { getNavItems, getLangFromPath, BRAND_NAME_RU, BRAND_NAME_EN, EMAIL, toFinalPath } from "@/lib/seo";
+import { getLanguageAlternate, getNavItems, getLangFromPath, BRAND_NAME_RU, BRAND_NAME_EN, BRAND_NAME_FR, EMAIL, toFinalPath, type Language } from "@/lib/seo";
 
 const MultilingualFooter = () => {
   const location = useLocation();
   const lang = getLangFromPath(location.pathname);
   const nav = getNavItems(lang);
+  const contactIsEmail = nav.contacts.path.startsWith("mailto:");
 
   const content = {
     ru: {
@@ -15,6 +16,7 @@ const MultilingualFooter = () => {
       servicesTitle: "Услуги",
       companyTitle: "Компания",
       contactTitle: "Контакты",
+      languagesTitle: "Языки",
       contactCta: "Обсудить задачу",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_RU} Все права защищены.`,
       privacy: "Политика конфиденциальности",
@@ -25,14 +27,36 @@ const MultilingualFooter = () => {
       servicesTitle: "Services",
       companyTitle: "Company",
       contactTitle: "Contact",
+      languagesTitle: "Languages",
       contactCta: "Discuss Your Case",
       copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_EN}. All rights reserved.`,
       privacy: "Privacy Policy",
       disclaimer: "Personal data may be processed only when a user voluntarily sends a request and is handled in accordance with the personal data processing policy.",
     },
+    fr: {
+      trust: "Russie / projets internationaux",
+      servicesTitle: "Services",
+      companyTitle: "Verdico",
+      contactTitle: "Contact",
+      languagesTitle: "Langues",
+      contactCta: "Discuter du dossier",
+      copyright: `© ${new Date().getFullYear()} ${BRAND_NAME_FR}. Tous droits réservés.`,
+      privacy: "Politique de confidentialité",
+      disclaimer: "Les données personnelles peuvent être traitées uniquement lorsqu'un utilisateur adresse volontairement une demande, conformément à la politique de traitement des données personnelles.",
+    },
   };
 
   const t = content[lang];
+  const languageLabels: Record<Language, string> = {
+    ru: "Русский",
+    en: "English",
+    fr: "Français",
+  };
+  const languageLinks = (["ru", "en", "fr"] as const).map((language) => ({
+    language,
+    label: languageLabels[language],
+    path: toFinalPath(getLanguageAlternate(location.pathname, language) ?? `/${language}`),
+  }));
 
   return (
     <footer className="bg-verdico-footer text-white relative">
@@ -43,7 +67,9 @@ const MultilingualFooter = () => {
             <div className="flex items-center gap-4 group">
               <LogoMark size="lg" />
               <div>
-                <p className="font-serif text-xl font-medium">{lang === "ru" ? BRAND_NAME_RU : BRAND_NAME_EN}</p>
+                <p className="font-serif text-xl font-medium">
+                  {lang === "ru" ? BRAND_NAME_RU : lang === "fr" ? BRAND_NAME_FR : BRAND_NAME_EN}
+                </p>
                 <p className="text-sm text-white/70">{t.trust}</p>
               </div>
             </div>
@@ -151,13 +177,30 @@ const MultilingualFooter = () => {
               ) : (
                 <li>
                   <Link
-                    to="/policy"
+                    to={toFinalPath("/policy")}
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {t.privacy}
                   </Link>
                 </li>
               )}
+              <li className="pt-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45">
+                  {t.languagesTitle}
+                </p>
+              </li>
+              {languageLinks.map((item) => (
+                <li key={item.language}>
+                  <Link
+                    to={item.path}
+                    className={`text-sm transition-colors ${
+                      item.language === lang ? "text-white" : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -184,12 +227,21 @@ const MultilingualFooter = () => {
                 </a>
               </li>
               <li>
-                <Link
-                  to={nav.contacts.path}
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {nav.contacts.label}
-                </Link>
+                {contactIsEmail ? (
+                  <a
+                    href={nav.contacts.path}
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {nav.contacts.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={nav.contacts.path}
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {nav.contacts.label}
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
@@ -205,11 +257,19 @@ const MultilingualFooter = () => {
                 : "Describe your case — we'll get back to you shortly."
               }
             </p>
-            <Link to={nav.contacts.path}>
-              <Button variant="secondary" className="w-full">
-                {t.contactCta}
-              </Button>
-            </Link>
+            {contactIsEmail ? (
+              <a href={nav.contacts.path}>
+                <Button variant="secondary" className="w-full">
+                  {t.contactCta}
+                </Button>
+              </a>
+            ) : (
+              <Link to={nav.contacts.path}>
+                <Button variant="secondary" className="w-full">
+                  {t.contactCta}
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 

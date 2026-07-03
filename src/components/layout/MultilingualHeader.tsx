@@ -5,7 +5,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import LogoMark from "@/components/LogoMark";
 // English is temporarily disabled publicly. Do not delete EN pages/content; restore by re-importing and re-rendering LanguageSwitcher here.
 // import LanguageSwitcher from "./LanguageSwitcher";
-import { getNavItems, getLangFromPath } from "@/lib/seo";
+import { EMAIL, getNavItems, getLangFromPath } from "@/lib/seo";
 
 const MultilingualHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,6 +14,7 @@ const MultilingualHeader = () => {
   const location = useLocation();
   const lang = getLangFromPath(location.pathname);
   const nav = getNavItems(lang);
+  const contactIsEmail = nav.contacts.path.startsWith("mailto:");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,12 +95,21 @@ const MultilingualHeader = () => {
           >
             {nav.insights.label}
           </Link>
-          <Link
-            to={nav.contacts.path}
-            className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
-          >
-            {nav.contacts.label}
-          </Link>
+          {contactIsEmail ? (
+            <a
+              href={nav.contacts.path}
+              className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
+            >
+              {nav.contacts.label}
+            </a>
+          ) : (
+            <Link
+              to={nav.contacts.path}
+              className="nav-link-underline text-[14px] font-medium tracking-[0.045em] text-foreground/80 hover:text-foreground transition-colors"
+            >
+              {nav.contacts.label}
+            </Link>
+          )}
         </nav>
 
         {/* LanguageSwitcher temporarily removed — English is publicly disabled. */}
@@ -116,11 +126,11 @@ const MultilingualHeader = () => {
             </Button>
           </a>
         ) : (
-          <Link to={nav.contacts.path} className="hidden lg:inline-flex shrink-0">
+          <a href={`mailto:${EMAIL}`} className="hidden lg:inline-flex shrink-0">
             <Button size="sm" className="rounded-full btn-navy-glass">
-              Contact Us
+              {lang === "fr" ? "Contact" : "Contact Us"}
             </Button>
-          </Link>
+          </a>
         )}
 
         {/* Mobile Menu Button */}
@@ -172,19 +182,37 @@ const MultilingualHeader = () => {
             >
               {nav.insights.label}
             </Link>
-            <Link
-              to={nav.contacts.path}
-              className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {nav.contacts.label}
-            </Link>
+            {contactIsEmail ? (
+              <a
+                href={nav.contacts.path}
+                className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {nav.contacts.label}
+              </a>
+            ) : (
+              <Link
+                to={nav.contacts.path}
+                className="flex items-center text-[15px] font-medium min-h-[48px] py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {nav.contacts.label}
+              </Link>
+            )}
 
-            <Link to={nav.contacts.path}>
-              <Button className="mt-4 w-full h-12 rounded-full btn-navy-glass">
-                {lang === "ru" ? "Связаться" : "Contact Us"}
-              </Button>
-            </Link>
+            {contactIsEmail ? (
+              <a href={nav.contacts.path}>
+                <Button className="mt-4 w-full h-12 rounded-full btn-navy-glass">
+                  {lang === "fr" ? "Contact" : "Contact Us"}
+                </Button>
+              </a>
+            ) : (
+              <Link to={nav.contacts.path}>
+                <Button className="mt-4 w-full h-12 rounded-full btn-navy-glass">
+                  {lang === "ru" ? "Связаться" : "Contact Us"}
+                </Button>
+              </Link>
+            )}
           </div>
         </nav>
       )}

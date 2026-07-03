@@ -1,19 +1,24 @@
 import ServicePageTemplate from "@/components/ServicePageTemplate";
 import { enServices } from "@/lib/seo";
 
-const service = enServices[1];
+const service = enServices.find((item) => item.path === "/en/ma-transactions-russia")!;
 
 const MAEn = () => (
   <ServicePageTemplate
     service={service}
     content={{
-      intro: "We support M&A transactions in Russia and cross-border projects. Due diligence, structuring, SPA/SHA preparation, negotiations, closing. We work on both buy-side and sell-side.",
+      intro: "Verdico supports M&A and business transactions connected with Russia, from initial structure and diligence to negotiation, documentation and closing coordination. The work is built around legal certainty, risk allocation and practical execution.",
       features: [
-        "Legal due diligence of target companies",
-        "Transaction structuring with tax and corporate considerations",
-        "SPA, SHA, and shareholder agreement preparation",
-        "Negotiation support and client position protection",
-        "Closing and post-closing coordination",
+        "Legal due diligence of companies, assets, contracts and corporate authority",
+        "Transaction structuring with corporate, contractual and enforcement considerations",
+        "SPA, SHA, asset-transfer and ancillary document preparation or review",
+        "Negotiation support, red-flag memoranda and allocation of transaction risks",
+        "Closing sequence, conditions precedent and post-closing implementation support",
+      ],
+      process: [
+        "We define the transaction perimeter, target documents, deadlines and decision points.",
+        "Diligence findings are translated into contractual protections and closing conditions.",
+        "Consultations are available by appointment and online in Russian, English and French.",
       ],
     }}
   />

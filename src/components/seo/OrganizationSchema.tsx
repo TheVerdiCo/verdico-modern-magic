@@ -20,11 +20,15 @@ const OrganizationSchema = () => {
         name: "Russia",
       },
       {
+        "@type": "City",
+        name: "Moscow",
+      },
+      {
         "@type": "Place",
         name: "International",
       },
     ],
-    knowsLanguage: ["ru", "en"],
+    knowsLanguage: ["Russian", "English", "French"],
     description: "Юридические услуги для бизнеса: инвестиции, M&A, международные сделки, арбитраж.",
     sameAs: [],
   };

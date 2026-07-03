@@ -22,11 +22,17 @@ const LegalServiceSchema = ({ name, description, serviceType, url, providerName 
       name: providerName,
       url: SITE_URL,
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Russia",
-    },
-    availableLanguage: ["ru", "en"],
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Moscow",
+      },
+      {
+        "@type": "Country",
+        name: "Russia",
+      },
+    ],
+    availableLanguage: ["Russian", "English", "French"],
   };
 
   return (

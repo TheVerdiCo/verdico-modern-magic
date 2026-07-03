@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SITE_URL, routeAlternates, getLangFromPath, toAbsoluteFinalUrl } from "@/lib/seo";
+import { getHreflangAlternates, getLangFromPath, SITE_URL, toAbsoluteFinalUrl } from "@/lib/seo";
 
 interface SEOHeadProps {
   title: string;
@@ -11,12 +11,12 @@ interface SEOHeadProps {
 
 const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride, noIndex = false }: SEOHeadProps) => {
   const lang = getLangFromPath(path);
-  const alternatePath = routeAlternates[path];
-  const canonicalPath = path === "/ru" ? "/" : path;
   const canonicalUrl = canonicalUrlOverride
     ? toAbsoluteFinalUrl(canonicalUrlOverride)
-    : toAbsoluteFinalUrl(canonicalPath);
-  const alternateUrl = alternatePath ? toAbsoluteFinalUrl(alternatePath) : null;
+    : toAbsoluteFinalUrl(path);
+  const alternates = getHreflangAlternates(path);
+  const ogLocale = lang === "ru" ? "ru_RU" : lang === "fr" ? "fr_FR" : "en_US";
+  const siteName = lang === "ru" ? "Верди и Ко." : "Verdi & Co.";
 
   return (
     <Helmet>
@@ -26,11 +26,18 @@ const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride,
       <link rel="canonical" href={canonicalUrl} />
       
       {/* Hreflang tags */}
-      <link rel="alternate" hrefLang={lang} href={canonicalUrl} />
-      {alternateUrl && (
-        <link rel="alternate" hrefLang={lang === "ru" ? "en" : "ru"} href={alternateUrl} />
+      {!noIndex && alternates.ru && (
+        <link rel="alternate" hrefLang="ru" href={toAbsoluteFinalUrl(alternates.ru)} />
       )}
-      <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/`} />
+      {!noIndex && alternates.en && (
+        <link rel="alternate" hrefLang="en" href={toAbsoluteFinalUrl(alternates.en)} />
+      )}
+      {!noIndex && alternates.fr && (
+        <link rel="alternate" hrefLang="fr" href={toAbsoluteFinalUrl(alternates.fr)} />
+      )}
+      {!noIndex && (
+        <link rel="alternate" hrefLang="x-default" href={toAbsoluteFinalUrl(alternates["x-default"] ?? "/")} />
+      )}
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
@@ -38,8 +45,8 @@ const SEOHead = ({ title, description, path, canonicalUrl: canonicalUrlOverride,
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`${SITE_URL}/og/verdico-social-preview.png`} />
-      <meta property="og:locale" content={lang === "ru" ? "ru_RU" : "en_US"} />
-      <meta property="og:site_name" content={lang === "ru" ? "Верди и Ко." : "Verdi & Co."} />
+      <meta property="og:locale" content={ogLocale} />
+      <meta property="og:site_name" content={siteName} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

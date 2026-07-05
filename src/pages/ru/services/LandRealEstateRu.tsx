@@ -82,6 +82,24 @@ const LandRealEstateRu = () => (
       <div className="container">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
+            Земельные вопросы в Москве и России
+          </h2>
+          <div className="space-y-5">
+            <p className="narrative-copy">
+              Земельные вопросы в Москве и других регионах России требуют проверки не только права собственности или аренды, но и кадастрового учёта, градостроительного режима, публичных ограничений, сервитутов, доступа к участку и позиции органов власти.
+            </p>
+            <p className="narrative-copy">
+              Для собственников, инвесторов и бизнеса это влияет на стоимость актива, возможность строительства, условия сделки, риск спора и дальнейшее использование недвижимости.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-14 md:py-16 px-4">
+      <div className="container">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-serif text-[24px] md:text-3xl mb-6 md:mb-8">
             Что входит
           </h2>
           <ul className="space-y-3 md:space-y-4">

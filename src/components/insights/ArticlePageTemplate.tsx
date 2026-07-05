@@ -142,6 +142,21 @@ const ArticlePageTemplate = ({ article }: ArticlePageTemplateProps) => {
             </p>
 
             {article.body.map(renderSection)}
+
+            {article.relatedService && (
+              <div className="mt-12 md:mt-16 p-5 md:p-7 bg-card verdico-card border border-border">
+                <p className="eyebrow mb-3">{article.relatedService.label}</p>
+                <Link
+                  to={toFinalPath(article.relatedService.href)}
+                  className="group inline-flex items-start gap-2 text-foreground hover:text-accent transition-colors"
+                >
+                  <span className="font-serif text-[19px] leading-snug md:text-xl font-medium">
+                    {article.relatedService.title}
+                  </span>
+                  <ArrowRight className="w-4 h-4 mt-1.5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </article>

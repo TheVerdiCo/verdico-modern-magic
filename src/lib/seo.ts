@@ -186,8 +186,17 @@ export const ruServices: ServicePage[] = [
     h1: "Недвижимость, аренда и защита собственника",
     description: "Юридическое сопровождение недвижимости и аренды: договоры, имущественные споры, защита собственника и оспаривание кадастровой стоимости.",
     alternatePath: "",
-    relatedServices: ["/ru/arbitrazhnye-spory", "/ru/sdelki-m-a", "/ru/yuridicheskoe-soprovozhdenie-investitsiy"],
+    relatedServices: ["/ru/zemlya-i-nedvizhimost", "/ru/arbitrazhnye-spory", "/ru/sdelki-m-a"],
     serviceType: "Real Estate Legal Services",
+  },
+  {
+    path: "/ru/zemlya-i-nedvizhimost",
+    title: "Земельное право и недвижимость — юрист | Верди и Ко.",
+    h1: "Земля и недвижимость",
+    description: "Юридическое сопровождение земельных участков и недвижимости: проверка прав, аренда, выкуп, кадастр, муниципальная земля, участки под МКД и земельные споры.",
+    alternatePath: "",
+    relatedServices: ["/ru/nedvizhimost-i-arenda", "/ru/arbitrazhnye-spory", "/ru/sdelki-m-a"],
+    serviceType: "Земельное право и недвижимость",
   },
   {
     path: "/ru/services/international-migration-coordination",

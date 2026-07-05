@@ -30,6 +30,11 @@ export interface RuArticle {
   lead: string;
   excerpt: string;
   publishedAt: string; // ISO date — editorial placement date, not case date
+  relatedService?: {
+    title: string;
+    href: string;
+    label: string;
+  };
   body: ArticleSection[];
 }
 
@@ -408,6 +413,11 @@ export const ruArticles: RuArticle[] = [
     excerpt:
       "Кадастровая стоимость — результат массовой оценки, а не индивидуальная рыночная оценка конкретного объекта. Циклы государственной переоценки превращают её оспаривание из разового действия в регулярную процедуру: при каждом цикле возникает самостоятельное основание для проверки её соответствия рыночной.",
     publishedAt: "2026-05-25",
+    relatedService: {
+      title: "Земля и недвижимость",
+      href: "/ru/zemlya-i-nedvizhimost",
+      label: "Связанная услуга",
+    },
     body: [
       { kind: "h2", text: "Абстрактная фактическая канва" },
       {

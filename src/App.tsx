@@ -28,6 +28,7 @@ import InvestmentSupportRu from "./pages/ru/services/InvestmentSupportRu";
 import InternationalLawyerRu from "./pages/ru/services/InternationalLawyerRu";
 import ArbitrationRu from "./pages/ru/services/ArbitrationRu";
 import RealEstateRu from "./pages/ru/services/RealEstateRu";
+import LandRealEstateRu from "./pages/ru/services/LandRealEstateRu";
 import InternationalMigrationCoordinationRu from "./pages/ru/services/InternationalMigrationCoordinationRu";
 import InternationalAssetsPageRu from "./pages/ru/services/InternationalAssetsPageRu";
 
@@ -79,6 +80,7 @@ const PublicSiteRoutes = () => {
       <Route path="/ru/mezhdunarodnyy-yurist-rossiya" element={<InternationalLawyerRu />} />
       <Route path="/ru/arbitrazhnye-spory" element={<ArbitrationRu />} />
       <Route path="/ru/nedvizhimost-i-arenda" element={<RealEstateRu />} />
+      <Route path="/ru/zemlya-i-nedvizhimost" element={<LandRealEstateRu />} />
       <Route path="/ru/services/international-migration-coordination" element={<InternationalMigrationCoordinationRu />} />
       <Route path="/ru/mezhdunarodnye-aktivy" element={<InternationalAssetsPageRu pageKey="hub" />} />
       <Route path="/ru/kipr-nedvizhimost-pmzh" element={<InternationalAssetsPageRu pageKey="cyprus" />} />

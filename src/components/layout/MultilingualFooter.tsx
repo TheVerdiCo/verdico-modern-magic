@@ -117,6 +117,16 @@ const MultilingualFooter = () => {
               {lang === "ru" && (
                 <li>
                   <Link
+                    to={toFinalPath("/ru/zemlya-i-nedvizhimost")}
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Земля и недвижимость
+                  </Link>
+                </li>
+              )}
+              {lang === "ru" && (
+                <li>
+                  <Link
                     to={toFinalPath("/ru/mezhdunarodnye-aktivy")}
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >

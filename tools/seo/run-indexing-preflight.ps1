@@ -6,24 +6,46 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 $Base = $BaseUrl.TrimEnd("/")
-$RequiredUrls = @(
-  "$Base/",
-  "$Base/ru/privlechenie-investitsiy",
-  "$Base/ru/sdelki-m-a",
-  "$Base/ru/yuridicheskoe-soprovozhdenie-investitsiy",
-  "$Base/ru/mezhdunarodnyy-yurist-rossiya",
-  "$Base/ru/arbitrazhnye-spory",
-  "$Base/ru/nedvizhimost-i-arenda",
-  "$Base/ru/o-nas",
-  "$Base/ru/kontakty",
-  "$Base/ru/insights",
-  "$Base/ru/insights/samovolnaya-rekonstruktsiya-i-pereplanirovka",
-  "$Base/ru/insights/bezdejstvie-pristava",
-  "$Base/ru/insights/subsidiarnaya-otvetstvennost-prezumptsii",
-  "$Base/ru/insights/dogovor-arendy-kak-dokazatelstvo",
-  "$Base/ru/insights/osparivanie-kadastrovoj-stoimosti",
-  "$Base/ru/insights/registratsiya-tovarnogo-znaka-podgotovka-dokumentov"
+
+function ConvertTo-SlashFinalUrl {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Base,
+    [Parameter(Mandatory = $true)]
+    [string]$Path
+  )
+
+  if ($Path.Contains("?") -or $Path.Contains("#")) {
+    throw "PATH_MUST_NOT_CONTAIN_QUERY_OR_HASH:$Path"
+  }
+
+  if ([string]::IsNullOrWhiteSpace($Path) -or $Path -eq "/") {
+    return "$Base/"
+  }
+
+  $NormalizedPath = "/" + $Path.Trim("/")
+  return "$Base$NormalizedPath/"
+}
+
+$RequiredPaths = @(
+  "/",
+  "/ru/privlechenie-investitsiy",
+  "/ru/sdelki-m-a",
+  "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
+  "/ru/mezhdunarodnyy-yurist-rossiya",
+  "/ru/arbitrazhnye-spory",
+  "/ru/nedvizhimost-i-arenda",
+  "/ru/o-nas",
+  "/ru/kontakty",
+  "/ru/insights",
+  "/ru/insights/samovolnaya-rekonstruktsiya-i-pereplanirovka",
+  "/ru/insights/bezdejstvie-pristava",
+  "/ru/insights/subsidiarnaya-otvetstvennost-prezumptsii",
+  "/ru/insights/dogovor-arendy-kak-dokazatelstvo",
+  "/ru/insights/osparivanie-kadastrovoj-stoimosti",
+  "/ru/insights/registratsiya-tovarnogo-znaka-podgotovka-dokumentov"
 )
+$RequiredUrls = @($RequiredPaths | ForEach-Object { ConvertTo-SlashFinalUrl -Base $Base -Path $_ })
 
 $Failures = New-Object System.Collections.Generic.List[string]
 $UrlErrorCount = 0
@@ -46,7 +68,8 @@ $WrongHostLocCount = @($SitemapLocs | Where-Object {
     $Uri.Scheme -ne "https" -or $Uri.Host -ne "www.verdico.ru"
   }).Count
 $PolicyCount = @($SitemapLocs | Where-Object { $_ -eq "$Base/policy" }).Count
-$RealEstateCount = @($SitemapLocs | Where-Object { $_ -eq "$Base/ru/nedvizhimost-i-arenda" }).Count
+$RealEstateUrl = ConvertTo-SlashFinalUrl -Base $Base -Path "/ru/nedvizhimost-i-arenda"
+$RealEstateCount = @($SitemapLocs | Where-Object { $_ -eq $RealEstateUrl }).Count
 
 foreach ($Url in $RequiredUrls) {
   $InSitemap = $SitemapLocs -contains $Url

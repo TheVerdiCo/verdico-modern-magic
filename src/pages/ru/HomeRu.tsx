@@ -63,6 +63,25 @@ const homeCardCopy: Record<string, { title: string; summary: string }> = {
   },
 };
 
+const homeServiceItems = [
+  ...ruServices.map((service) => {
+    const copy = homeCardCopy[service.path];
+    return {
+      path: service.path,
+      title: copy?.title ?? service.h1,
+      summary: copy?.summary ?? `${service.description.slice(0, 100)}...`,
+      action: "Подробнее",
+    };
+  }),
+  {
+    path: "/ru/kontakty",
+    title: "Российская правовая практика",
+    summary:
+      "Договоры, недвижимость, корпоративные и имущественные вопросы — там, где значение имеют правовая форма, состав прав и порядок действий.",
+    action: "Обсудить задачу",
+  },
+];
+
 const HomeRu = () => {
   const location = useLocation();
   const seoPath = location.pathname === "/" ? "/" : "/ru";
@@ -135,59 +154,48 @@ const HomeRu = () => {
       {/* Services Section */}
       <section className="py-14 md:py-24 px-4 bg-secondary/50">
         <div className="container">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="eyebrow justify-center">Услуги</span>
-            <h2 className="h2-section mt-4 md:mt-5 mb-3 md:mb-4">
-              Ключевые направления практики
-            </h2>
-            <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground max-w-2xl mx-auto text-left md:text-center">
-              Направления, в которых юридическая форма решения определяет имущественный,
-              переговорный и процессуальный результат.
-            </p>
-          </div>
+          <div className="grid gap-10 lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <span className="eyebrow">Услуги</span>
+              <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
+                Ключевые направления практики
+              </h2>
+              <p className="text-[15.5px] leading-[1.65] md:text-base md:leading-relaxed text-muted-foreground text-left">
+                Направления, в которых юридическая форма решения определяет имущественный,
+                переговорный и процессуальный результат.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {ruServices.map((service) => {
-              const copy = homeCardCopy[service.path];
-              const title = copy?.title ?? service.h1;
-              const summary = copy?.summary ?? `${service.description.slice(0, 100)}...`;
-              return (
+            <div className="border-y border-border/80 divide-y divide-border/80">
+              {homeServiceItems.map((service, index) => (
                 <Link
                   key={service.path}
                   to={toFinalPath(service.path)}
-                  className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
+                  className="group grid gap-4 py-5 md:grid-cols-[72px_minmax(0,1fr)_auto] md:items-start md:gap-6 md:py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                  <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
-                    {title}
-                  </h3>
-                  <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground mb-4">
-                    {summary}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
-                    Подробнее
+                  <span
+                    className="font-serif text-[24px] leading-none text-verdico-gold md:text-[30px]"
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span className="block min-w-0">
+                    <span className="block font-serif text-[21px] leading-snug md:text-2xl text-foreground group-hover:text-gradient-brand">
+                      {service.title}
+                    </span>
+                    <span className="mt-2 block text-[15px] leading-[1.6] md:text-base md:leading-relaxed text-muted-foreground">
+                      {service.summary}
+                    </span>
+                  </span>
+
+                  <span className="inline-flex min-h-[32px] items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent md:justify-self-end">
+                    {service.action}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
-              );
-            })}
-
-            {/* Russian domestic legal-practice vector */}
-            <Link
-              to={toFinalPath("/ru/kontakty")}
-              className="group verdico-card p-5 md:p-7 bg-card border border-border hover:shadow-hover hover:border-verdico-gold/40 transition-all"
-            >
-              <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2.5 md:mb-3 group-hover:text-gradient-brand">
-                Российская правовая практика
-              </h3>
-              <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground mb-4">
-                Договоры, недвижимость, корпоративные и имущественные вопросы — там, где
-                значение имеют правовая форма, состав прав и порядок действий.
-              </p>
-              <span className="inline-flex items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent min-h-[28px]">
-                Обсудить задачу
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

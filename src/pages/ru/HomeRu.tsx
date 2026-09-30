@@ -8,33 +8,26 @@ import TechnologyPartnershipsRu from "@/components/TechnologyPartnershipsRu";
 import { ruServices, toFinalPath } from "@/lib/seo";
 import founderImage from "@/assets/founder-image.avif";
 
-const stats = [
-  { value: "14+", label: "лет практики" },
-  { value: "60+", label: "успешных дел" },
-  { value: "15+", label: "стран и юрисдикций" },
-  { value: "90%+", label: "выигранных дел" },
-];
-
 const homeCardCopy: Record<string, { title: string; summary: string }> = {
   "/ru/privlechenie-investitsiy": {
-    title: "Инвестиционные ситуации",
+    title: "Привлечение инвестиций",
     summary:
-      "Привлечение инвестиций: структура сделки, проверка прав и полномочий, распределение рисков и условия выхода.",
+      "Структура сделки, проверка прав и полномочий, распределение рисков и условия выхода.",
   },
   "/ru/sdelki-m-a": {
-    title: "Сделки и структура",
+    title: "Сделки M&A",
     summary:
-      "Сопровождение M&A и иных сделок: due diligence, договорная конструкция, переговоры и управляемый порядок исполнения.",
+      "Due diligence, договорная конструкция, переговоры и закрытие сделки.",
   },
   "/ru/yuridicheskoe-soprovozhdenie-investitsiy": {
-    title: "Договоры и контроль рисков",
+    title: "Инвестиционные сделки",
     summary:
-      "Договорная и корпоративная работа инвестиционного цикла: точная формулировка прав, обязательств и пределов ответственности.",
+      "Договоры, корпоративные решения, контроль обязательств и защита прав инвестора.",
   },
   "/ru/mezhdunarodnyy-yurist-rossiya": {
-    title: "Трансграничный контекст",
+    title: "Вопросы с иностранным элементом",
     summary:
-      "Правовые задачи с иностранным элементом — контрагентом, активом, платежом или применимой юрисдикцией.",
+      "Договоры, расчёты, юрисдикция и структура взаимодействия.",
   },
   "/ru/arbitrazhnye-spory": {
     title: "Споры и переговоры",
@@ -52,14 +45,14 @@ const homeCardCopy: Record<string, { title: string; summary: string }> = {
       "Правовое сопровождение земельных участков, объектов недвижимости и городских активов: структура прав, аренда, выкуп, кадастр, ограничения, споры с органами власти и защита интересов собственников.",
   },
   "/ru/services/international-migration-coordination": {
-    title: "Миграционная координация",
+    title: "Миграционные вопросы за рубежом",
     summary:
-      "Координация с иностранными специалистами: резидентство, семейное воссоединение, документы, сроки, расходы и риски.",
+      "Резидентство, семейное воссоединение, документы, сроки, расходы и риски с участием иностранных специалистов.",
   },
   "/ru/mezhdunarodnye-aktivy": {
     title: "Международные активы",
     summary:
-      "Недвижимость, резидентские маршруты и доходные объекты за рубежом: структура сделки, проверка и координация.",
+      "Зарубежная недвижимость, резидентские маршруты и доходные объекты: структура сделки, проверка, координация.",
   },
 };
 
@@ -75,9 +68,9 @@ const homeServiceItems = [
   }),
   {
     path: "/ru/kontakty",
-    title: "Российская правовая практика",
+    title: "Другие правовые задачи",
     summary:
-      "Договоры, недвижимость, корпоративные и имущественные вопросы — там, где значение имеют правовая форма, состав прав и порядок действий.",
+      "Договоры, недвижимость, корпоративные и имущественные вопросы, где важны состав прав и порядок действий.",
     action: "Обсудить задачу",
   },
 ];
@@ -116,11 +109,12 @@ const HomeRu = () => {
               Юридическая практика с 2010 года
             </span>
             <h1 className="h1-hero-home text-white mt-5 mb-5 md:mt-6 md:mb-6">
-              Юридические услуги для бизнеса и инвесторов в России и за рубежом.
+              Люди, бизнес, право.
             </h1>
             <p className="text-[16px] leading-[1.55] md:text-xl md:leading-normal text-white/85 mb-7 md:mb-8 max-w-2xl mx-auto animate-fade-up animation-delay-200">
-              Споры, сделки, договоры и переговоры — там,
-              где правовая форма должна соответствовать имущественному интересу.
+              Помогаем частным клиентам, собственникам и компаниям в сделках, спорах,
+              недвижимости, инвестициях и международных вопросах: документы, риски,
+              переговоры, порядок действий.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-up animation-delay-300">
               <Link to={toFinalPath("/ru/kontakty")}>
@@ -135,18 +129,6 @@ const HomeRu = () => {
                 </Button>
               </Link>
             </div>
-
-            {/* Stat rail — gold values + uppercase micro-labels (Verdico family) */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 lg:gap-8 max-w-4xl mx-auto mt-10 md:mt-12 pt-6 border-t border-verdico-gold/25 animate-fade-up animation-delay-400">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="font-serif text-2xl md:text-4xl font-medium text-verdico-gold">
-                    {stat.value}
-                  </p>
-                  <p className="eyebrow !text-white/70 mt-2 justify-center !text-[10px] md:!text-[11px]">{stat.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -158,12 +140,8 @@ const HomeRu = () => {
             <div className="lg:sticky lg:top-28 lg:self-start">
               <span className="eyebrow">Услуги</span>
               <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
-                Ключевые направления практики
+                Основные направления работы
               </h2>
-              <p className="text-[15.5px] leading-[1.65] md:text-base md:leading-relaxed text-muted-foreground text-left">
-                Направления, в которых юридическая форма решения определяет имущественный,
-                переговорный и процессуальный результат.
-              </p>
             </div>
 
             <div className="border-y border-border/80 divide-y divide-border/80">
@@ -256,7 +234,7 @@ const HomeRu = () => {
             Готовы обсудить вашу задачу?
           </h2>
           <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-verdico-ink/70 mb-7 md:mb-8 max-w-xl mx-auto">
-            Опишите ситуацию — мы свяжемся с вами и предложим варианты решения.
+            Опишите ситуацию — мы предложим возможный порядок действий.
           </p>
           <Link to={toFinalPath("/ru/kontakty")}>
             <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">

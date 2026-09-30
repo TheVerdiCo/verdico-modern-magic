@@ -8,6 +8,9 @@ const InsightsRu = () => {
   const articles = [...ruArticles].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : 0
   );
+  const [leadArticle, ...secondaryArticles] = articles;
+  const supportingArticles = secondaryArticles.slice(0, 2);
+  const indexArticles = secondaryArticles.slice(2);
 
   return (
     <MultilingualLayout>
@@ -36,13 +39,31 @@ const InsightsRu = () => {
         </div>
       </section>
 
-      {/* Article grid */}
+      {/* Article index */}
       <section className="py-14 md:py-24 px-4">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
-            {articles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)] lg:gap-10">
+              {leadArticle && (
+                <ArticleCard article={leadArticle} variant="lead" />
+              )}
+
+              <div className="flex flex-col">
+                {supportingArticles.map((article) => (
+                  <ArticleCard key={article.slug} article={article} variant="compact" />
+                ))}
+              </div>
+            </div>
+
+            {indexArticles.length > 0 && (
+              <div className="mt-8 border-t border-border/80 pt-8 md:mt-12 md:pt-10">
+                <div className="grid gap-5 md:grid-cols-3">
+                  {indexArticles.map((article) => (
+                    <ArticleCard key={article.slug} article={article} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

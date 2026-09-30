@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Lock, Target } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
 import { toFinalPath } from "@/lib/seo";
@@ -40,17 +40,14 @@ const usefulAreas = [
 
 const approach = [
   {
-    icon: Target,
     title: "Правовая позиция",
     description: "До начала работы определяются предмет спора, доказательственная база, процессуальный риск и экономический смысл действий.",
   },
   {
-    icon: Lock,
     title: "Доказательства",
     description: "Договор, переписка, акты и фактические обстоятельства проверяются до подачи документов, а не в ходе процесса.",
   },
   {
-    icon: Shield,
     title: "Экономический результат",
     description: "Каждое действие имеет назначение: защитить право, снизить риск, усилить переговорную позицию или приблизить исполнение.",
   },
@@ -104,51 +101,55 @@ const AboutRu = () => {
       {/* Where we are useful — editorial section */}
       <section className="py-14 md:py-24 px-4 bg-secondary/50">
         <div className="container">
-          <div className="max-w-3xl mb-10 md:mb-14">
-            <span className="eyebrow mb-4">Практика</span>
-            <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
-              Где мы можем быть полезны
-            </h2>
-            <p className="text-[15.5px] leading-[1.65] md:text-base md:leading-relaxed text-muted-foreground text-left">
-              Мы подключаемся к вопросам, в которых правовая форма влияет на имущество,
-              контроль, переговорную позицию или дальнейшее движение бизнеса.
-              В таких ситуациях важны не громкие формулы, а точное понимание интереса,
-              состава прав, пределов риска и допустимого способа действия.
-            </p>
-          </div>
+          <div className="grid gap-10 lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <span className="eyebrow">Практика</span>
+              <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
+                Где мы можем быть полезны
+              </h2>
+              <p className="text-[15.5px] leading-[1.65] md:text-base md:leading-relaxed text-muted-foreground text-left">
+                Мы подключаемся к вопросам, в которых правовая форма влияет на имущество,
+                контроль, переговорную позицию или дальнейшее движение бизнеса.
+                В таких ситуациях важны не громкие формулы, а точное понимание интереса,
+                состава прав, пределов риска и допустимого способа действия.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {usefulAreas.map((item, index) => (
-              <article
-                key={item.title}
-                className="p-6 md:p-7 bg-card verdico-card border border-border text-left"
-              >
-                <div className="flex items-center gap-3 mb-4 md:mb-5">
-                  <span className="font-serif text-accent text-[13px] tracking-[0.18em]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="h-px flex-1 bg-border" aria-hidden="true" />
-                </div>
-                <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2 md:mb-3 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-[15px] leading-[1.6] md:text-sm md:leading-relaxed text-muted-foreground">
-                  {item.description}
+            <div>
+              <div className="border-y border-border/80 divide-y divide-border/80">
+                {usefulAreas.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="grid gap-4 py-5 md:grid-cols-[72px_minmax(0,1fr)] md:gap-6 md:py-6"
+                  >
+                    <span
+                      className="font-serif text-[24px] leading-none text-verdico-gold md:text-[30px]"
+                      aria-hidden="true"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="block min-w-0">
+                      <h3 className="font-serif text-[21px] leading-snug md:text-2xl text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[15px] leading-[1.6] md:text-base md:leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </span>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-10 border-t border-verdico-gold/35 pt-8 md:mt-12 md:pt-10">
+                <p className="font-serif italic text-[17px] leading-[1.7] md:text-xl md:leading-relaxed text-foreground/85">
+                  В основе работы Верди и Ко. — точность правовой конструкции и понимание
+                  того, какой результат действительно имеет значение для доверителя.
                 </p>
-              </article>
-            ))}
-          </div>
-
-          {/* Editorial signature mark */}
-          <div className="mt-14 md:mt-20 max-w-3xl mx-auto text-center">
-            <div className="h-px w-12 md:w-16 bg-accent/60 mx-auto mb-6 md:mb-8" aria-hidden="true" />
-            <p className="font-serif italic text-[16px] leading-[1.7] md:text-lg md:leading-relaxed text-foreground/85 mb-5 md:mb-6">
-              В основе работы Верди и Ко. — точность правовой конструкции и понимание
-              того, какой результат действительно имеет значение для доверителя.
-            </p>
-            <p className="font-serif text-[17px] md:text-xl tracking-[0.22em] uppercase text-gradient-brand">
-              Верди и Ко.
-            </p>
+                <p className="mt-5 font-serif text-[15px] md:text-lg tracking-[0.22em] uppercase text-gradient-brand">
+                  Верди и Ко.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -156,44 +157,62 @@ const AboutRu = () => {
       {/* Approach */}
       <section className="py-14 md:py-24 px-4">
         <div className="container">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="eyebrow justify-center">Подход</span>
-            <h2 className="h2-section mt-4 md:mt-5 mb-3 md:mb-4">Принципы работы</h2>
-            <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-muted-foreground max-w-2xl mx-auto text-left md:text-center">
-              Мы не подменяем юридическую работу общими обещаниями. Позиция должна быть
-              собрана до подачи документов, а не в ходе импровизации.
-            </p>
-          </div>
+          <div className="grid gap-10 lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
+            <div>
+              <span className="eyebrow">Подход</span>
+              <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">Принципы работы</h2>
+              <p className="text-[15.5px] leading-[1.65] md:text-base md:leading-relaxed text-muted-foreground text-left">
+                Мы не подменяем юридическую работу общими обещаниями. Позиция должна быть
+                собрана до подачи документов, а не в ходе импровизации.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-            {approach.map((item) => (
-              <div key={item.title} className="p-5 md:p-7 bg-card verdico-card border border-border text-left md:text-center">
-                <div className="w-11 h-11 md:w-12 md:h-12 rounded-lg bg-gradient-brand flex items-center justify-center mb-3 md:mb-4 md:mx-auto">
-                  <item.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                </div>
-                <h3 className="font-serif text-[19px] md:text-xl font-medium mb-2 md:mb-3">{item.title}</h3>
-                <p className="text-[15px] leading-[1.55] md:text-sm md:leading-normal text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
+            <div className="border-y border-border/80 divide-y divide-border/80">
+              {approach.map((item, index) => (
+                <article
+                  key={item.title}
+                  className="grid gap-4 py-5 md:grid-cols-[72px_minmax(0,1fr)] md:gap-6 md:py-6"
+                >
+                  <span
+                    className="font-serif text-[24px] leading-none text-verdico-gold md:text-[30px]"
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="block min-w-0">
+                    <h3 className="font-serif text-[21px] leading-snug md:text-2xl text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-[15px] leading-[1.6] md:text-base md:leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </span>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA — light editorial transition into footer */}
-      <section className="py-14 md:py-24 px-4 bg-verdico-closing">
-        <div className="container text-center">
-          <h2 className="font-serif text-[28px] leading-tight md:text-4xl mb-4 text-verdico-ink">
-            Готовы обсудить задачу?
-          </h2>
-          <p className="text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-verdico-ink/70 mb-7 md:mb-8 max-w-xl mx-auto">
-            Свяжитесь с нами для первичной консультации. По запросу — NDA.
-          </p>
-          <Link to={toFinalPath("/ru/kontakty")}>
-            <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
-              Связаться
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
+      <section className="py-12 md:py-14 px-4 bg-verdico-closing">
+        <div className="container">
+          <div className="mx-auto flex max-w-4xl flex-col gap-5 border-t border-verdico-gold/35 pt-8 text-left md:flex-row md:items-center md:justify-between md:gap-8">
+            <div className="max-w-2xl">
+              <h2 className="font-serif text-[28px] leading-tight md:text-4xl text-verdico-ink">
+                Готовы обсудить задачу?
+              </h2>
+              <p className="mt-4 text-[15.5px] leading-[1.55] md:text-base md:leading-normal text-verdico-ink/70">
+                Свяжитесь с нами для первичной консультации. По запросу — NDA.
+              </p>
+            </div>
+            <Link to={toFinalPath("/ru/kontakty")} className="inline-flex">
+              <Button size="lg" className="gap-2 btn-navy-glass rounded-full h-12 md:h-11">
+                Связаться
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </MultilingualLayout>

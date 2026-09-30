@@ -121,7 +121,7 @@ const TechnologyPartnershipsRu = () => {
           </div>
         </div>
 
-        <div className="verdico-card mt-6 flex flex-col gap-6 overflow-hidden border border-white/15 bg-verdico-cta p-6 text-white md:mt-8 md:flex-row md:items-center md:justify-between md:p-8 lg:px-10">
+        <div className="mt-6 flex flex-col gap-6 overflow-hidden border border-verdico-gold/25 bg-[radial-gradient(circle_at_18%_0%,rgba(201,165,85,0.16),transparent_34%),radial-gradient(circle_at_88%_18%,rgba(90,139,172,0.13),transparent_32%),linear-gradient(135deg,#fbfaf5_0%,#f4f8fa_56%,#eef4f2_100%)] p-6 text-verdico-ink shadow-[0_18px_52px_rgba(7,23,47,0.07)] md:mt-8 md:flex-row md:items-center md:justify-between md:p-8 lg:px-10">
           <div>
             <span className="eyebrow">Следующий шаг</span>
             <h3 className="mt-3 font-serif text-2xl font-medium md:text-3xl">
@@ -129,7 +129,7 @@ const TechnologyPartnershipsRu = () => {
             </h3>
             <a
               href="mailto:admin@verdico.ru"
-              className="mt-3 inline-flex items-center gap-2 text-[15px] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verdico-gold"
+              className="mt-3 inline-flex items-center gap-2 text-[15px] text-verdico-ink/65 transition-colors hover:text-verdico-blue-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verdico-gold focus-visible:ring-offset-2"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
               admin@verdico.ru
@@ -137,7 +137,7 @@ const TechnologyPartnershipsRu = () => {
           </div>
           <a
             href="mailto:admin@verdico.ru?subject=%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D0%BF%D0%B0%D1%80%D1%82%D0%BD%D1%91%D1%80%D1%81%D1%82%D0%B2%D0%BE"
-            className="btn-gloss inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/60 bg-white px-6 text-sm font-medium text-verdico-blue-deep transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verdico-gold md:min-h-11"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-verdico-blue-deep/15 bg-white/75 px-6 text-sm font-medium text-verdico-blue-deep shadow-[0_10px_24px_rgba(7,23,47,0.08)] transition-colors hover:border-verdico-blue-deep/25 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verdico-gold focus-visible:ring-offset-2 md:min-h-11"
           >
             Написать нам
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

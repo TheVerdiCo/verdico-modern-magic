@@ -4,74 +4,66 @@ import { ArrowRight, Check } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import MultilingualLayout from "@/components/layout/MultilingualLayout";
-import TechnologyPartnershipsRu from "@/components/TechnologyPartnershipsRu";
-import { ruServices, toFinalPath } from "@/lib/seo";
+import { toFinalPath } from "@/lib/seo";
 import founderImage from "@/assets/founder-image.avif";
 
-const homeCardCopy: Record<string, { title: string; summary: string }> = {
-  "/ru/privlechenie-investitsiy": {
-    title: "Привлечение инвестиций",
-    summary:
-      "Структура сделки, проверка прав и полномочий, распределение рисков и условия выхода.",
-  },
-  "/ru/sdelki-m-a": {
-    title: "Сделки M&A",
-    summary:
-      "Due diligence, договорная конструкция, переговоры и закрытие сделки.",
-  },
-  "/ru/yuridicheskoe-soprovozhdenie-investitsiy": {
-    title: "Инвестиционные сделки",
-    summary:
-      "Договоры, корпоративные решения, контроль обязательств и защита прав инвестора.",
-  },
-  "/ru/mezhdunarodnyy-yurist-rossiya": {
-    title: "Вопросы с иностранным элементом",
-    summary:
-      "Договоры, расчёты, юрисдикция и структура взаимодействия.",
-  },
-  "/ru/arbitrazhnye-spory": {
-    title: "Споры и переговоры",
-    summary:
-      "Коммерческие, договорные и имущественные споры — позиция, доказательства и дисциплина процесса в арбитраже.",
-  },
-  "/ru/nedvizhimost-i-arenda": {
-    title: "Недвижимость и активы",
-    summary:
-      "Недвижимость и аренда: договоры, защита собственника, имущественные споры и оспаривание кадастровой стоимости.",
-  },
-  "/ru/zemlya-i-nedvizhimost": {
-    title: "Земля и недвижимость",
-    summary:
-      "Правовое сопровождение земельных участков, объектов недвижимости и городских активов: структура прав, аренда, выкуп, кадастр, ограничения, споры с органами власти и защита интересов собственников.",
-  },
-  "/ru/services/international-migration-coordination": {
-    title: "Миграционные вопросы за рубежом",
-    summary:
-      "Резидентство, семейное воссоединение, документы, сроки, расходы и риски с участием иностранных специалистов.",
-  },
-  "/ru/mezhdunarodnye-aktivy": {
-    title: "Международные активы",
-    summary:
-      "Зарубежная недвижимость, резидентские маршруты и доходные объекты: структура сделки, проверка, координация.",
-  },
-};
+const trustStats = [
+  { value: "14+", label: "лет практики" },
+  { value: "60+", label: "успешных дел" },
+  { value: "90%+", label: "выигранных дел" },
+];
 
-const homeServiceItems = [
-  ...ruServices.map((service) => {
-    const copy = homeCardCopy[service.path];
-    return {
-      path: service.path,
-      title: copy?.title ?? service.h1,
-      summary: copy?.summary ?? `${service.description.slice(0, 100)}...`,
-      action: "Подробнее",
-    };
-  }),
+const serviceGroups = [
   {
-    path: "/ru/kontakty",
-    title: "Другие правовые задачи",
-    summary:
-      "Договоры, недвижимость, корпоративные и имущественные вопросы, где важны состав прав и порядок действий.",
-    action: "Обсудить задачу",
+    title: "Сделки и инвестиции",
+    links: [
+      { title: "Привлечение инвестиций", href: "/ru/privlechenie-investitsiy" },
+      { title: "Сделки M&A", href: "/ru/sdelki-m-a" },
+      {
+        title: "Юридическое сопровождение инвестиций",
+        href: "/ru/yuridicheskoe-soprovozhdenie-investitsiy",
+      },
+    ],
+  },
+  {
+    title: "Споры и защита интересов",
+    links: [
+      { title: "Арбитражные споры", href: "/ru/arbitrazhnye-spory" },
+      { title: "Другие правовые задачи", href: "/ru/kontakty" },
+    ],
+  },
+  {
+    title: "Недвижимость и собственность",
+    links: [
+      { title: "Недвижимость и аренда", href: "/ru/nedvizhimost-i-arenda" },
+      { title: "Земля и недвижимость", href: "/ru/zemlya-i-nedvizhimost" },
+    ],
+  },
+  {
+    title: "Международные вопросы",
+    links: [
+      { title: "Вопросы с иностранным элементом", href: "/ru/mezhdunarodnyy-yurist-rossiya" },
+      {
+        title: "Миграционные вопросы за рубежом",
+        href: "/ru/services/international-migration-coordination",
+      },
+      { title: "Международные активы и недвижимость", href: "/ru/mezhdunarodnye-aktivy" },
+    ],
+  },
+];
+
+const workSteps = [
+  {
+    title: "Разбираемся",
+    copy: "Вы описываете ситуацию и присылаете документы, которые уже есть.",
+  },
+  {
+    title: "Определяем варианты",
+    copy: "Смотрим, в чём правовой вопрос, какие есть риски и возможные действия.",
+  },
+  {
+    title: "Согласуем работу",
+    copy: "Если можем быть полезны — определяем объём, сроки, стоимость и следующий шаг.",
   },
 ];
 
@@ -129,6 +121,19 @@ const HomeRu = () => {
                 </Button>
               </Link>
             </div>
+
+            <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 border-t border-verdico-gold/25 pt-6 text-left sm:grid-cols-3 md:mt-12 md:gap-6 animate-fade-up animation-delay-400">
+              {trustStats.map((stat) => (
+                <div key={stat.label} className="border-l border-verdico-gold/35 pl-4">
+                  <dt className="font-serif text-3xl font-medium leading-none text-verdico-gold md:text-4xl">
+                    {stat.value}
+                  </dt>
+                  <dd className="mt-2 text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
@@ -140,16 +145,15 @@ const HomeRu = () => {
             <div className="lg:sticky lg:top-28 lg:self-start">
               <span className="eyebrow">Услуги</span>
               <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
-                Основные направления работы
+                С чем можем помочь
               </h2>
             </div>
 
             <div className="border-y border-border/80 divide-y divide-border/80">
-              {homeServiceItems.map((service, index) => (
-                <Link
-                  key={service.path}
-                  to={toFinalPath(service.path)}
-                  className="group grid gap-4 py-5 md:grid-cols-[72px_minmax(0,1fr)_auto] md:items-start md:gap-6 md:py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              {serviceGroups.map((group, index) => (
+                <div
+                  key={group.title}
+                  className="grid gap-4 py-6 md:grid-cols-[72px_minmax(0,1fr)] md:gap-6 md:py-7"
                 >
                   <span
                     className="font-serif text-[24px] leading-none text-verdico-gold md:text-[30px]"
@@ -158,30 +162,73 @@ const HomeRu = () => {
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  <span className="block min-w-0">
-                    <span className="block font-serif text-[21px] leading-snug md:text-2xl text-foreground group-hover:text-gradient-brand">
-                      {service.title}
-                    </span>
-                    <span className="mt-2 block text-[15px] leading-[1.6] md:text-base md:leading-relaxed text-muted-foreground">
-                      {service.summary}
-                    </span>
-                  </span>
-
-                  <span className="inline-flex min-h-[32px] items-center gap-1 text-[14.5px] md:text-sm font-medium text-accent md:justify-self-end">
-                    {service.action}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
+                  <div className="min-w-0">
+                    <h3 className="font-serif text-[22px] leading-snug md:text-2xl text-foreground">
+                      {group.title}
+                    </h3>
+                    <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+                      {group.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          to={toFinalPath(link.href)}
+                          className="inline-flex min-h-[32px] items-center gap-1 rounded-full border border-border/80 bg-background/70 px-3 text-[14px] font-medium text-accent transition-colors hover:border-verdico-gold/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                          {link.title}
+                          <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <TechnologyPartnershipsRu />
+      {/* How We Work */}
+      <section className="py-14 md:py-24 px-4">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <span className="eyebrow">Как мы работаем</span>
+              <h2 className="h2-section mt-4 md:mt-5 mb-5 md:mb-6">
+                Сначала — документы и факты. Потом — решение.
+              </h2>
+              <Link to={toFinalPath("/ru/kontakty")} className="inline-flex">
+                <Button variant="outline" className="gap-2 h-12 md:h-10 rounded-full">
+                  Обсудить ситуацию
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+
+            <ol className="border-y border-border/80 divide-y divide-border/80">
+              {workSteps.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="grid gap-4 py-5 md:grid-cols-[72px_minmax(0,1fr)] md:gap-6 md:py-6"
+                >
+                  <span className="font-serif text-[24px] leading-none text-verdico-gold md:text-[30px]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="block">
+                    <span className="block font-serif text-[21px] leading-snug md:text-2xl text-foreground">
+                      {step.title}
+                    </span>
+                    <span className="mt-2 block text-[15px] leading-[1.6] md:text-base md:leading-relaxed text-muted-foreground">
+                      {step.copy}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
 
       {/* About Preview */}
-      <section className="py-14 md:py-24 px-4">
+      <section className="py-14 md:py-24 px-4 bg-secondary/50">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-10 md:gap-12 items-center">
             <div>

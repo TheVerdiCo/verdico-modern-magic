@@ -259,14 +259,14 @@ const HomeRu = () => {
                 </Button>
               </Link>
             </div>
-            <div className="relative mx-auto lg:mx-0 max-w-[70%] lg:max-w-none lg:w-[70%] lg:justify-self-end">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
-                <picture className="block h-full w-full">
+            <div className="relative -mx-4 w-[calc(100%+2rem)] max-w-3xl sm:mx-auto sm:w-full lg:mx-0 lg:max-w-none lg:justify-self-end">
+              <div className="overflow-hidden rounded-xl shadow-sm">
+                <picture className="block w-full">
                   <source media="(max-width: 767px)" srcSet={founderImageMobile} />
                   <img
                     src={founderImage}
                     alt="Джамал Гахвердиев — основатель Верди и Ко."
-                    className="w-full h-full object-cover object-center"
+                    className="h-auto w-full"
                     loading="lazy"
                     decoding="async"
                   />
